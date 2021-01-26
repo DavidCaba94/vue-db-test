@@ -1,17 +1,17 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <Menu></Menu>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import Menu from './components/Menu.vue'
 
 export default {
-  name: 'App',
   components: {
-    HelloWorld
+    Menu
   }
 }
+
 </script>
 
 <style>
@@ -22,5 +22,18 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #525252;
+}
+
+#nav a.router-link-exact-active {
+  color: #4f46e5;
 }
 </style>
