@@ -1,0 +1,37 @@
+-login
+-registro
+-menu:
+    -home
+        · Carrusel con rutas de la semana
+        · Feed de publicaciones de seguidos (rutas creadas por seguidos, rutas a las que asisten, "tweets")
+    -rutas
+        · Listado con todas las rutas 
+        · Filtros y buscador para rutas
+        · Rutas limitadas a X personas
+        · mapas
+    -social
+        · seguidores
+        · seguidos
+    -mis rutas
+        · ver rutas a las que te has apuntado
+        · crear rutas propias
+        · reactivar rutas pasadas cambiando fecha
+    -estadisticas
+        · km totales, numero de rutas
+    -mi perfil
+        · edición perfil
+        . equipación y bici
+    -productos amazon
+        · lista de productos
+    -sorteos y patrocinios
+
+BD:
+    - usuario
+    - rutas
+    - sorteos
+    - seguidores
+    - productos
+    - estadísticas
+    - publicaciones
+    - comentarios_ruta
+    - asistentes_ruta
