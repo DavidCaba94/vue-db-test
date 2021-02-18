@@ -43,7 +43,7 @@
 
 <script>
 import axios from "axios";
-var url = "http://localhost/api-test/crud.php";
+var url = "http://alcortewear.es/post/rest/grupetapp/crud.php";
 
 export default {
        data () {
