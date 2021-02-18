@@ -1,14 +1,11 @@
-<template>
-<v-app>
-      <v-main>      
-        <v-card class="mx-auto mt-5" max-width="1200">
+<template>  
+        <div class="mx-auto mt-5" max-width="1200">
         
         <!-- Botón CREAR -->
-        <v-btn rounded color="green accent-2" @click="crear()">Crear</v-btn>    
+        <button rounded color="green accent-2" @click="crear()">Crear</button>    
 
         <!-- Tabla y formulario -->
-        <v-simple-table class="mt-5">
-            <template v-slot:default>
+        <table class="mt-5">
                 <thead>
                     <tr class="light-blue darken-2">
                         <th class="white--text">ID</th>
@@ -25,20 +22,14 @@
                     <td>{{ articulo.precio }}</td>
                     <td>{{ articulo.stock }}</td>
                     <td>
-                        <v-btn class="teal accent-4" dark @click="editar(articulo.id)">Editar</v-btn>
-                        <v-btn class="error" dark @click="borrar(articulo.id)">Borrar</v-btn>
+                        <button class="teal accent-4" dark @click="editar(articulo.id)">Editar</button>
+                        <button class="error" dark @click="borrar(articulo.id)">Borrar</button>
                     </td>
                     </tr>
                 </tbody>
-            </template>
-        </v-simple-table>
-        </v-card>        
+        </table>
+        </div>        
 
-      <!-- Componente de Diálogo para CREAR y EDITAR -->
-      
-
-      </v-main>
-    </v-app>
 </template>
 
 <script>
