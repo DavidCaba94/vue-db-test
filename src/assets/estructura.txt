@@ -1,3 +1,4 @@
+#CC5454
 -login
 -registro
 -menu:
@@ -9,6 +10,7 @@
         · Filtros y buscador para rutas
         · Rutas limitadas a X personas
         · mapas
+        · plugin del tiempo
     -social
         · seguidores
         · seguidos
@@ -18,6 +20,7 @@
         · reactivar rutas pasadas cambiando fecha
     -estadisticas
         · km totales, numero de rutas
+    -clasificaciones
     -mi perfil
         · edición perfil
         . equipación y bici
