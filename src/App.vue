@@ -28,8 +28,8 @@ body {
   background-color: #f9f9f9;
 }
 
-#nav {
-  padding: 30px;
+a {
+  text-decoration: none;
 }
 
 #nav a {

@@ -1,9 +1,9 @@
 <template>
-    <div id="nav" class="contenedor-menu">
+    <div class="contenedor-menu">
         <div>
             <router-link to="/"><img class="icono" src="../assets/img/menu-icon-2.png" /></router-link>
         </div>
-        <div class="box-items-menu">
+        <div id="nav" class="box-items-menu">
             <router-link to="/rutas">{{item3}}</router-link>
             <router-link to="/social">{{item4}}</router-link>
             <router-link to="/mis-rutas">{{item5}}</router-link>
