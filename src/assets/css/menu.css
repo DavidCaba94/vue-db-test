@@ -1,8 +1,42 @@
 .contenedor-menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    background-color: #f9f9f9;
+}
+
+.contenedor-menu .icono {
+    width: 200px;
+}
+
+.contenedor-menu .box-login-reg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
+
+.contenedor-menu .login-btn {
+    width: 100px;
+    background-color: #CC5454;
+    color: #ffffff;
+    border-radius: 10px;
+    padding: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.contenedor-menu .login-btn:hover {
+    background-color: #a73e3e;
+}
+
+.contenedor-menu .box-items-menu {
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-wrap: nowrap;
-    background-color: #f9f9f9;
+    padding-left: 100px;
+    padding-right: 100px;
 }
