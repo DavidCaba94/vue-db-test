@@ -33,6 +33,7 @@ $fecha_registro = (isset($_POST['fecha_registro'])) ? $_POST['fecha_registro'] :
 $provincia = (isset($_POST['provincia'])) ? $_POST['provincia'] : '';
 $foto = (isset($_POST['foto'])) ? $_POST['foto'] : '';
 
+$password = md5($password);
 
 switch($opcion){
 	case 1:
@@ -42,7 +43,7 @@ switch($opcion){
         $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
         break;
     case 2:
-        $consulta = "INSERT INTO usuarios (nombre, apellidos, email, passwd, fecha_registro, provincia) VALUES('$nombre', '$apellidos', '$email', 'md5($password)', '$fecha_registro', '$provincia') ";
+        $consulta = "INSERT INTO usuarios (nombre, apellidos, email, passwd, fecha_registro, provincia) VALUES('$nombre', '$apellidos', '$email', '$password', '$fecha_registro', '$provincia') ";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();                
         break;

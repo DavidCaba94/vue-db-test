@@ -15,7 +15,17 @@ const routes = [
     path: '/rutas',
     name: 'Rutas',
     alias: '/',
-    component: () => import(/* webpackChunkName: "registro" */ '../views/Rutas.vue')
+    component: () => import(/* webpackChunkName: "rutas" */ '../views/Rutas.vue')
+  },
+  {
+    path: '/bienvenido',
+    name: 'Bienvenido',
+    component: () => import(/* webpackChunkName: "bienvenido" */ '../views/Bienvenido.vue')
+  },
+  {
+    path: '/error',
+    name: 'Error',
+    component: () => import(/* webpackChunkName: "bienvenido" */ '../views/Error.vue')
   }
 ]
 

@@ -37,6 +37,13 @@
     background-color: #a73e3e;
 }
 
+.contenedor-registro .mensaje-error {
+    display: none;
+    text-align: center;
+    color: #CC5454;
+    font-size: 12px;
+}
+
 /*CUSTOM INPUTS*/
 .form__group {
     position: relative;

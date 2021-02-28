@@ -26,6 +26,7 @@
         <input type="input" class="form__field" placeholder="Provincia" name="provincia" id='provincia' required />
         <label for="provincia" class="form__label">Provincia</label>
       </div>
+      <p class="mensaje-error"></p>
       <div class="btn-registrar" @click="comprobarRegistro()">Registrar</div>
       <div id="loading-reg" class="lds-ring"><div></div><div></div><div></div><div></div></div>
     </div>
@@ -52,6 +53,7 @@ export default {
 
             window.$(".btn-registrar").css("display", "none");
             window.$("#loading-reg").css("display", "block");
+            window.$(".mensaje-error").css("display", "none");
 
             var nombre = window.$("#nombre").val();
             var apellidos = window.$("#apellidos").val();
@@ -95,6 +97,8 @@ export default {
             } else {
               window.$(".btn-registrar").css("display", "block");
               window.$("#loading-reg").css("display", "none");
+              window.$(".mensaje-error").text("Todos los campos son obligatorios");
+              window.$(".mensaje-error").css("display", "block");
             }
           },
           comprobarPassword:function(nombre, apellidos, email, password, passwordConfirm, provincia){
@@ -105,6 +109,8 @@ export default {
               this.marcarVacio(window.$("#password-confirm"));
               window.$(".btn-registrar").css("display", "block");
               window.$("#loading-reg").css("display", "none");
+              window.$(".mensaje-error").text("Ambas contraseñas deben ser iguales");
+              window.$(".mensaje-error").css("display", "block");
             }
           },
           marcarVacio:function(elemento){
@@ -129,9 +135,10 @@ export default {
                 provincia: provincia
               }).then(response =>{
                 if(response.statusText == "OK"){
-                  console.log("Registro correcto");
+                  this.$router.replace('bienvenido');
+                } else {
+                  this.$router.replace('error');
                 }
-                console.log(response);
               });
           }
       }
