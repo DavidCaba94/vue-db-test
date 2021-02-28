@@ -1,5 +1,5 @@
 <template>
-    <div class="contenedor-menu">
+    <div class="contenedor-menu" v-if="mostrar">
         <div>
             <router-link to="/"><img class="icono" src="../assets/img/menu-icon-2.png" /></router-link>
         </div>
@@ -40,6 +40,17 @@ export default {
             item8: "Sorteos",
             item9: "Productos",
             item10: "Mi perfil"
+        }
+    },
+    computed:{
+        mostrar(){
+            var mostrarMenu = true;
+
+            if(this.$route.path === '/registro' || this.$route.path === '/login' || this.$route.path === '/bienvenido' || this.$route.path === '/error'){
+                mostrarMenu = false;
+            }
+
+            return mostrarMenu;
         }
     }
 }
