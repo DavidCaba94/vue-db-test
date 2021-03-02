@@ -57,6 +57,18 @@ switch($opcion){
         $consulta = "DELETE FROM usuarios WHERE id='$id' ";		
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();                           
+        break;
+    case 5:
+        $consulta = "SELECT * FROM usuarios WHERE email='$email' AND passwd='$password'";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+        $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+        break;
+    case 6:
+        $consulta = "SELECT email FROM usuarios WHERE email='$email'";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+        $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
         break;         
     
 }

@@ -159,7 +159,7 @@ export default {
           },
           comprobarPassword:function(nombre, apellidos, email, password, passwordConfirm, provincia){
             if(password == passwordConfirm){
-              this.registrar(nombre, apellidos, email, password, provincia);
+              this.comprobarEmailExistente(nombre, apellidos, email, password, provincia);
             } else {
               this.marcarVacio(window.$("#password"));
               this.marcarVacio(window.$("#password-confirm"));
@@ -196,6 +196,22 @@ export default {
                   this.$router.replace('error');
                 }
               });
+          },
+          comprobarEmailExistente:function(nombre, apellidos, email, password, provincia){
+            axios.post(url, {
+                opcion:6,
+                email: email
+            }).then(response =>{
+              if(response.data.length == 0){
+                this.registrar(nombre, apellidos, email, password, provincia);
+              } else {
+                this.marcarVacio(window.$("#email"));
+                window.$(".btn-registrar").css("display", "block");
+                window.$("#loading-reg").css("display", "none");
+                window.$(".mensaje-error").text("Ese email ya está registrado");
+                window.$(".mensaje-error").css("display", "block");
+              }
+            });
           }
       }
 }

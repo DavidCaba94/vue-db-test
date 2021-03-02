@@ -1,0 +1,105 @@
+.contenedor-publicaciones {
+    max-width: 900px;
+    margin: 0 auto;
+    margin-top: 30px;
+    padding: 10px;
+}
+
+.contenedor-publicaciones .box-form-publicacion {
+    width: 100%;
+}
+
+.contenedor-publicaciones .titulo-form {
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #525252;
+}
+
+.contenedor-publicaciones .texto-no-publicaciones {
+    display: none;
+    text-align: center;
+    font-size: 16px;
+    color: #525252;
+    margin-top: 50px;
+}
+
+.contenedor-publicaciones .texto-publicacion {
+    font-family: 'Oxygen', sans-serif;
+    outline: none;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    width: 500px;
+    height: 150px;
+    color: #525252;
+    font-size: 16px;
+    padding: 10px;
+}
+
+.contenedor-publicaciones .box-under-text {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    width: 500px;
+    margin: 0 auto;
+}
+
+.contenedor-publicaciones .btn-publicar {
+    width: 100px;
+    background-color: #CC5454;
+    color: #ffffff;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.contenedor-publicaciones .btn-publicar:hover {
+    background-color: #a73e3e;
+}
+
+.contenedor-publicaciones .texto-caracteres {
+    color: #b1b1b1;
+}
+
+.contenedor-publicaciones .listado-publicaciones {
+    width: 500px;
+    margin: 0 auto;
+    display: block;
+}
+
+.contenedor-publicaciones .item-publicacion {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    -webkit-box-shadow: -1px 7px 8px -4px rgb(0 0 0 / 20%);
+    -moz-box-shadow: -1px 7px 8px -4px rgba(0,0,0,0.20);
+    box-shadow: -1px 7px 8px -4px rgb(0 0 0 / 20%);
+}
+
+.contenedor-publicaciones .nombre-fecha {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+
+.contenedor-publicaciones .img-fake {
+    width: 50px;
+    height: 50px;
+    background-color: #CC5454;
+    border-radius: 50px;
+}
+
+.contenedor-publicaciones .box-textos-pub {
+    width: 320px;
+}
+
+.contenedor-publicaciones .texto-pub {
+    text-align: left;
+}

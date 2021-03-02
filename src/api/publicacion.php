@@ -30,7 +30,7 @@ $fecha_pub = (isset($_POST['fecha_pub'])) ? $_POST['fecha_pub'] : '';
 
 switch($opcion){
 	case 1:
-        $consulta = "SELECT * FROM publicaciones";
+        $consulta = "SELECT * FROM publicaciones ORDER BY id DESC ";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
         $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
