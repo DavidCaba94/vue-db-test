@@ -1,0 +1,37 @@
+.contenedor-social {
+    padding: 10px;
+}
+
+.contenedor-social .box-tabs {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    width: 100%;
+    border-bottom: 1px solid #dbdbdb;
+}
+
+.contenedor-social .tab-item {
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #525252;
+    cursor: pointer;
+}
+
+.contenedor-social .tab-activa {
+    border-bottom: 2px solid #CC5454;
+    color: #CC5454;
+}
+
+.contenedor-social .contenido-publicaciones {
+    display: block;
+}
+
+.contenedor-social .contenido-seguidores {
+    display: none;
+}
+
+.contenedor-social .contenido-seguidos {
+    display: none;
+}

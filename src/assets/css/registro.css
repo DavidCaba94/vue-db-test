@@ -150,4 +150,98 @@
     }
 }
   
-  /*FIN ANIMACION LOADING REGISTRO*/
+/*FIN ANIMACION LOADING REGISTRO*/
+
+/*SELECT PROVINCIAS*/
+  .select-text {
+      position: relative;
+      font-family: inherit;
+      background-color: transparent;
+      width: 100%;
+      padding: 10px 10px 10px 0;
+      font-size: 18px;
+      border-radius: 0;
+      border: none;
+      border-bottom: 2px solid #525252;
+  }
+  
+  .select-text:focus {
+      outline: none;
+      border-bottom: 1px solid #525252;
+  }
+  
+  .select .select-text {
+      appearance: none;
+      -webkit-appearance:none
+  }
+  
+  .select:after {
+      position: absolute;
+      top: 35px;
+      right: 10px;
+      width: 0;
+      height: 0;
+      padding: 0;
+      content: '';
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 6px solid #525252;
+      pointer-events: none;
+  }
+
+  .select-label {
+      color: #525252;
+      font-size: 1.3rem;
+      font-weight: normal;
+      position: absolute;
+      pointer-events: none;
+      left: 0;
+      top: 25px;
+      transition: 0.2s ease all;
+  }
+  
+  .select-text:focus ~ .select-label, .select-text:valid ~ .select-label {
+      color: #CC5454;
+      top: 0px;
+      transition: 0.2s ease all;
+      font-size: 14px;
+  }
+  
+  .select-bar {
+      position: relative;
+      display: block;
+      width: 100%;
+  }
+  
+  .select-bar:before, .select-bar:after {
+      content: '';
+      height: 2px;
+      width: 0;
+      bottom: 1px;
+      position: absolute;
+      background: #CC5454;
+      transition: 0.2s ease all;
+  }
+  
+  .select-bar:before {
+      left: 50%;
+  }
+  
+  .select-bar:after {
+      right: 50%;
+  }
+  
+  .select-text:focus ~ .select-bar:before, .select-text:focus ~ .select-bar:after {
+      width: 50%;
+  }
+  
+  .select-highlight {
+      position: absolute;
+      height: 60%;
+      width: 100px;
+      top: 25%;
+      left: 0;
+      pointer-events: none;
+      opacity: 0.5;
+  }
+  /*FIN SELECT PROVINCIAS*/
