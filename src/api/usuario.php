@@ -32,6 +32,7 @@ $password = (isset($_POST['password'])) ? $_POST['password'] : '';
 $fecha_registro = (isset($_POST['fecha_registro'])) ? $_POST['fecha_registro'] : '';
 $provincia = (isset($_POST['provincia'])) ? $_POST['provincia'] : '';
 $foto = (isset($_POST['foto'])) ? $_POST['foto'] : '';
+$mantenerSesion = (isset($_POST['mantener'])) ? $_POST['mantener'] : '';
 
 $password = md5($password);
 
@@ -57,7 +58,13 @@ switch($opcion){
         $consulta = "DELETE FROM usuarios WHERE id='$id' ";		
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();                           
-        break;         
+        break; 
+    case 5:
+        $consulta = "SELECT * FROM usuarios WHERE email='$email' AND passwd='$password'";		
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+        $data=$resultado->fetchAll(PDO::FETCH_ASSOC);                    
+        break;          
     
 }
 print json_encode($data, JSON_UNESCAPED_UNICODE);
