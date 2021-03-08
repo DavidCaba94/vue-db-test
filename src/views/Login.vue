@@ -75,7 +75,7 @@ export default {
               if(response.statusText == "OK" && response.data.length === 1){
                 response.data[0].recordar = this.recordar;
                 localStorage.setItem("usuario", JSON.stringify(response.data[0]));
-                this.$router.replace('/');
+                this.$router.replace('/rutas');
               } else {
                 this.marcarVacio(window.$("#email"));
                 this.marcarVacio(window.$("#password"));

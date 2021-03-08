@@ -87,6 +87,7 @@
     align-items: center;
     justify-content: space-between;
     flex-wrap: nowrap;
+    font-weight: 700;
 }
 
 .contenedor-publicaciones .img-fake {

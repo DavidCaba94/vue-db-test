@@ -14,13 +14,48 @@ const routes = [
   {
     path: '/rutas',
     name: 'Rutas',
-    alias: '/',
     component: () => import(/* webpackChunkName: "rutas" */ '../views/Rutas.vue')
   },
   {
     path: '/social',
     name: 'Social',
     component: () => import(/* webpackChunkName: "social" */ '../views/Social.vue')
+  },
+  {
+    path: '/mis-rutas',
+    name: 'Mis Rutas',
+    component: () => import(/* webpackChunkName: "mis-rutas" */ '../views/MisRutas.vue')
+  },
+  {
+    path: '/estadisticas',
+    name: 'Estadísticas',
+    component: () => import(/* webpackChunkName: "estadisticas" */ '../views/Estadisticas.vue')
+  },
+  {
+    path: '/clasificaciones',
+    name: 'Clasificaciones',
+    component: () => import(/* webpackChunkName: "clasificaciones" */ '../views/Clasificaciones.vue')
+  },
+  {
+    path: '/sorteos',
+    name: 'Sorteos',
+    component: () => import(/* webpackChunkName: "sorteos" */ '../views/Sorteos.vue')
+  },
+  {
+    path: '/productos',
+    name: 'Productos',
+    component: () => import(/* webpackChunkName: "productos" */ '../views/Productos.vue')
+  },
+  {
+    path: '/perfil',
+    name: 'Perfil',
+    component: () => import(/* webpackChunkName: "perfil" */ '../views/Perfil.vue')
+  },
+  {
+    path: '/home',
+    name: 'Home',
+    alias: '/',
+    component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue')
   },
   {
     path: '/bienvenido',
@@ -30,7 +65,7 @@ const routes = [
   {
     path: '/error',
     name: 'Error',
-    component: () => import(/* webpackChunkName: "bienvenido" */ '../views/Error.vue')
+    component: () => import(/* webpackChunkName: "error" */ '../views/Error.vue')
   }
 ]
 

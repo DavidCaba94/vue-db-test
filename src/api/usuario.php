@@ -69,7 +69,13 @@ switch($opcion){
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
         $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
-        break;         
+        break;  
+    case 7:
+        $consulta = "SELECT nombre, apellidos, foto FROM usuarios WHERE id='$id'";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+        $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+        break;       
     
 }
 print json_encode($data, JSON_UNESCAPED_UNICODE);

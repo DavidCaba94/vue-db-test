@@ -41,3 +41,25 @@
     padding-left: 100px;
     padding-right: 100px;
 }
+
+.contenedor-menu .nombre-usuario {
+    width: 130px;
+    font-size: 14px;
+    color: #000000;
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+.contenedor-menu .img-fake {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto;
+    background-color: #CC5454;
+    border-radius: 50px;
+}
+
+.contenedor-menu .img-logout {
+    width: 40px;
+    margin-left: 20px;
+    cursor: pointer;
+}
