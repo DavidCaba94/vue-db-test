@@ -1,7 +1,7 @@
 <template>
   <div class="contenedor-publicaciones">
     <div class="box-form-publicacion">
-      <p class="titulo-form">Publica lo que piensas</p>
+      <p class="titulo-form">¿En qué estás pensando?</p>
       <textarea id="texto-publicacion" class="texto-publicacion" name="texto-publicacion" maxlength="255" v-model='textoPublicacion' @keyup='charCount()'></textarea>
       <div class="box-under-text">
         <p class="texto-caracteres">{{ numCaracteres }}/255</p>
@@ -25,6 +25,9 @@
             </div>
           </div>
           <div class="box-likes">
+            <div class="like-btn" @click='addLike(objetoLista.id)'>
+              <img class="boton-like" src="../assets/img/like.png" alt="Botón Like">
+            </div>
             <p>{{ objetoLista.likes }}</p>
           </div>
         </div>
@@ -111,6 +114,20 @@ export default {
         if(this.listaUsuariosPubli[indice].foto != null){
           window.$("#"+indice+".img-fake").css("background-image", this.listaUsuariosPubli[indice].foto);
         }
+      },
+      addLike:function(id){
+        axios.post(urlPublicaciones, {
+          opcion:4, 
+          id: id
+        }).then(response =>{
+          if(response.statusText == "OK"){
+            for(var i = 0; i < this.listaPublicaciones.length; i++){
+              if(this.listaPublicaciones[i].id == id){
+                this.listaPublicaciones[i].likes++;
+              }
+            }
+          }
+        });
       }
     }
 }

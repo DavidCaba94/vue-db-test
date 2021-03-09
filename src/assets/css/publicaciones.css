@@ -104,3 +104,19 @@
 .contenedor-publicaciones .texto-pub {
     text-align: left;
 }
+
+.contenedor-publicaciones .box-likes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
+
+.contenedor-publicaciones .like-btn {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.contenedor-publicaciones .boton-like {
+    width: 25px;
+}

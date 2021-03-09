@@ -24,6 +24,7 @@ permisos();
 
 
 $opcion = (isset($_POST['opcion'])) ? $_POST['opcion'] : '';
+$id = (isset($_POST['id'])) ? $_POST['id'] : '';
 $id_usuario = (isset($_POST['id_usuario'])) ? $_POST['id_usuario'] : '';
 $texto = (isset($_POST['texto'])) ? $_POST['texto'] : '';
 $fecha_pub = (isset($_POST['fecha_pub'])) ? $_POST['fecha_pub'] : '';
@@ -44,7 +45,12 @@ switch($opcion){
         $consulta = "DELETE FROM publicaciones WHERE id='$id' ";		
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();                           
-        break;         
+        break;
+    case 4:
+        $consulta = "UPDATE publicaciones SET likes=likes+1 WHERE id='$id' ";		
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();                           
+        break;      
     
 }
 print json_encode($data, JSON_UNESCAPED_UNICODE);
