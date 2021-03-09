@@ -93,8 +93,11 @@
 .contenedor-publicaciones .img-fake {
     width: 50px;
     height: 50px;
-    background-color: #CC5454;
+    border: 1px solid #CC5454;
     border-radius: 50px;
+    background-image: url("../img/user-default.png");
+    background-size: cover;
+    background-position: center;
 }
 
 .contenedor-publicaciones .box-textos-pub {
