@@ -322,13 +322,13 @@
 /* Checked, Indeterminate */
 .pure-material-checkbox > input:checked,
 .pure-material-checkbox > input:indeterminate {
-    background-color: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
+    background-color: #CC5454;
 }
 
 .pure-material-checkbox > input:checked + span::before,
 .pure-material-checkbox > input:indeterminate + span::before {
-    border-color: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
-    background-color: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
+    border-color: #CC5454;
+    background-color: #CC5454;
 }
 
 .pure-material-checkbox > input:checked + span::after,
@@ -362,7 +362,7 @@
 }
 
 .pure-material-checkbox > input:active + span::before {
-    border-color: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
+    border-color: #CC5454;
 }
 
 .pure-material-checkbox > input:checked:active + span::before {

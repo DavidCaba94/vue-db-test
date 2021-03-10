@@ -9,7 +9,7 @@
         </div>
         <div class="form__group field" >
           <input type="password" class="form__field" placeholder="password" v-model="password" name="password" id='password' required />
-          <label for="nombre" class="form__label">Contraseña</label>
+          <label for="password" class="form__label">Contraseña</label>
         </div>
         <label class="pure-material-checkbox">
           <input type="checkbox" v-model="recordar" >
