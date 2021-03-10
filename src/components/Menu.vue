@@ -55,13 +55,12 @@ export default {
     mounted() {
         if(localStorage.usuario) this.usuario = JSON.parse(localStorage.usuario);
         this.comprobarUsuarioLogado(this.usuario);
+        this.setImagen();
     },
     methods: {
         comprobarUsuarioLogado:function(usuario){
             if(usuario == null){
                 this.$router.replace('/');
-            } else {
-                this.setImagen();
             }
         },
         logout:function(){
@@ -71,7 +70,7 @@ export default {
         },
         setImagen:function(){
             if(this.usuario.foto != null){
-                window.$("#img-user").css("background-image", this.usuario.foto);
+                window.$("#img-user").css("background-image", "url("+ this.usuario.foto +")");
             }
         }
     }

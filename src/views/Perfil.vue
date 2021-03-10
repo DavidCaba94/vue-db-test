@@ -4,12 +4,12 @@
     <div class="box-form">
         <div class="img-perfil"></div>
         <div class="form__group field">
-            <input type="input" class="form__field" placeholder="Foto" name="foto" id='foto' required />
-            <label for="foto" class="form__label">Foto</label>
+            <input type="file" class="form__field" placeholder="Foto" name="foto" id='foto' accept=".png,.jpg,.jpeg,.gif,.webp,.bmp" required />
+            <label for="foto" class="form__label">Foto (1MB máx.)</label>
         </div>
-        <p class="mensaje-error"></p>
-        <div class="btn-guardar" @click="actualizarFoto()">Guardar</div>
-        <div id="loading-reg" class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        <p class="mensaje-error msg-error-foto"></p>
+        <div id="btn-guardar-foto" class="btn-guardar" @click="actualizarFoto()">Guardar</div>
+        <div id="loading-foto" class="lds-ring"><div></div><div></div><div></div><div></div></div>
     </div>
     <!-- Datos principales -->
     <p class="indicador-form">Datos principales</p>
@@ -86,16 +86,16 @@
         <span class="select-bar"></span>
         <label class="select-label">Provincia</label>
       </div>
-      <p class="mensaje-error"></p>
-      <div class="btn-guardar" @click="actualizarPerfil()">Guardar</div>
-      <div id="loading-reg" class="lds-ring"><div></div><div></div><div></div><div></div></div>
+      <p class="mensaje-error msg-error-datos"></p>
+      <div id="btn-guardar-datos" class="btn-guardar" @click="actualizarPerfil()">Guardar</div>
+      <div id="loading-datos-principales" class="lds-ring"><div></div><div></div><div></div><div></div></div>
     </div>
     <!-- Cambio de contraseña -->
     <p class="indicador-form">Cambiar contraseña</p>
     <div class="box-form">
         <div class="form__group field">
             <input type="password" class="form__field" placeholder="Contraseña actual" name="old-password" id='old-password' required />
-            <label for="password" class="form__label">Contraseña actual</label>
+            <label for="old-password" class="form__label">Contraseña actual</label>
         </div>
         <div class="form__group field">
             <input type="password" class="form__field" placeholder="Nueva contraseña" name="password" id='password' required />
@@ -105,9 +105,9 @@
             <input type="password" class="form__field" placeholder="Confirmar nueva contraseña" name="password-confirm" id='password-confirm' required />
             <label for="password-confirm" class="form__label">Confirmar nueva contraseña</label>
         </div>
-        <p class="mensaje-error"></p>
-        <div class="btn-guardar" @click="actualizarPassword()">Guardar</div>
-        <div id="loading-reg" class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        <p class="mensaje-error msg-error-password"></p>
+        <div id="btn-guardar-password" class="btn-guardar" @click="actualizarPassword()">Guardar</div>
+        <div id="loading-password" class="lds-ring"><div></div><div></div><div></div><div></div></div>
     </div>
     <!-- Eliminar cuenta -->
     <div class="btn-eliminar-cuenta" @click="eliminarCuenta()"><img class="delete-img" src="../assets/img/delete.png">Eliminar cuenta</div>
@@ -115,6 +115,11 @@
 </template>
 
 <script>
+
+import axios from "axios";
+
+var url = "http://alcortewear.es/post/rest/grupetapp/usuario.php";
+
 export default {
     data () {
         return {
@@ -123,8 +128,147 @@ export default {
     },
     mounted() {
         if(localStorage.usuario) this.usuario = JSON.parse(localStorage.usuario);
+        if(this.usuario.foto != null){
+          window.$(".img-perfil").css("background-image", "url("+ this.usuario.foto +")");
+        }
+    },
+    methods: {
+      async actualizarFoto(){
+
+        window.$("#btn-guardar-foto").css("display", "none");
+        window.$("#loading-foto").css("display", "block");
+        
+        var newFoto;
+        const file = document.querySelector('#foto').files[0];
+        if(file != null) {
+          newFoto = await toBase64(file);
+          axios.post(url, {
+            opcion:8, 
+            id: this.usuario.id,
+            foto: newFoto
+          }).then(response =>{
+            if(response.statusText == "OK"){
+              this.usuario.foto = newFoto;
+              window.$(".msg-error-foto").css("display", "none");
+              window.$(".img-perfil").css("background-image", "url("+ this.usuario.foto +")");
+              window.$("#img-user").css("background-image", "url("+ this.usuario.foto +")");
+              this.actualizarStorage();
+              window.$("#btn-guardar-foto").css("display", "block");
+              window.$("#loading-foto").css("display", "none");
+            } else {
+              window.$(".msg-error-foto").text("Error al subir la foto");
+              window.$(".msg-error-foto").css("display", "block");
+              window.$("#btn-guardar-foto").css("display", "block");
+              window.$("#loading-foto").css("display", "none");
+            }
+          });
+        } else {
+          window.$(".msg-error-foto").text("No has seleccionado ningún archivo");
+          window.$(".msg-error-foto").css("display", "block");
+          window.$("#btn-guardar-foto").css("display", "block");
+          window.$("#loading-foto").css("display", "none");
+        }
+      },
+      actualizarPerfil: function() {
+
+        window.$("#btn-guardar-datos").css("display", "none");
+        window.$("#loading-datos-principales").css("display", "block");
+
+        if(this.usuario.id != "" && this.usuario.nombre != "" && this.usuario.apellidos != "" && this.usuario.email != ""){
+          axios.post(url, {
+            opcion:3, 
+            id: this.usuario.id,
+            nombre: this.usuario.nombre,
+            apellidos: this.usuario.apellidos,
+            email: this.usuario.email,
+            provincia: this.usuario.provincia
+          }).then(response =>{
+            if(response.statusText == "OK"){
+              window.$(".msg-error-datos").css("display", "none");
+              this.actualizarStorage();
+              window.$("#btn-guardar-datos").css("display", "block");
+              window.$("#loading-datos-principales").css("display", "none");
+            } else {
+              window.$(".msg-error-datos").text("Algo ha salido mal");
+              window.$(".msg-error-datos").css("display", "block");
+              window.$("#btn-guardar-datos").css("display", "block");
+              window.$("#loading-datos-principales").css("display", "none");
+            }
+          });
+        } else {
+          window.$(".msg-error-datos").text("Todos los campos son obligatorios");
+          window.$(".msg-error-datos").css("display", "block");
+          window.$("#btn-guardar-datos").css("display", "block");
+          window.$("#loading-datos-principales").css("display", "none");
+        }
+      },
+      actualizarPassword: function() {
+
+        window.$("#btn-guardar-password").css("display", "none");
+        window.$("#loading-password").css("display", "block");
+
+        if(window.$("#password").val() == window.$("#password-confirm").val()){
+          window.$(".msg-error-password").css("display", "none");
+          axios.post(url, {
+            opcion:5, 
+            email: this.usuario.email, 
+            password: window.$("#old-password").val(),
+          }).then(response =>{
+            if(response.statusText == "OK" && response.data.length === 1){
+              this.updateFinalPassword(window.$("#password-confirm").val());
+            } else {
+              window.$(".msg-error-password").text("La contraseña actual no coincide");
+              window.$(".msg-error-password").css("display", "block");
+              window.$("#btn-guardar-password").css("display", "block");
+              window.$("#loading-password").css("display", "none");
+            }
+          });
+        } else {
+          window.$(".msg-error-password").text("La nueva contraseña y la de confirmación deben ser iguales");
+          window.$(".msg-error-password").css("display", "block");
+          window.$("#btn-guardar-password").css("display", "block");
+          window.$("#loading-password").css("display", "none");
+        }
+
+      },
+      updateFinalPassword: function(passFinal) {
+        axios.post(url, {
+          opcion:9, 
+          id: this.usuario.id,
+          password: passFinal
+        }).then(response =>{
+          if(response.statusText == "OK"){
+            window.$(".msg-error-password").css("display", "none");
+            window.$("#btn-guardar-password").css("display", "block");
+            window.$("#loading-password").css("display", "none");
+            this.actualizarStorage();
+            window.$("#old-password").val("");
+            window.$("#password").val("");
+            window.$("#password-confirm").val("");
+          } else {
+            window.$(".msg-error-password").text("Algo ha salido mal");
+            window.$(".msg-error-password").css("display", "block");
+            window.$("#btn-guardar-password").css("display", "block");
+            window.$("#loading-password").css("display", "none");
+          }
+        });
+      },
+      eliminarCuenta: function() {
+        console.log("Eliminar cuenta");
+      },
+      actualizarStorage: function() {
+        localStorage.setItem("usuario", JSON.stringify(this.usuario));
+      }
     }
 }
+
+const toBase64 = file => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+});
+
 </script>
 
 <style>

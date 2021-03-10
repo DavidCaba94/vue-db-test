@@ -48,7 +48,7 @@ switch($opcion){
         $resultado->execute();                
         break;
     case 3:
-        $consulta = "UPDATE usuarios SET nombre='$nombre', apellidos='$apellidos', email='$email', passwd='$password', foto='$foto', provincia='$provincia' WHERE id='$id' ";		
+        $consulta = "UPDATE usuarios SET nombre='$nombre', apellidos='$apellidos', email='$email', provincia='$provincia' WHERE id='$id' ";		
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();                        
         $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
@@ -75,7 +75,19 @@ switch($opcion){
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
         $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
-        break;       
+        break;   
+    case 8:
+        $consulta = "UPDATE usuarios SET foto='$foto' WHERE id='$id' ";		
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();                        
+        $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+        break; 
+    case 9:
+        $consulta = "UPDATE usuarios SET passwd='$password' WHERE id='$id' ";		
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();                        
+        $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+        break;    
     
 }
 print json_encode($data, JSON_UNESCAPED_UNICODE);

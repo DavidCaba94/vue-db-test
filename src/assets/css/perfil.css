@@ -156,7 +156,21 @@
 
 /*ANIMACION LOADING REGISTRO*/
 
-.contenedor-perfil #loading-reg {
+.contenedor-perfil #loading-foto {
+	display: none;
+	margin: 0 auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.contenedor-perfil #loading-datos-principales {
+	display: none;
+	margin: 0 auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.contenedor-perfil #loading-password {
 	display: none;
 	margin: 0 auto;
 	margin-top: 20px;
