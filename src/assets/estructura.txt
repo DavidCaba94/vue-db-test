@@ -31,7 +31,7 @@
 
 BD:
     - usuario
-    - rutas
+    - rutas(id, id_usuario, nombre, descripcion, distancia, dificultad, tipo, max_personas, direccion, fecha, hora, latitud, longitud)
     - sorteos
     - seguidores
     - productos
