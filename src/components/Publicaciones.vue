@@ -17,8 +17,8 @@
           </div>
           <div class="box-textos-pub">
             <div class="nombre-fecha">
-              <p>{{ this.listaUsuariosPubli[index].nombre }} {{ this.listaUsuariosPubli[index].apellidos }}</p>
-              <p>{{ objetoLista.fecha_pub }}</p>
+              <p v-if='this.listaUsuariosPubli[index]'>{{ this.listaUsuariosPubli[index].nombre }} {{ this.listaUsuariosPubli[index].apellidos }}</p>
+              <p>{{ $filters.formatDate(objetoLista.fecha_pub)  }}</p>
             </div>
             <div class="texto-pub">
               {{ objetoLista.texto }}
