@@ -21,6 +21,7 @@
     -estadisticas
         · km totales, numero de rutas
     -clasificaciones
+        · por valoracion de creador de rutas
     -mi perfil
         · edición perfil
         . equipación y bici

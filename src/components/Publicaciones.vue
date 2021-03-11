@@ -10,6 +10,7 @@
     </div>
     <div class="listado-publicaciones">
       <p class="texto-no-publicaciones">No hay publicaciones disponibles. Haz las tuyas propias o sigue a gente para ver las suyas</p>
+      <div id="loading-publicaciones" class="lds-ring"><div></div><div></div><div></div><div></div></div>
       <div v-for="(objetoLista, index) in this.listaPublicaciones" :key="objetoLista.id">
         <div class="item-publicacion">
           <div class="box-img-pub">
@@ -17,8 +18,8 @@
           </div>
           <div class="box-textos-pub">
             <div class="nombre-fecha">
-              <p v-if='this.listaUsuariosPubli[index]'>{{ this.listaUsuariosPubli[index].nombre }} {{ this.listaUsuariosPubli[index].apellidos }}</p>
-              <p>{{ $filters.formatDate(objetoLista.fecha_pub)  }}</p>
+              <p v-if="this.listaUsuariosPubli[index]">{{ this.listaUsuariosPubli[index].nombre }} {{ this.listaUsuariosPubli[index].apellidos }}</p>
+              <p>{{ $filters.formatDate(objetoLista.fecha_pub) }}</p>
             </div>
             <div class="texto-pub">
               {{ objetoLista.texto }}
@@ -50,11 +51,13 @@ export default {
             numCaracteres: 0,
             listaPublicaciones: [],
             listaUsuariosPubli: [],
-            usuario: ''
+            usuario: '',
+            textoPublicacion: ''
         }
     },
     mounted() {
       if(localStorage.usuario) this.usuario = JSON.parse(localStorage.usuario);
+      window.$("#loading-publicaciones").css("display", "block");
       this.mostrarPublicaciones();
     },
     methods: {
@@ -88,12 +91,14 @@ export default {
         }).then(response =>{
           if(response.data.length != 0){
             window.$(".texto-no-publicaciones").css("display", "none");
+            window.$("#loading-publicaciones").css("display", "none");
             for(var i = 0; i < response.data.length; i++){
               this.listaPublicaciones[i] = response.data[i];
               this.addNombres(i, this.listaPublicaciones[i].id_usuario);
             }
           } else {
             window.$(".texto-no-publicaciones").css("display", "block");
+            window.$("#loading-publicaciones").css("display", "none");
           }
         });
       },

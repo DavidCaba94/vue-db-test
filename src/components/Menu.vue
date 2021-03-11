@@ -10,7 +10,6 @@
             <router-link to="/estadisticas">{{item6}}</router-link>
             <router-link to="/clasificaciones">{{item7}}</router-link>
             <router-link to="/sorteos">{{item8}}</router-link>
-            <router-link to="/productos">{{item9}}</router-link>
         </div>
         <div class="box-login-reg">
             <router-link to="/perfil">
