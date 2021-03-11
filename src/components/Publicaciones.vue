@@ -18,7 +18,7 @@
           </div>
           <div class="box-textos-pub">
             <div class="nombre-fecha">
-              <p>{{ this.listaUsuariosPubli[index].nombre }} {{ this.listaUsuariosPubli[index].apellidos }}</p>
+              <p v-if="this.listaUsuariosPubli[index]">{{ this.listaUsuariosPubli[index].nombre }} {{ this.listaUsuariosPubli[index].apellidos }}</p>
               <p>{{ objetoLista.fecha_pub }}</p>
             </div>
             <div class="texto-pub">
@@ -51,7 +51,8 @@ export default {
             numCaracteres: 0,
             listaPublicaciones: [],
             listaUsuariosPubli: [],
-            usuario: ''
+            usuario: '',
+            textoPublicacion: ''
         }
     },
     mounted() {
