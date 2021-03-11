@@ -14,7 +14,7 @@
         <div class="box-login-reg">
             <router-link to="/perfil">
                 <div id="img-user" class="img-fake"></div>
-                <div class="nombre-usuario">{{usuario.nombre}} {{usuario.apellidos}}</div>
+                <div class="nombre-usuario" v-if="this.usuario">{{this.usuario.nombre}} {{this.usuario.apellidos}}</div>
             </router-link>
             <div @click='logout()'>
                 <img class="img-logout" src="../assets/img/logout.png" alt="Logout">
@@ -53,8 +53,11 @@ export default {
     },
     mounted() {
         if(localStorage.usuario) this.usuario = JSON.parse(localStorage.usuario);
-        this.comprobarUsuarioLogado(this.usuario);
-        this.setImagen();
+        if(this.usuario != null){
+            this.comprobarUsuarioLogado(this.usuario);
+            this.setImagen();
+        }
+        
     },
     methods: {
         comprobarUsuarioLogado:function(usuario){
