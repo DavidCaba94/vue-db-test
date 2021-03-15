@@ -1,0 +1,123 @@
+.contenedor-todos {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.contenedor-todos .box-filtros {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    width: 100%;
+    height: 40px;
+}
+
+.contenedor-todos .input-filtro {
+    width: 50%;
+    height: 30px;
+    border-radius: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 1px solid #c7c7c7;
+    color: #525252;
+    outline: none;
+    margin-right: 10px;
+}
+
+.contenedor-todos .select-filtro {
+    width: 180px;
+    height: 33px;
+    border-radius: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 1px solid #c7c7c7;
+    color: #525252;
+    outline: none;
+    margin-right: 10px;
+}
+
+.contenedor-todos .btn-limpiar-filtros {
+    width: 200px;
+    height: 32px;
+    border-radius: 20px;
+    background-color: #ffffff;
+    border: 1px solid #c7c7c7;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
+
+.contenedor-todos .btn-limpiar-filtros:hover {
+    -webkit-box-shadow: -1px 7px 8px -4px rgb(0 0 0 / 20%);
+    -moz-box-shadow: -1px 7px 8px -4px rgba(0,0,0,0.20);
+    box-shadow: -1px 7px 8px -4px rgb(0 0 0 / 20%);
+}
+
+.contenedor-todos .img-btn {
+    width: 20px;
+    margin-right: 10px;
+}
+
+.contenedor-todos .text-btn {
+    font-size: 14px;
+    color: #525252;
+}
+
+.contenedor-todos .box-resultados {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.contenedor-todos .item-usuario {
+    width: 320px;
+    height: 70px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    -webkit-box-shadow: -1px 7px 8px -4px rgb(0 0 0 / 20%);
+    -moz-box-shadow: -1px 7px 8px -4px rgba(0,0,0,0.20);
+    box-shadow: -1px 7px 8px -4px rgb(0 0 0 / 20%);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding: 10px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.contenedor-todos .img-foto {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #CC5454;
+    border-radius: 50px;
+    background-image: url(/img/user-default.de2ba6b9.png);
+    background-size: cover;
+    background-position: center;
+}
+
+.contenedor-todos .nombre-usuario {
+    width: 245px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 0;
+    text-align: left;
+    margin-left: 20px;
+    margin-top: 0;
+}
+
+.contenedor-todos .provincia-usuario {
+    font-size: 14px;
+    font-weight: 400;
+    color: #525252;
+    margin-bottom: 0;
+    text-align: left;
+    margin-left: 20px;
+    margin-top: 0;
+}

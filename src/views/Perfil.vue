@@ -8,7 +8,7 @@
             <label for="foto" class="form__label">Foto (1MB máx.)</label>
         </div>
         <p class="mensaje-error msg-error-foto"></p>
-        <div id="btn-guardar-foto" class="btn-guardar" @click="actualizarFoto()">Guardar</div>
+        <div id="btn-guardar-foto" class="btn-guardar" @click="comprobarTamanoFoto()">Guardar</div>
         <div id="loading-foto" class="lds-ring"><div></div><div></div><div></div><div></div></div>
     </div>
     <!-- Datos principales -->
@@ -133,6 +133,14 @@ export default {
         }
     },
     methods: {
+      comprobarTamanoFoto:function() {
+        if(document.querySelector('#foto').files[0].size > 1024000){
+          window.$(".msg-error-foto").text("La foto no puede pesar más de 1MB");
+          window.$(".msg-error-foto").css("display", "block");
+        } else {
+          this.actualizarFoto();
+        }
+      },
       async actualizarFoto(){
 
         window.$("#btn-guardar-foto").css("display", "none");

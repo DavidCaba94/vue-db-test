@@ -37,3 +37,7 @@
 .contenedor-social .contenido-seguidos {
     display: none;
 }
+
+.contenedor-social .contenido-todos {
+    display: none;
+}
