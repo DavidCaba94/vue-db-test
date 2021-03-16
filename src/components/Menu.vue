@@ -59,6 +59,9 @@ export default {
         }
         
     },
+    updated() {
+      this.setImagen();
+    },
     methods: {
         comprobarUsuarioLogado:function(usuario){
             if(usuario == null){

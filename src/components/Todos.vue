@@ -96,6 +96,9 @@ export default {
         if(localStorage.usuario) this.usuario = JSON.parse(localStorage.usuario);
         this.cargaInicialUsuarios();
     },
+    updated() {
+      this.addFotosFiltradas();
+    },
     methods: {
       cargaInicialUsuarios:function() {
         axios.post(url, {
