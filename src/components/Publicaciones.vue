@@ -52,13 +52,20 @@ export default {
             listaPublicaciones: [],
             listaUsuariosPubli: [],
             usuario: '',
-            textoPublicacion: ''
+            textoPublicacion: '',
+            todoCargado: false
         }
     },
     mounted() {
       if(localStorage.usuario) this.usuario = JSON.parse(localStorage.usuario);
       window.$("#loading-publicaciones").css("display", "block");
       this.mostrarPublicaciones();
+    },
+    updated() {
+      if(this.listaPublicaciones.length == this.listaUsuariosPubli.length && this.listaUsuariosPubli[0] != undefined){
+        this.todoCargado = true;
+        this.addFotos();
+      }
     },
     methods: {
       charCount: function(){
@@ -109,15 +116,16 @@ export default {
         }).then(response =>{
           if(response.data.length != 0){
             this.listaUsuariosPubli[indice] = response.data[0];
-            this.addFotos(indice);
           } else {
             console.log("Ha ocurrido un error");
           }
         });
       },
-      addFotos:function(indice){
-        if(this.listaUsuariosPubli[indice].foto != null){
-          window.$("#"+indice+".img-fake").css("background-image", this.listaUsuariosPubli[indice].foto);
+      addFotos:function(){
+        for(var i = 0; i < this.listaUsuariosPubli.length; i++){
+          if(this.listaUsuariosPubli[i].foto != null){
+            window.$("#"+i).css("background-image", "url("+ this.listaUsuariosPubli[i].foto +")");
+          }
         }
       },
       addLike:function(id){
