@@ -1,5 +1,5 @@
 <template>
-    <div class="contenedor-menu" v-if="mostrar">
+    <div class="contenedor-menu menu-desktop" v-if="mostrar">
         <div>
             <router-link to="/rutas"><img class="icono" src="../assets/img/menu-icon-2.png" /></router-link>
         </div>
@@ -20,6 +20,33 @@
                 <img class="img-logout" src="../assets/img/logout.png" alt="Logout">
             </div>
         </div>
+    </div>
+    <div class="contenedor-menu menu-movil" v-if="mostrar">
+        <div>
+            <div id="nav-icon3" @click='toggleBurger()'>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div>
+            <router-link to="/rutas"><img class="icono" src="../assets/img/menu-icon-2.png" /></router-link>
+        </div>
+        <div class="box-login-reg">
+            <router-link to="/perfil">
+                <div id="img-user-movil" class="img-fake"></div>
+            </router-link>
+        </div>
+    </div>
+    <div id="nav" class="box-items-menu-movil">
+        <div><router-link to="/rutas">{{item3}}</router-link></div>
+        <div><router-link to="/social">{{item4}}</router-link></div>
+        <div><router-link to="/mis-rutas">{{item5}}</router-link></div>
+        <div><router-link to="/estadisticas">{{item6}}</router-link></div>
+        <div><router-link to="/clasificaciones">{{item7}}</router-link></div>
+        <div><router-link to="/sorteos">{{item8}}</router-link></div>
+        <div class="logout-movil" @click='logout()'>Cerrar sesión</div>
     </div>
     <router-view/>
 </template>
@@ -57,7 +84,6 @@ export default {
             this.comprobarUsuarioLogado(this.usuario);
             this.setImagen();
         }
-        
     },
     updated() {
       this.setImagen();
@@ -76,7 +102,12 @@ export default {
         setImagen:function(){
             if(this.usuario.foto != null){
                 window.$("#img-user").css("background-image", "url("+ this.usuario.foto +")");
+                window.$("#img-user-movil").css("background-image", "url("+ this.usuario.foto +")");
             }
+        },
+        toggleBurger:function() {
+            window.$("#nav-icon3").toggleClass('open');
+            window.$(".box-items-menu-movil").slideToggle();
         }
     }
 }
