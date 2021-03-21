@@ -26,6 +26,8 @@ body {
   text-align: center;
   color: #272727;
   background-color: #f9f9f9;
+  max-width: 1920px;
+  margin: 0 auto;
 }
 
 a {
