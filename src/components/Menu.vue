@@ -64,7 +64,8 @@ export default {
             item8: "Sorteos",
             item9: "Productos",
             item10: "Mi perfil",
-            usuario: ''
+            usuario: '',
+            menuToggled: false
         }
     },
     computed:{
@@ -86,7 +87,11 @@ export default {
         }
     },
     updated() {
-      this.setImagen();
+        if(localStorage.usuario) this.usuario = JSON.parse(localStorage.usuario);
+        this.setImagen();
+        if(window.$(window).width() < 992 && this.menuToggled == true){
+            this.toggleBurger();
+        }
     },
     methods: {
         comprobarUsuarioLogado:function(usuario){
@@ -95,12 +100,15 @@ export default {
             }
         },
         logout:function(){
+            if(window.$(window).width() < 992 && this.menuToggled == true){
+                this.toggleBurger();
+            }
             localStorage.setItem("usuario", null);
             this.usuario = null;
             this.$router.replace('/');
         },
         setImagen:function(){
-            if(this.usuario.foto != null){
+            if(this.usuario != null && this.usuario.foto != null){
                 window.$("#img-user").css("background-image", "url("+ this.usuario.foto +")");
                 window.$("#img-user-movil").css("background-image", "url("+ this.usuario.foto +")");
             }
@@ -108,6 +116,7 @@ export default {
         toggleBurger:function() {
             window.$("#nav-icon3").toggleClass('open');
             window.$(".box-items-menu-movil").slideToggle();
+            this.menuToggled = !this.menuToggled;
         }
     }
 }
