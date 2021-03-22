@@ -110,7 +110,7 @@
         <div id="loading-password" class="lds-ring"><div></div><div></div><div></div><div></div></div>
     </div>
     <!-- Eliminar cuenta -->
-    <div class="btn-eliminar-cuenta" @click="eliminarCuenta()"><img class="delete-img" src="../assets/img/delete.png">Eliminar cuenta</div>
+    <router-link to="/eliminar-cuenta"><div class="btn-eliminar-cuenta"><img class="delete-img" src="../assets/img/delete.png">Eliminar cuenta</div></router-link>
   </div>
 </template>
 
@@ -260,9 +260,6 @@ export default {
             window.$("#loading-password").css("display", "none");
           }
         });
-      },
-      eliminarCuenta: function() {
-        console.log("Eliminar cuenta");
       },
       actualizarStorage: function() {
         localStorage.setItem("usuario", JSON.stringify(this.usuario));

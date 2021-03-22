@@ -66,6 +66,11 @@ const routes = [
     path: '/error',
     name: 'Error',
     component: () => import(/* webpackChunkName: "error" */ '../views/Error.vue')
+  },
+  {
+    path: '/eliminar-cuenta',
+    name: 'Eliminar cuenta',
+    component: () => import(/* webpackChunkName: "eliminar-cuenta" */ '../views/EliminarCuenta.vue')
   }
 ]
 
