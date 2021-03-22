@@ -87,7 +87,13 @@ switch($opcion){
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();                        
         $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
-        break;    
+        break;
+    case 10:
+        $consulta = "SELECT * FROM usuarios WHERE id='$id'";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+        $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+        break; 
     
 }
 print json_encode($data, JSON_UNESCAPED_UNICODE);
