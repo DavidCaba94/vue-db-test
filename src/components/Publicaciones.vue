@@ -17,8 +17,10 @@
             <div :id="index" class="img-fake"></div>
           </div>
           <div class="box-textos-pub">
-            <div class="nombre-fecha">
-              <p v-if="this.listaUsuariosPubli[index]">{{ this.listaUsuariosPubli[index].nombre }} {{ this.listaUsuariosPubli[index].apellidos }}</p>
+            <div class="nombre-fecha" v-if="this.listaUsuariosPubli[index]">
+              <router-link :to="'/usuario/'+this.listaPublicaciones[index].id_usuario">
+                <p>{{ this.listaUsuariosPubli[index].nombre }} {{ this.listaUsuariosPubli[index].apellidos }}</p>
+              </router-link>
               <p>{{ $filters.formatDate(objetoLista.fecha_pub) }}</p>
             </div>
             <div class="texto-pub">

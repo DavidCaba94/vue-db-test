@@ -65,13 +65,15 @@
     <div class="total-seguidos">Usuarios seguidos: {{ this.listaRelacional.length }}</div>
     <div class="box-resultados">
       <div v-for="(user, index) in this.listaSeguidosFiltrados" :key="user.id">
-        <div class="item-usuario">
-          <div :id="'foto-seguido-'+index" class="img-foto"></div>
-          <div>
-            <p class="nombre-usuario">{{ user.nombre }} {{ user.apellidos }}</p>
-            <p class="provincia-usuario">{{ user.provincia }}</p>
+        <router-link :to="'/usuario/'+user.id">
+          <div class="item-usuario">
+            <div :id="'foto-seguido-'+index" class="img-foto"></div>
+            <div>
+              <p class="nombre-usuario">{{ user.nombre }} {{ user.apellidos }}</p>
+              <p class="provincia-usuario">{{ user.provincia }}</p>
+            </div>
           </div>
-        </div>
+        </router-link>
       </div>
     </div>
   </div>

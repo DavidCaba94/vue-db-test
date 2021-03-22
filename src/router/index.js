@@ -71,6 +71,11 @@ const routes = [
     path: '/eliminar-cuenta',
     name: 'Eliminar cuenta',
     component: () => import(/* webpackChunkName: "eliminar-cuenta" */ '../views/EliminarCuenta.vue')
+  },
+  {
+    path: '/usuario/:id',
+    name: 'Usuario',
+    component: () => import(/* webpackChunkName: "usuario" */ '../views/Usuario.vue')
   }
 ]
 

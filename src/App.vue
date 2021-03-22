@@ -32,6 +32,7 @@ body {
 
 a {
   text-decoration: none;
+  color: #272727;
 }
 
 #nav a {
