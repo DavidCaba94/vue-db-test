@@ -1,0 +1,75 @@
+.contenedor-user {
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.contenedor-user .card-user {
+    max-width: 900px;
+    min-height: 200px;
+    margin: 0 auto;
+    background: linear-gradient(to right, #CC5454, #ff6e6e);;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.contenedor-user .num-user {
+    width: 98%;
+    color: #ffffff;
+    text-align: right;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.contenedor-user .box-data {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    padding: 20px;
+    margin-top: -30px;
+}
+
+.contenedor-user .img-user-render {
+    width: 160px;
+    height: 160px;
+    border: 2px solid #ffffff;
+    border-radius: 160px;
+    background-image: url(/img/user-default.de2ba6b9.png);
+    background-size: cover;
+    background-position: center;
+}
+
+.contenedor-user .datos-user {
+    width: 50%;
+    color: #ffffff;
+    text-align: left;
+}
+
+.contenedor-user .nombre-user {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.contenedor-user .provincia-user {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.contenedor-user .fecha-user {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.contenedor-user .btn-seguir {
+    width: 120px;
+    padding: 10px;
+    background-color: #ffffff;
+    color: #ff6e6e;
+    border-radius: 5px;
+    cursor: pointer;
+    -webkit-box-shadow: -1px 7px 8px -4px rgb(0 0 0 / 20%);
+    -moz-box-shadow: -1px 7px 8px -4px rgba(0,0,0,0.20);
+    box-shadow: -1px 7px 8px -4px rgb(0 0 0 / 20%);
+}

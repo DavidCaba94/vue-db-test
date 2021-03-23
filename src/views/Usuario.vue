@@ -1,22 +1,141 @@
 <template>
-  Usuario {{ this.idUsuario }}
+  <div class="contenedor-user">
+      <div class="card-user" v-if="this.renderUser">
+          <div class="num-user">#{{ this.renderUser.id }}</div>
+          <div class="box-data">
+              <div id="img-user-render" class="img-user-render"></div>
+              <div class="datos-user">
+                  <p class="nombre-user">{{ this.renderUser.nombre }} {{ this.renderUser.apellidos }}</p>
+                  <p class="provincia-user">{{ this.renderUser.provincia }}</p>
+                  <p class="fecha-user">Usuario desde: {{ $filters.formatDate(this.renderUser.fecha_registro) }}</p>
+              </div>
+              <div id="btn-seguir" class="btn-seguir" @click="this.seguirUsuario()">Seguir</div>
+          </div>
+      </div>
+      <div>Rutas creadas:</div>
+      <div>Participación en rutas:</div>
+  </div>
 </template>
 
 <script>
+
+import axios from "axios";
+
+var urlUsuarios = "http://alcortewear.es/post/rest/grupetapp/usuario.php";
+var urlSeguidos = "http://alcortewear.es/post/rest/grupetapp/seguidos.php";
 
 export default {
     name: "Usuario",
     data () {
         return {            
-            idUsuario: ''
+            idUsuario: '',
+            usuario: '',
+            renderUser: '',
+            siguiendo: false
         }
     },
     mounted() {
         this.idUsuario = this.$route.params.id;
+        if(localStorage.usuario) this.usuario = JSON.parse(localStorage.usuario);
+        this.mostrarDatosUsuario(this.idUsuario);
+    },
+    updated() {
+        this.addFotoUser();
+    },
+    methods: {
+        mostrarDatosUsuario:function(id_usuario) {
+            axios.post(urlUsuarios, {
+                opcion:10,
+                id: id_usuario
+            }).then(response =>{
+                if(response.data.length == 0){
+                    this.$router.replace('error');
+                } else {
+                    this.renderUser = response.data[0];
+                    this.addFotoUser();
+                    this.actualizarBtnSeguir();
+                }
+            });
+        },
+        addFotoUser:function() {
+            if(this.renderUser.foto != null){
+                window.$("#img-user-render").css("background-image", "url("+ this.renderUser.foto +")");
+            }
+        },
+        actualizarBtnSeguir:function() {
+            axios.post(urlSeguidos, {
+                opcion:2,
+                id: this.usuario.id,
+                id_seguido: this.idUsuario
+            }).then(response =>{
+                if(response.data.length == 0){
+                    this.siguiendo = false;
+                    window.$("#btn-seguir").html("Seguir");
+                    window.$("#btn-seguir").css("color", "#ff6e6e");
+                } else {
+                    this.siguiendo = true;
+                    window.$("#btn-seguir").html("Dejar de seguir");
+                    window.$("#btn-seguir").css("color", "#525252");
+                }
+            });
+        },
+        seguirUsuario:function() {
+            if(this.siguiendo){
+                axios.post(urlSeguidos, {
+                    opcion:5, 
+                    id: this.usuario.id,
+                    id_seguido: this.idUsuario
+                }).then(response =>{
+                    if(response.statusText == "OK"){
+                        this.replicarUnfollow();
+                    } else {
+                        this.$router.replace('error');
+                    }
+                });
+            } else if(!this.siguiendo) {
+                axios.post(urlSeguidos, {
+                    opcion:3, 
+                    id: this.usuario.id,
+                    id_seguido: this.idUsuario
+                }).then(response =>{
+                    if(response.statusText == "OK"){
+                        this.replicarFollow();
+                    } else {
+                        this.$router.replace('error');
+                    }
+                });
+            }
+        },
+        replicarFollow:function() {
+            axios.post(urlSeguidos, {
+                opcion:4, 
+                id: this.usuario.id,
+                id_seguido: this.idUsuario
+            }).then(response =>{
+                if(response.statusText == "OK"){
+                    this.actualizarBtnSeguir();
+                } else {
+                    this.$router.replace('error');
+                }
+            });
+        },
+        replicarUnfollow:function() {
+            axios.post(urlSeguidos, {
+                opcion:6, 
+                id: this.usuario.id,
+                id_seguido: this.idUsuario
+            }).then(response =>{
+                if(response.statusText == "OK"){
+                    this.actualizarBtnSeguir();
+                } else {
+                    this.$router.replace('error');
+                }
+            });
+        }
     }
 }
 </script>
 
 <style>
-
+@import '../assets/css/user.css';
 </style>

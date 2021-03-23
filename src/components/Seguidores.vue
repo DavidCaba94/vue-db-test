@@ -130,9 +130,7 @@ export default {
           if(response.data.length == 0){
             console.log("vacio");
           } else {
-            for(var i = 0; i < response.data.length; i++){
-              this.listaSeguidores[i] = response.data[i];
-            }
+            this.listaSeguidores.push(response.data[0]);
           }
         });
       },
