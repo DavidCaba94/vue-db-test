@@ -60,6 +60,16 @@ switch($opcion){
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();                           
         break;
+  case 7:
+        $consulta = "DELETE FROM seguidos WHERE id_usuario='$id'";	
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();                           
+        break;
+  case 8:
+        $consulta = "DELETE FROM seguidores WHERE id_seguidor='$id'";	
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();                           
+        break;
 }
 print json_encode($data, JSON_UNESCAPED_UNICODE);
 $conexion = NULL;

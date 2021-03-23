@@ -13,6 +13,7 @@
 import axios from "axios";
 
 var url = "http://alcortewear.es/post/rest/grupetapp/usuario.php";
+var urlSeguidos = "http://alcortewear.es/post/rest/grupetapp/seguidos.php";
 
 export default {
     data() {
@@ -28,6 +29,8 @@ export default {
             id: this.usuario.id
           }).then(response =>{
             if(response.statusText == "OK"){
+              this.eliminarFollows();
+              this.eliminarFollowers();
               this.usuario = null;
               localStorage.setItem("usuario", JSON.stringify(this.usuario));
               this.$router.replace('/');
@@ -35,6 +38,30 @@ export default {
               this.$router.replace('error');
             }
           });
+      },
+      eliminarFollows:function() {
+        axios.post(urlSeguidos, {
+            opcion:7, 
+            id: this.usuario.id
+        }).then(response =>{
+            if(response.statusText == "OK"){
+                console.log("Seguidos eliminados");
+            } else {
+                this.$router.replace('error');
+            }
+        });
+      },
+      eliminarFollowers:function() {
+        axios.post(urlSeguidos, {
+            opcion:8, 
+            id: this.usuario.id
+        }).then(response =>{
+            if(response.statusText == "OK"){
+                console.log("Seguidres eliminados");
+            } else {
+                this.$router.replace('error');
+            }
+        });
       }
     }
 }
