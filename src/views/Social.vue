@@ -1,10 +1,18 @@
 <template>
   <div class="contenedor-social">
       <div class="box-tabs">
-          <div id="tab-publicaciones" class="tab-item tab-activa" @click="clickTab(1)">PUBLICACIONES</div>
-          <div id="tab-seguidores" class="tab-item" @click="clickTab(2)">SEGUIDORES</div>
-          <div id="tab-seguidos" class="tab-item" @click="clickTab(3)">SEGUIDOS</div>
-          <div id="tab-todos" class="tab-item" @click="clickTab(4)">TODOS</div>
+          <div id="tab-publicaciones" class="tab-item tab-activa" @click="clickTab(1)">
+              <p>PUBLICACIONES</p>
+          </div>
+          <div id="tab-seguidores" class="tab-item" @click="clickTab(2)">
+              <p>SEGUIDORES</p>
+          </div>
+          <div id="tab-seguidos" class="tab-item" @click="clickTab(3)">
+              <p>SEGUIDOS</p>
+          </div>
+          <div id="tab-todos" class="tab-item" @click="clickTab(4)">
+              <p>TODOS</p>
+          </div>
       </div>
       <div class="contenido-tabs">
           <div class="contenido-publicaciones">

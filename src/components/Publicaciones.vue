@@ -15,23 +15,23 @@
         <div class="item-publicacion">
           <div class="box-img-pub">
             <div :id="index" class="img-fake"></div>
-          </div>
-          <div class="box-textos-pub">
             <div class="nombre-fecha" v-if="this.listaUsuariosPubli[index]">
               <router-link :to="'/usuario/'+this.listaPublicaciones[index].id_usuario">
                 <p>{{ this.listaUsuariosPubli[index].nombre }} {{ this.listaUsuariosPubli[index].apellidos }}</p>
               </router-link>
-              <p>{{ $filters.formatDate(objetoLista.fecha_pub) }}</p>
             </div>
+          </div>
+          <div class="box-textos-pub">
             <div class="texto-pub">
               {{ objetoLista.texto }}
             </div>
           </div>
           <div class="box-likes">
+            <p class="fecha-text">{{ $filters.formatDate(objetoLista.fecha_pub) }}</p>
             <div class="like-btn" @click='addLike(objetoLista.id)'>
               <img class="boton-like" src="../assets/img/like.png" alt="Botón Like">
+              <p>{{ objetoLista.likes }}</p>
             </div>
-            <p>{{ objetoLista.likes }}</p>
           </div>
         </div>
       </div>

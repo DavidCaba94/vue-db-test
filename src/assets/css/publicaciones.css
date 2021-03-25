@@ -29,7 +29,8 @@
     outline: none;
     border: 1px solid #e0e0e0;
     border-radius: 10px;
-    width: 500px;
+    width: 92%;
+    max-width: 500px;
     height: 150px;
     color: #525252;
     font-size: 16px;
@@ -41,7 +42,7 @@
     align-items: center;
     justify-content: space-between;
     flex-wrap: nowrap;
-    width: 500px;
+    max-width: 500px;
     margin: 0 auto;
 }
 
@@ -63,16 +64,12 @@
 }
 
 .contenedor-publicaciones .listado-publicaciones {
-    width: 500px;
+    max-width: 500px;
     margin: 0 auto;
     display: block;
 }
 
 .contenedor-publicaciones .item-publicacion {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: nowrap;
     background-color: #ffffff;
     border-radius: 10px;
     padding: 20px;
@@ -80,6 +77,17 @@
     -webkit-box-shadow: -1px 7px 8px -4px rgb(0 0 0 / 20%);
     -moz-box-shadow: -1px 7px 8px -4px rgba(0,0,0,0.20);
     box-shadow: -1px 7px 8px -4px rgb(0 0 0 / 20%);
+}
+
+.contenedor-publicaciones .box-img-pub {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+}
+
+.contenedor-publicaciones .box-textos-pub {
+    padding: 20px;
 }
 
 .contenedor-publicaciones .nombre-fecha {
@@ -98,10 +106,7 @@
     background-image: url("../img/user-default.png");
     background-size: cover;
     background-position: center;
-}
-
-.contenedor-publicaciones .box-textos-pub {
-    width: 320px;
+    margin-right: 20px;
 }
 
 .contenedor-publicaciones .texto-pub {
@@ -111,17 +116,31 @@
 .contenedor-publicaciones .box-likes {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     flex-wrap: nowrap;
 }
 
+.contenedor-publicaciones .box-likes p {
+    margin: 0;
+}
+
 .contenedor-publicaciones .like-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
     margin-right: 10px;
     cursor: pointer;
 }
 
 .contenedor-publicaciones .boton-like {
     width: 25px;
+    margin-right: 5px;
+}
+
+.contenedor-publicaciones .fecha-text {
+    color: #bbbbbb;
+    font-size: 12px;
 }
 
 /*ANIMACION LOADING REGISTRO*/
@@ -170,3 +189,14 @@
 }
   
 /*FIN ANIMACION LOADING REGISTRO*/
+
+@media (max-width: 576px) {
+    .contenedor-publicaciones .img-fake {
+        width: 30px;
+        height: 30px;
+    }
+
+    .contenedor-publicaciones .box-textos-pub {
+        padding: 10px;
+    }
+}
