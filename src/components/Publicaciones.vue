@@ -125,8 +125,10 @@ export default {
       },
       addFotos:function(){
         for(var i = 0; i < this.listaUsuariosPubli.length; i++){
-          if(this.listaUsuariosPubli[i].foto != null && this.listaUsuariosPubli[i] != null){
-            window.$("#"+i).css("background-image", "url("+ this.listaUsuariosPubli[i].foto +")");
+          if(this.listaUsuariosPubli[i] != undefined){
+            if(this.listaUsuariosPubli[i].foto != null){
+              window.$("#"+i).css("background-image", "url("+ this.listaUsuariosPubli[i].foto +")");
+            }
           }
         }
       },
