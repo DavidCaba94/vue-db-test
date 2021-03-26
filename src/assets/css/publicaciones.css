@@ -199,4 +199,8 @@
     .contenedor-publicaciones .box-textos-pub {
         padding: 10px;
     }
+
+    .contenedor-publicaciones {
+        margin-top: 0px;
+    }
 }

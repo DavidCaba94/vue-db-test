@@ -10,7 +10,6 @@
     justify-content: flex-start;
     flex-wrap: nowrap;
     width: 100%;
-    height: 40px;
 }
 
 .contenedor-seguidores .input-filtro {
@@ -102,7 +101,7 @@
 }
 
 .contenedor-seguidores .nombre-usuario {
-    width: 245px;
+    max-width: 245px;
     font-size: 16px;
     font-weight: 700;
     color: #000000;
@@ -130,4 +129,40 @@
     font-size: 16px;
     font-weight: 700;
     color: #525252;
+}
+
+@media (max-width: 576px) {
+    .contenedor-seguidores .box-filtros {
+        display: block;
+    }
+
+    .contenedor-seguidores .input-filtro {
+        width: 220px;
+        margin-right: 0;
+    }
+
+    .contenedor-seguidores .select-filtro {
+        width: 242px;
+        margin-top: 10px;
+        margin-right: 0;
+    }
+
+    .contenedor-seguidores .btn-limpiar-filtros {
+        width: 160px;
+        margin: 0 auto;
+        margin-top: 10px;
+    }
+
+    .contenedor-seguidores .item-usuario {
+        width: 280px;
+    }
+
+    .contenedor-seguidores .nombre-usuario {
+        max-width: 200px;
+        font-size: 14px;
+    }
+
+    .contenedor-seguidores .provincia-usuario {
+        font-size: 13px;
+    }
 }

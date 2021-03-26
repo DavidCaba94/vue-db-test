@@ -125,7 +125,7 @@ export default {
       },
       addFotos:function(){
         for(var i = 0; i < this.listaUsuariosPubli.length; i++){
-          if(this.listaUsuariosPubli[i].foto != null){
+          if(this.listaUsuariosPubli[i].foto != null && this.listaUsuariosPubli[i] != null){
             window.$("#"+i).css("background-image", "url("+ this.listaUsuariosPubli[i].foto +")");
           }
         }
