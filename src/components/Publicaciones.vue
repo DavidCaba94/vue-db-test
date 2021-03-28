@@ -96,7 +96,8 @@ export default {
       },
       mostrarPublicaciones:function(){
         axios.post(urlPublicaciones, {
-            opcion:1
+            opcion:6,
+            id_usuario: this.usuario.id
         }).then(response =>{
           if(response.data.length != 0){
             window.$(".texto-no-publicaciones").css("display", "none");

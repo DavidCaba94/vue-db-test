@@ -37,7 +37,7 @@ $password = md5($password);
 
 switch($opcion){
 	case 1:
-        $consulta = "SELECT * FROM usuarios";
+        $consulta = "SELECT * FROM usuarios ORDER BY id DESC";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
         $data=$resultado->fetchAll(PDO::FETCH_ASSOC);

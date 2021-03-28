@@ -56,8 +56,13 @@ switch($opcion){
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
         $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
-        break;   
-    
+        break;
+    case 6:
+        $consulta = "SELECT * FROM publicaciones WHERE id_usuario IN (SELECT id_seguido FROM seguidos WHERE id_usuario = '$id_usuario') OR id_usuario = '$id_usuario' ORDER BY id DESC";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+        $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+        break;
 }
 print json_encode($data, JSON_UNESCAPED_UNICODE);
 $conexion = NULL;
