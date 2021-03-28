@@ -6,14 +6,18 @@
               <div id="img-user-render" class="img-user-render"></div>
               <div class="datos-user">
                   <p class="nombre-user">{{ this.renderUser.nombre }} {{ this.renderUser.apellidos }}</p>
-                  <p class="provincia-user">{{ this.renderUser.provincia }}</p>
+                  <div class="provincia-user"><img class="marker-ciudad" src="../assets/img/marker.png">{{ this.renderUser.provincia }}</div>
                   <p class="fecha-user">Usuario desde: {{ $filters.formatDate(this.renderUser.fecha_registro) }}</p>
               </div>
               <div id="btn-seguir" class="btn-seguir" @click="this.seguirUsuario()">Seguir</div>
           </div>
       </div>
-      <div>Rutas creadas:</div>
-      <div>Participación en rutas:</div>
+      <div class="box-rutas-user">
+          <p class="titulo-seccion">Rutas creadas: {{ this.rutasCreadas }}</p>
+      </div>
+      <div class="box-rutas-user">
+          <p class="titulo-seccion">Participación en rutas: {{ this.rutasParticipadas }}</p>
+      </div>
   </div>
 </template>
 
@@ -31,7 +35,9 @@ export default {
             idUsuario: '',
             usuario: '',
             renderUser: '',
-            siguiendo: false
+            siguiendo: false,
+            rutasCreadas: 0,
+            rutasParticipadas: 0
         }
     },
     mounted() {

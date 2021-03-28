@@ -53,6 +53,8 @@
 }
 
 .contenedor-user .provincia-user {
+    display: flex;
+    align-items: center;
     font-size: 20px;
     font-weight: 700;
 }
@@ -72,4 +74,67 @@
     -webkit-box-shadow: -1px 7px 8px -4px rgb(0 0 0 / 20%);
     -moz-box-shadow: -1px 7px 8px -4px rgba(0,0,0,0.20);
     box-shadow: -1px 7px 8px -4px rgb(0 0 0 / 20%);
+}
+
+.contenedor-user .titulo-seccion {
+    font-size: 16px;
+    font-weight: 700;
+    color: #525252;
+    text-align: left;
+    margin-top: 30px;
+}
+
+.contenedor-user .marker-ciudad {
+    width: 20px;
+}
+
+.contenedor-user .box-rutas-user {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+@media (max-width: 992px) {
+    .contenedor-user .img-user-render {
+        width: 90px;
+        height: 90px;
+    }
+
+    .contenedor-user .nombre-user {
+        font-size: 19px;
+    }
+
+    .contenedor-user .provincia-user {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 576px) {
+    .contenedor-user .box-data {
+        display: block;
+        text-align: center;
+    }
+
+    .contenedor-user .nombre-user {
+        font-size: 18px;
+    }
+
+    .contenedor-user .provincia-user {
+        font-size: 14px;
+        justify-content: center;
+    }
+
+    .contenedor-user .img-user-render {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto;
+    }
+
+    .contenedor-user .datos-user {
+        width: 100%;
+        text-align: center;
+    }
+
+    .contenedor-user .btn-seguir {
+        margin: 0 auto;
+    }
 }
