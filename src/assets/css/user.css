@@ -93,6 +93,81 @@
     margin: 0 auto;
 }
 
+
+.contenedor-user .item-publicacion {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    -webkit-box-shadow: -1px 7px 8px -4px rgb(0 0 0 / 20%);
+    -moz-box-shadow: -1px 7px 8px -4px rgba(0,0,0,0.20);
+    box-shadow: -1px 7px 8px -4px rgb(0 0 0 / 20%);
+}
+
+.contenedor-user .box-img-pub {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+}
+
+.contenedor-user .box-textos-pub {
+    padding: 20px;
+}
+
+.contenedor-user .nombre-fecha {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    font-weight: 700;
+}
+
+.contenedor-user .img-fake {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #CC5454;
+    border-radius: 50px;
+    background-image: url("../img/user-default.png");
+    background-size: cover;
+    background-position: center;
+    margin-right: 20px;
+}
+
+.contenedor-user .texto-pub {
+    text-align: left;
+}
+
+.contenedor-user .box-likes {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+
+.contenedor-user .box-likes p {
+    margin: 0;
+}
+
+.contenedor-user .like-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.contenedor-user .boton-like {
+    width: 25px;
+    margin-right: 5px;
+}
+
+.contenedor-user .fecha-text {
+    color: #bbbbbb;
+    font-size: 12px;
+}
+
 @media (max-width: 992px) {
     .contenedor-user .img-user-render {
         width: 90px;
@@ -136,5 +211,14 @@
 
     .contenedor-user .btn-seguir {
         margin: 0 auto;
+    }
+
+    .contenedor-user .img-fake {
+        width: 30px;
+        height: 30px;
+    }
+
+    .contenedor-user .box-textos-pub {
+        padding: 10px;
     }
 }

@@ -18,6 +18,31 @@
       <div class="box-rutas-user">
           <p class="titulo-seccion">Participación en rutas: {{ this.rutasParticipadas }}</p>
       </div>
+      <div class="box-rutas-user">
+          <p class="titulo-seccion">Publicaciones: {{ this.publicaciones.length }}</p>
+          <div v-for="(objetoLista) in this.publicaciones" :key="objetoLista.id">
+            <div class="item-publicacion">
+            <div class="box-img-pub">
+                <div class="img-fake"></div>
+                <div class="nombre-fecha" v-if="this.renderUser">
+                    <p>{{ this.renderUser.nombre }} {{ this.renderUser.apellidos }}</p>
+                </div>
+            </div>
+            <div class="box-textos-pub">
+                <div class="texto-pub">
+                {{ objetoLista.texto }}
+                </div>
+            </div>
+            <div class="box-likes">
+                <p class="fecha-text">{{ $filters.formatDate(objetoLista.fecha_pub) }}</p>
+                <div class="like-btn" @click='addLike(objetoLista.id)'>
+                <img class="boton-like" src="../assets/img/like.png" alt="Botón Like">
+                <p>{{ objetoLista.likes }}</p>
+                </div>
+            </div>
+            </div>
+        </div>
+      </div>
   </div>
 </template>
 
@@ -27,6 +52,7 @@ import axios from "axios";
 
 var urlUsuarios = "http://alcortewear.es/post/rest/grupetapp/usuario.php";
 var urlSeguidos = "http://alcortewear.es/post/rest/grupetapp/seguidos.php";
+var urlPublicaciones = "http://alcortewear.es/post/rest/grupetapp/publicacion.php";
 
 export default {
     name: "Usuario",
@@ -37,13 +63,15 @@ export default {
             renderUser: '',
             siguiendo: false,
             rutasCreadas: 0,
-            rutasParticipadas: 0
+            rutasParticipadas: 0,
+            publicaciones: []
         }
     },
     mounted() {
         this.idUsuario = this.$route.params.id;
         if(localStorage.usuario) this.usuario = JSON.parse(localStorage.usuario);
         this.mostrarDatosUsuario(this.idUsuario);
+        this.obtenerPublicaciones();
     },
     updated() {
         this.addFotoUser();
@@ -66,6 +94,7 @@ export default {
         addFotoUser:function() {
             if(this.renderUser.foto != null){
                 window.$("#img-user-render").css("background-image", "url("+ this.renderUser.foto +")");
+                window.$(".img-fake").css("background-image", "url("+ this.renderUser.foto +")");
             }
         },
         actualizarBtnSeguir:function() {
@@ -135,6 +164,32 @@ export default {
                     this.actualizarBtnSeguir();
                 } else {
                     this.$router.replace('error');
+                }
+            });
+        },
+        obtenerPublicaciones:function() {
+            axios.post(urlPublicaciones, {
+                opcion:5,
+                id_usuario: this.idUsuario
+            }).then(response =>{
+                if(response.data.length == 0){
+                    this.$router.replace('error');
+                } else {
+                    this.publicaciones = response.data;
+                }
+            });
+        },
+        addLike:function(id){
+            axios.post(urlPublicaciones, {
+                opcion:4, 
+                id: id
+            }).then(response =>{
+                if(response.statusText == "OK"){
+                    for(var i = 0; i < this.publicaciones.length; i++){
+                        if(this.publicaciones[i].id == id){
+                            this.publicaciones[i].likes++;
+                        }
+                    }
                 }
             });
         }

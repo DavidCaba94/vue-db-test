@@ -1,6 +1,7 @@
 <template>
-  Sorteos
-  <h1>Hola {{ usuario.nombre }}</h1>
+  <div class="contenedor-sorteos">
+      <p class="info-sorteo">No hay ningún sorteo activo por el momento</p>
+  </div>
 </template>
 
 <script>
@@ -17,5 +18,16 @@ export default {
 </script>
 
 <style>
+.contenedor-sorteos {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px;
+}
 
+.contenedor-sorteos .info-sorteo {
+    margin-top: 70px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+}
 </style>
