@@ -27,7 +27,7 @@
 
 <script>
 import axios from "axios";
-var url = "https://alcortewear.es/post/rest/grupetapp/usuario.php";
+var url = "http://alcortewear.es/post/rest/grupetapp/usuario.php";
 
 export default {
        data () {

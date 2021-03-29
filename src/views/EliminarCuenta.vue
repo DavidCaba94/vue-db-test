@@ -12,8 +12,8 @@
 
 import axios from "axios";
 
-var url = "https://alcortewear.es/post/rest/grupetapp/usuario.php";
-var urlSeguidos = "https://alcortewear.es/post/rest/grupetapp/seguidos.php";
+var url = "http://alcortewear.es/post/rest/grupetapp/usuario.php";
+var urlSeguidos = "http://alcortewear.es/post/rest/grupetapp/seguidos.php";
 
 export default {
     data() {

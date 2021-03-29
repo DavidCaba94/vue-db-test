@@ -48,10 +48,27 @@
         <div><router-link to="/sorteos">{{item8}}</router-link></div>
         <div class="logout-movil" @click='logout()'>Cerrar sesión</div>
     </div>
+    <div class="bubble-notificaciones" @click='abrirNotificaciones()' v-if="mostrar">
+        <div class="numero-notificaciones">{{ this.notificaciones.length }}</div>
+    </div>
+    <div id="box-notificaciones" class="box-notificaciones">
+        <div class="cerrar-notificaciones" @click='cerrarNotificaciones()'>×</div>
+        <div class="sin-notificaciones" v-if="this.notificaciones.length == 0">No tienes ninguna notificación</div>
+        <div v-for="(notificacion) in this.notificaciones" :key="notificacion.id">
+            <div class="item-notificacion">
+                <p class="texto-notificacion"># <span v-html="notificacion.texto_notificacion"></span></p>
+                <div class="borrar-notificacion" @click='borrarNotificacion(notificacion.id)'>×</div>
+            </div>
+        </div>
+    </div>
     <router-view/>
 </template>
 
 <script>
+import axios from "axios";
+
+var url = "http://alcortewear.es/post/rest/grupetapp/notificaciones.php";
+
 export default {
     name: "Menu",
     data() {
@@ -65,7 +82,8 @@ export default {
             item9: "Productos",
             item10: "Mi perfil",
             usuario: '',
-            menuToggled: false
+            menuToggled: false,
+            notificaciones: []
         }
     },
     computed:{
@@ -89,6 +107,7 @@ export default {
     updated() {
         if(localStorage.usuario) this.usuario = JSON.parse(localStorage.usuario);
         this.setImagen();
+        this.actualizarNotificaciones();
         if(window.$(window).width() < 992 && this.menuToggled == true){
             this.toggleBurger();
         }
@@ -117,6 +136,37 @@ export default {
             window.$("#nav-icon3").toggleClass('open');
             window.$(".box-items-menu-movil").slideToggle();
             this.menuToggled = !this.menuToggled;
+        },
+        abrirNotificaciones:function() {
+            window.$("#box-notificaciones").css("display", "block");
+        },
+        cerrarNotificaciones:function() {
+            window.$("#box-notificaciones").css("display", "none");
+        },
+        actualizarNotificaciones:function() {
+            axios.post(url, {
+                opcion:1,
+                id_usuario: this.usuario.id
+            }).then(response =>{
+                if(response.data.length != 0 && response.data.length != this.notificaciones.length){
+                    this.notificaciones = [];
+                    for(var i = 0; i < response.data.length; i++){
+                        this.notificaciones[i] = response.data[i];
+                    }
+                }
+            });
+        },
+        borrarNotificacion:function(id_notificacion) {
+            axios.post(url, {
+                opcion:3, 
+                id: id_notificacion
+            }).then(response =>{
+                if(response.statusText == "OK"){
+                    this.actualizarNotificaciones();
+                } else {
+                    this.$router.replace('error');
+                }
+            });
         }
     }
 }
