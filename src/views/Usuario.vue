@@ -50,9 +50,9 @@
 
 import axios from "axios";
 
-var urlUsuarios = "http://alcortewear.es/post/rest/grupetapp/usuario.php";
-var urlSeguidos = "http://alcortewear.es/post/rest/grupetapp/seguidos.php";
-var urlPublicaciones = "http://alcortewear.es/post/rest/grupetapp/publicacion.php";
+var urlUsuarios = "https://alcortewear.es/post/rest/grupetapp/usuario.php";
+var urlSeguidos = "https://alcortewear.es/post/rest/grupetapp/seguidos.php";
+var urlPublicaciones = "https://alcortewear.es/post/rest/grupetapp/publicacion.php";
 
 export default {
     name: "Usuario",

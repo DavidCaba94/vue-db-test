@@ -43,8 +43,8 @@
 
 import axios from "axios";
 
-var urlPublicaciones = "http://alcortewear.es/post/rest/grupetapp/publicacion.php";
-var urlUsuarios = "http://alcortewear.es/post/rest/grupetapp/usuario.php";
+var urlPublicaciones = "https://alcortewear.es/post/rest/grupetapp/publicacion.php";
+var urlUsuarios = "https://alcortewear.es/post/rest/grupetapp/usuario.php";
 
 export default {
     name: "Publicaciones",
