@@ -107,7 +107,9 @@ export default {
     updated() {
         if(localStorage.usuario) this.usuario = JSON.parse(localStorage.usuario);
         this.setImagen();
-        this.actualizarNotificaciones();
+        if(this.usuario != null) {
+            this.actualizarNotificaciones();
+        }
         if(window.$(window).width() < 992 && this.menuToggled == true){
             this.toggleBurger();
         }

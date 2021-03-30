@@ -53,6 +53,7 @@ import axios from "axios";
 var urlUsuarios = "http://alcortewear.es/post/rest/grupetapp/usuario.php";
 var urlSeguidos = "http://alcortewear.es/post/rest/grupetapp/seguidos.php";
 var urlPublicaciones = "http://alcortewear.es/post/rest/grupetapp/publicacion.php";
+var urlNotificaciones = "http://alcortewear.es/post/rest/grupetapp/notificaciones.php";
 
 export default {
     name: "Usuario",
@@ -149,6 +150,7 @@ export default {
             }).then(response =>{
                 if(response.statusText == "OK"){
                     this.actualizarBtnSeguir();
+                    this.enviarNotificacion();
                 } else {
                     this.$router.replace('error');
                 }
@@ -190,6 +192,19 @@ export default {
                             this.publicaciones[i].likes++;
                         }
                     }
+                }
+            });
+        },
+        enviarNotificacion:function() {
+            var nombreUsuarioCompleto = this.usuario.nombre +' '+ this.usuario.apellidos;
+            axios.post(urlNotificaciones, {
+                opcion:2, 
+                id_usuario: this.renderUser.id,
+                tipo_notificacion: 'seguimiento',
+                texto_notificacion: '<strong>'+ nombreUsuarioCompleto +'</strong> te ha seguido'
+            }).then(response =>{
+                if(response.statusText != "OK"){
+                    this.$router.replace('error');
                 }
             });
         }
