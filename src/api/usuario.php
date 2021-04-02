@@ -93,7 +93,13 @@ switch($opcion){
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
         $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
-        break; 
+        break;
+    case 11:
+        $consulta = "SELECT COUNT(id) AS numUsers FROM usuarios";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+        $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+        break;  
     
 }
 print json_encode($data, JSON_UNESCAPED_UNICODE);
