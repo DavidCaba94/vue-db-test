@@ -23,10 +23,13 @@
           <div v-for="(objetoLista) in this.publicaciones" :key="objetoLista.id">
             <div class="item-publicacion">
             <div class="box-img-pub">
-                <div class="img-fake"></div>
-                <div class="nombre-fecha" v-if="this.renderUser">
-                    <p>{{ this.renderUser.nombre }} {{ this.renderUser.apellidos }}</p>
+                <div class="box-nombre-foto">
+                    <div class="img-fake"></div>
+                    <div class="nombre-fecha" v-if="this.renderUser">
+                        <p>{{ this.renderUser.nombre }} {{ this.renderUser.apellidos }}</p>
+                    </div>
                 </div>
+                <div v-if="mostrarDelete" class="btn-borrar-publicacion" @click="eliminarPublicacion(objetoLista.id)"></div>
             </div>
             <div class="box-textos-pub">
                 <div class="texto-pub">
@@ -65,7 +68,8 @@ export default {
             siguiendo: false,
             rutasCreadas: 0,
             rutasParticipadas: 0,
-            publicaciones: []
+            publicaciones: [],
+            mostrarDelete: false
         }
     },
     mounted() {
@@ -79,6 +83,9 @@ export default {
     },
     methods: {
         mostrarDatosUsuario:function(id_usuario) {
+            if(this.usuario.id == id_usuario){
+                this.mostrarDelete = true;
+            }
             axios.post(urlUsuarios, {
                 opcion:10,
                 id: id_usuario
@@ -204,6 +211,18 @@ export default {
                 texto_notificacion: '<strong>'+ nombreUsuarioCompleto +'</strong> te ha seguido'
             }).then(response =>{
                 if(response.statusText != "OK"){
+                    this.$router.replace('error');
+                }
+            });
+        },
+        eliminarPublicacion:function(id_publicacion) {
+            axios.post(urlPublicaciones, {
+                opcion:3, 
+                id: id_publicacion,
+            }).then(response =>{
+                if(response.statusText == "OK"){
+                    this.obtenerPublicaciones();
+                } else {
                     this.$router.replace('error');
                 }
             });

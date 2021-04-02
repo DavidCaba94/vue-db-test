@@ -107,6 +107,13 @@
 .contenedor-user .box-img-pub {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+
+.contenedor-user .box-nombre-foto {
+    display: flex;
+    align-items: center;
     justify-content: flex-start;
     flex-wrap: nowrap;
 }
@@ -166,6 +173,16 @@
 .contenedor-user .fecha-text {
     color: #bbbbbb;
     font-size: 12px;
+}
+
+.contenedor-user .btn-borrar-publicacion {
+    width: 30px;
+    height: 30px;
+    background-image: url("../img/delete-gris.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
 }
 
 @media (max-width: 992px) {

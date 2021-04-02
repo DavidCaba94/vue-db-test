@@ -93,6 +93,26 @@
     margin-right: 20px;
 }
 
+.contenedor-perfil .btn-vista-usuario {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    width: 220px;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    background-color: #CC5454;
+    color: #ffffff;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    -webkit-box-shadow: -1px 7px 8px -4px rgb(0 0 0 / 20%);
+    -moz-box-shadow: -1px 7px 8px -4px rgba(0,0,0,0.20);
+    box-shadow: -1px 7px 8px -4px rgb(0 0 0 / 20%);
+}
+
 /*CUSTOM INPUTS*/
 .form__group {
     position: relative;
