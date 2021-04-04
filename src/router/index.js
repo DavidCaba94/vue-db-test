@@ -76,6 +76,21 @@ const routes = [
     path: '/usuario/:id',
     name: 'Usuario',
     component: () => import(/* webpackChunkName: "usuario" */ '../views/Usuario.vue')
+  },
+  {
+    path: '/crear-ruta',
+    name: 'Crear Ruta',
+    component: () => import(/* webpackChunkName: "crear-ruta" */ '../views/CrearRuta.vue')
+  },
+  {
+    path: '/ruta/:id',
+    name: 'Ruta',
+    component: () => import(/* webpackChunkName: "ruta" */ '../views/Ruta.vue')
+  },
+  {
+    path: '/mapa',
+    name: 'Mapa',
+    component: () => import(/* webpackChunkName: "mapa" */ '../views/Mapa.vue')
   }
 ]
 

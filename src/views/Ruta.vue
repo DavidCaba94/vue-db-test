@@ -1,15 +1,18 @@
 <template>
-  <router-link to="/mapa">Ver mapa</router-link>
+  Ruta {{ this.idRuta }}
 </template>
 
 <script>
 export default {
+    name: "Ruta",
     data () {
-    return {
-        usuario: ''
+        return {            
+            usuario: '',
+            idRuta: ''
         }
     },
     mounted() {
+        this.idRuta = this.$route.params.id;
         if(localStorage.usuario) this.usuario = JSON.parse(localStorage.usuario);
     }
 }

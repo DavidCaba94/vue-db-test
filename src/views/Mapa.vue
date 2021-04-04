@@ -1,12 +1,13 @@
 <template>
-  <router-link to="/mapa">Ver mapa</router-link>
+  Mapa
 </template>
 
 <script>
 export default {
+    name: "Mapa",
     data () {
-    return {
-        usuario: ''
+        return {            
+            usuario: ''
         }
     },
     mounted() {
