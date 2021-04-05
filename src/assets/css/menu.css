@@ -99,6 +99,7 @@
     -webkit-box-shadow: -1px 7px 8px -4px rgb(0 0 0 / 20%);
     -moz-box-shadow: -1px 7px 8px -4px rgba(0,0,0,0.20);
     box-shadow: -1px 7px 8px -4px rgb(0 0 0 / 20%);
+    z-index: 99999999;
 }
 
 .box-notificaciones {
@@ -113,6 +114,7 @@
     -webkit-box-shadow: -1px 7px 8px -4px rgb(0 0 0 / 20%);
     -moz-box-shadow: -1px 7px 8px -4px rgba(0,0,0,0.20);
     box-shadow: -1px 7px 8px -4px rgb(0 0 0 / 20%);
+    z-index: 99999999;
 }
 
 .cerrar-notificaciones {
