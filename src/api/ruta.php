@@ -37,6 +37,7 @@ $fecha = (isset($_POST['fecha'])) ? $_POST['fecha'] : '';
 $hora = (isset($_POST['hora'])) ? $_POST['hora'] : '';
 $latitud = (isset($_POST['latitud'])) ? $_POST['latitud'] : '';
 $longitud = (isset($_POST['longitud'])) ? $_POST['longitud'] : '';
+$provincia = (isset($_POST['provincia'])) ? $_POST['provincia'] : '';
 
 
 switch($opcion){
@@ -47,12 +48,12 @@ switch($opcion){
         $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
         break;
     case 2:
-        $consulta = "INSERT INTO rutas (id_usuario, nombre, descripcion, distancia, dificultad, tipo, max_personas, direccion, fecha, hora, latitud, longitud) VALUES('$id_usuario', '$nombre', '$descripcion', '$distancia', '$dificultad', '$tipo', '$max_personas', '$direccion', '$fecha', '$hora', '$latitud', '$longitud') ";
+        $consulta = "INSERT INTO rutas (id_usuario, nombre, descripcion, distancia, dificultad, tipo, max_personas, direccion, fecha, hora, latitud, longitud, provincia) VALUES('$id_usuario', '$nombre', '$descripcion', '$distancia', '$dificultad', '$tipo', '$max_personas', '$direccion', '$fecha', '$hora', '$latitud', '$longitud', '$provincia') ";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();                
         break;
     case 3:
-        $consulta = "UPDATE rutas SET nombre='$nombre', descripcion='$descripcion', distancia='$distancia', dificultad='$dificultad', tipo='$tipo', max_personas='$max_personas', direccion='$direccion', fecha='$fecha', hora='$hora', latitud='$latitud', longitud='$longitud' WHERE id='$id' ";		
+        $consulta = "UPDATE rutas SET nombre='$nombre', descripcion='$descripcion', distancia='$distancia', dificultad='$dificultad', tipo='$tipo', max_personas='$max_personas', direccion='$direccion', fecha='$fecha', hora='$hora', latitud='$latitud', longitud='$longitud', provincia='$provincia' WHERE id='$id' ";		
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();                        
         $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
