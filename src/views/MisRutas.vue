@@ -5,38 +5,40 @@
           <router-link to="/crear-ruta"><div class="btn-nueva-ruta">Crear ruta</div></router-link>
       </div>
       <div id="box-rutas-activas" class="box-rutas">
-          <router-link :to="'/ruta/1'">
-            <div class="card-ruta">
-                <div id="mapid" class="capa-mapa"></div>
-                <p class="nombre-ruta">Nombre Ruta</p>
-                <div class="box-parametros">
-                    <div>
-                        <img src="../assets/img/tipo.png">
-                        <p>MTB</p>
-                    </div>
-                    <div>
-                        <img src="../assets/img/distancia.png">
-                        <p>70KM</p>
-                    </div>
-                    <div>
-                        <img src="../assets/img/dificultad.png">
-                        <p>Difícil</p>
-                    </div>
-                    <div>
-                        <img src="../assets/img/personas.png">
-                        <p>8</p>
-                    </div>
-                    <div>
-                        <img src="../assets/img/fecha.png">
-                        <p>27/07/2021</p>
-                    </div>
-                    <div>
-                        <img src="../assets/img/hora.png">
-                        <p>12:00</p>
+          <div v-for="(ruta) in this.rutas" :key="ruta.id">
+              <router-link :to="'/ruta/'+ruta.id">
+                <div class="card-ruta">
+                    <div class="capa-mapa"></div>
+                    <p class="nombre-ruta">{{ ruta.nombre }}</p>
+                    <div class="box-parametros">
+                        <div>
+                            <img src="../assets/img/tipo.png">
+                            <p>{{ ruta.tipo }}</p>
+                        </div>
+                        <div>
+                            <img src="../assets/img/distancia.png">
+                            <p>{{ ruta.distancia }}KM</p>
+                        </div>
+                        <div>
+                            <img src="../assets/img/dificultad.png">
+                            <p>{{ ruta.dificultad }}</p>
+                        </div>
+                        <div>
+                            <img src="../assets/img/personas.png">
+                            <p>{{ ruta.max_personas }}</p>
+                        </div>
+                        <div>
+                            <img src="../assets/img/fecha.png">
+                            <p>{{ $filters.formatDate(ruta.fecha) }}</p>
+                        </div>
+                        <div>
+                            <img src="../assets/img/hora.png">
+                            <p>{{ ruta.hora }}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-          </router-link>
+            </router-link>
+          </div>
       </div>
       <div class="cabecera-seccion">
           <p class="titulo-seccion" @click="toggleRutasPasadas()"><img class="img-expandir" src="../assets/img/expandir.png">Rutas pasadas</p>
@@ -81,17 +83,25 @@
 
 <script>
 import L from 'leaflet';
+import axios from "axios";
+
+var url = "http://alcortewear.es/post/rest/grupetapp/ruta.php";
 
 export default {
     data () {
         return {
             usuario: '',
-            mymap: null
+            mymap: null,
+            rutas: [],
+            rutasPasadas: []
         }
     },
     mounted() {
         if(localStorage.usuario) this.usuario = JSON.parse(localStorage.usuario);
 
+        this.obtenerRutas();
+        this.obtenerRutasPasadas();
+        /*
         this.mymap = L.map('mapid').setView([40.958471, -5.6582], 12);
         L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
             attribution: 'Grupetapp',
@@ -108,6 +118,7 @@ export default {
         this.mymap.on('click', this.onMapClick);
 
         this.addMarkers();
+        */
     },
     methods: {
         toggleRutasActivas:function() {
@@ -115,6 +126,23 @@ export default {
         },
         toggleRutasPasadas:function() {
             window.$("#box-rutas-pasadas").slideToggle();
+        },
+        obtenerRutas:function() {
+            axios.post(url, {
+                opcion:5,
+                id_usuario: this.usuario.id
+            }).then(response =>{
+                if(response.data.length == 0){
+                    console.log("No hay rutas para este usuario");
+                } else {
+                    for(var i = 0; i < response.data.length; i++){
+                        this.rutas.push(response.data[i]);
+                    }
+                }
+            });
+        },
+        obtenerRutasPasadas:function() {
+            console.log();  
         },
         addMarkers:function() {
             var customMarker = L.icon({
@@ -125,12 +153,6 @@ export default {
 
             L.marker([40.958471, -5.6582],{icon: customMarker}).addTo(this.mymap)
                 .bindPopup('Descripción marcador mapa');
-        },
-        onMapClick:function(e) {
-            L.popup()
-                .setLatLng(e.latlng)
-                .setContent("Has picado en las coordenadas " + e.latlng.toString())
-                .openOn(this.mymap);
         }
     }
 }

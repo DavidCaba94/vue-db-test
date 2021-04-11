@@ -59,6 +59,7 @@
 .contenedor-mis-rutas .card-ruta {
     width: 250px;
     height: 320px;
+    margin: 10px;
     background-color: #ffffff;
     border-radius: 10px;
     -webkit-box-shadow: -1px 7px 8px -4px rgb(0 0 0 / 20%);
@@ -73,6 +74,10 @@
     background-color: #a5a5a5;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    background-image: url("../img/mapa-color.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .contenedor-mis-rutas .capa-mapa-generico {
