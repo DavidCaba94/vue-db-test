@@ -1,6 +1,6 @@
 <template>
   <div class="contenedor-nueva-ruta">
-    <p class="titulo-crear-ruta">Selecciona el punto de inicio de la ruta</p>
+    <p class="titulo-crear-ruta">Selecciona el punto de inicio de la ruta <img src="../assets/img/favicon.png"></p>
     <div id="crearMapId"></div>
     <p class="lat-long-seleccion" v-if="this.latSeleccionada && this.longSeleccionada">
         <strong>Lat:</strong> {{this.latSeleccionada}} <strong>Long:</strong> {{this.longSeleccionada}}
@@ -14,22 +14,76 @@
             <input type="input" class="form__field" placeholder="Descripción" name="descripcion" id='descripcion' required />
             <label for="descripcion" class="form__label">Descripción</label>
         </div>
-        <div class="form__group field">
-            <input type="number" class="form__field" placeholder="Distancia (Kilómetros)" name="distancia" id='distancia' required />
-            <label for="distancia" class="form__label">Distancia (Kilómetros)</label>
-        </div>
         <!-- Radio buttons dificultad -->
+        <div>
+            <p class="titulo-radios">Dificultad</p>
+            <div class="box-radio">
+                <p>
+                    <input type="radio" id="facil" name="dificultad" value="Fácil" checked>
+                    <label for="facil">Fácil</label>
+                </p>
+                <p>
+                    <input type="radio" id="media" name="dificultad" value="Media">
+                    <label for="media">Media</label>
+                </p>
+                <p>
+                    <input type="radio" id="dificil" name="dificultad" value="Difícil">
+                    <label for="dificil">Difícil</label>
+                </p>
+                <p>
+                    <input type="radio" id="extrema" name="dificultad" value="Extrema">
+                    <label for="extrema">Extrema</label>
+                </p>
+            </div>
+        </div>
         <!-- Radio buttons tipo -->
-        <div class="form__group field">
-            <input type="number" class="form__field" placeholder="Máx. Personas" name="maxPersonas" id='maxPersonas' required />
-            <label for="maxPersonas" class="form__label">Máx. Personas</label>
+        <div>
+            <p class="titulo-radios">Tipo</p>
+            <div class="box-radio">
+                <p>
+                    <input type="radio" id="mtb" name="tipo" value="MTB" checked>
+                    <label for="mtb">MTB</label>
+                </p>
+                <p>
+                    <input type="radio" id="carretera" name="tipo" value="Carretera">
+                    <label for="carretera">Carretera</label>
+                </p>
+                <p>
+                    <input type="radio" id="descenso" name="tipo" value="Descenso">
+                    <label for="descenso">Descenso</label>
+                </p>
+                <p>
+                    <input type="radio" id="gravel" name="tipo" value="Gravel">
+                    <label for="gravel">Gravel</label>
+                </p>
+            </div>
+        </div>
+        <div class="flex-numerico">
+            <div class="form__group field field-numerico">
+                <input type="number" class="form__field" placeholder="Distancia (Kilómetros)" name="distancia" id='distancia' required />
+                <label for="distancia" class="form__label">Distancia (Kilómetros)</label>
+            </div>
+            <div class="form__group field field-numerico">
+                <input type="number" class="form__field" placeholder="Máx. Personas" name="maxPersonas" id='maxPersonas' required />
+                <label for="maxPersonas" class="form__label">Máx. Personas</label>
+            </div>
         </div>
         <div class="form__group field">
             <input type="input" class="form__field" placeholder="Dirección (ej: Puente Romano)" name="direccion" id='direccion' required />
             <label for="direccion" class="form__label">Dirección (ej: Puente Romano)</label>
         </div>
-        <!-- Fecha -->
-        <!-- Hora -->
+        <div class="flex-numerico">
+            <!-- Fecha -->
+            <div class="form__group field field-numerico">
+                <input type="date" class="form__field" placeholder="Fecha" name="fecha" id='fecha' required />
+                <label for="fecha" class="form__label">Fecha</label>
+            </div>
+            <!-- Hora -->
+            <div class="form__group field field-numerico">
+                <input type="time" class="form__field" placeholder="Hora" name="hora" id='hora' required />
+                <label for="hora" class="form__label">Hora (24h)</label>
+            </div>
+        </div>
         <div class="form__group field select">
             <select id="provincia" class="select-text" required>
             <option value="" disabled selected></option>
@@ -100,6 +154,9 @@
 <script>
 
 import L from 'leaflet';
+import axios from "axios";
+
+var url = "http://alcortewear.es/post/rest/grupetapp/ruta.php";
 
 var newmap;
 
@@ -148,7 +205,53 @@ export default {
             this.addMarker(e.latlng.lat, e.latlng.lng);
         },
         guardarRuta:function() {
-            console.log("Guardar");
+            if(this.comprobarCamposObligatorios()){
+                window.$(".btn-guardar").css("display", "none");
+                window.$("#loading-nueva-ruta").css("display", "block");
+                axios.post(url, {
+                    opcion:2, 
+                    id_usuario: this.usuario.id,
+                    nombre: window.$("#nombreRuta").val(),
+                    descripcion: window.$("#descripcion").val(),
+                    distancia: window.$("#distancia").val(),
+                    dificultad: window.$("input[name=dificultad]:checked").val(),
+                    tipo: window.$("input[name=tipo]:checked").val(),
+                    max_personas: window.$("#maxPersonas").val(),
+                    direccion: window.$("#direccion").val(),
+                    fecha: window.$("#fecha").val(),
+                    hora: window.$("#hora").val().toString(),
+                    latitud: this.latSeleccionada,
+                    longitud: this.longSeleccionada,
+                    provincia: window.$("#provincia").val()
+                }).then(response =>{
+                    if(response.statusText == "OK"){
+                        this.$router.replace('mis-rutas');
+                    } else {
+                        this.$router.replace('error');
+                    }
+                });
+            }
+        },
+        comprobarCamposObligatorios:function() {
+            var todoRelleno = false;
+            if(this.latSeleccionada == '' || this.longSeleccionada == '') {
+                window.$(".mensaje-error").text("Debes seleccionar el inicio de la ruta en el mapa");
+            } else if(window.$("#nombreRuta").val() != ""
+                        && window.$("#descripcion").val() != ""
+                        && window.$("input[name=dificultad]:checked").val() != ""
+                        && window.$("input[name=tipo]:checked").val() != ""
+                        && window.$("#distancia").val() != ""
+                        && window.$("#maxPersonas").val() != ""
+                        && window.$("#direccion").val() != ""
+                        && window.$("#fecha").val() != ""
+                        && window.$("#hora").val() != ""
+                        && window.$("#provincia").val() != ""){
+                window.$(".mensaje-error").text("");
+                todoRelleno = true;
+            } else {
+                window.$(".mensaje-error").text("Todos los campos son obligatorios");
+            }
+            return todoRelleno;
         }
     }
 }
