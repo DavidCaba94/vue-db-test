@@ -44,45 +44,45 @@
           <p class="titulo-seccion" @click="toggleRutasPasadas()"><img class="img-expandir" src="../assets/img/expandir.png">Rutas pasadas</p>
       </div>
       <div id="box-rutas-pasadas" class="box-rutas">
-          <router-link :to="'/ruta/1'">
-            <div class="card-ruta">
-                <div class="capa-mapa-generico"></div>
-                <p class="nombre-ruta">Nombre Ruta</p>
-                <div class="box-parametros">
-                    <div>
-                        <img src="../assets/img/tipo.png">
-                        <p>Carretera</p>
-                    </div>
-                    <div>
-                        <img src="../assets/img/distancia.png">
-                        <p>140KM</p>
-                    </div>
-                    <div>
-                        <img src="../assets/img/dificultad.png">
-                        <p>Fácil</p>
-                    </div>
-                    <div>
-                        <img src="../assets/img/personas.png">
-                        <p>6</p>
-                    </div>
-                    <div>
-                        <img src="../assets/img/fecha.png">
-                        <p>21/06/2021</p>
-                    </div>
-                    <div>
-                        <img src="../assets/img/hora.png">
-                        <p>18:00</p>
+          <div v-for="(rutaPasada) in this.rutasPasadas" :key="rutaPasada.id">
+            <router-link :to="'/ruta/'+rutaPasada.id">
+                <div class="card-ruta">
+                    <div class="capa-mapa-generico"></div>
+                    <p class="nombre-ruta">{{ rutaPasada.nombre }}</p>
+                    <div class="box-parametros">
+                        <div>
+                            <img src="../assets/img/tipo.png">
+                            <p>{{ rutaPasada.tipo }}</p>
+                        </div>
+                        <div>
+                            <img src="../assets/img/distancia.png">
+                            <p>{{ rutaPasada.distancia }}KM</p>
+                        </div>
+                        <div>
+                            <img src="../assets/img/dificultad.png">
+                            <p>{{ rutaPasada.dificultad }}</p>
+                        </div>
+                        <div>
+                            <img src="../assets/img/personas.png">
+                            <p>{{ rutaPasada.max_personas }}</p>
+                        </div>
+                        <div>
+                            <img src="../assets/img/fecha.png">
+                            <p>{{ $filters.formatDate(rutaPasada.fecha) }}</p>
+                        </div>
+                        <div>
+                            <img src="../assets/img/hora.png">
+                            <p>{{ rutaPasada.hora }}</p>
+                        </div>
                     </div>
                 </div>
-
-            </div>
-          </router-link>
+            </router-link>
+          </div>
       </div>
   </div>
 </template>
 
 <script>
-import L from 'leaflet';
 import axios from "axios";
 
 var url = "http://alcortewear.es/post/rest/grupetapp/ruta.php";
@@ -130,10 +130,11 @@ export default {
         obtenerRutas:function() {
             axios.post(url, {
                 opcion:5,
-                id_usuario: this.usuario.id
+                id_usuario: this.usuario.id,
+                fecha: new Date().toJSON().slice(0, 10)
             }).then(response =>{
                 if(response.data.length == 0){
-                    console.log("No hay rutas para este usuario");
+                    //console.log("No hay rutas para este usuario");
                 } else {
                     for(var i = 0; i < response.data.length; i++){
                         this.rutas.push(response.data[i]);
@@ -142,8 +143,21 @@ export default {
             });
         },
         obtenerRutasPasadas:function() {
-            console.log();  
-        },
+            axios.post(url, {
+                opcion:6,
+                id_usuario: this.usuario.id,
+                fecha: new Date().toJSON().slice(0, 10)
+            }).then(response =>{
+                if(response.data.length == 0){
+                    //console.log("No hay rutas pasadas para este usuario");
+                } else {
+                    for(var i = 0; i < response.data.length; i++){
+                        this.rutasPasadas.push(response.data[i]);
+                    }
+                }
+            });  
+        }
+        /*
         addMarkers:function() {
             var customMarker = L.icon({
                 iconUrl: require('../assets/img/favicon.png'),
@@ -154,6 +168,7 @@ export default {
             L.marker([40.958471, -5.6582],{icon: customMarker}).addTo(this.mymap)
                 .bindPopup('Descripción marcador mapa');
         }
+        */
     }
 }
 </script>

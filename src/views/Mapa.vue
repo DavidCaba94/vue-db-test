@@ -10,6 +10,9 @@
 <script>
 
 import L from 'leaflet';
+import axios from "axios";
+
+var url = "http://alcortewear.es/post/rest/grupetapp/ruta.php";
 
 var mymap;
 
@@ -17,7 +20,8 @@ export default {
     name: "Mapa",
     data () {
         return {            
-            usuario: ''
+            usuario: '',
+            rutasMapa: []
         }
     },
     mounted() {
@@ -32,10 +36,7 @@ export default {
             accessToken: 'pk.eyJ1IjoiZGF2aWRjYWJhOTQiLCJhIjoiY2tuMzVmNHdvMDRsajJ5cXJ3YmZldmo4aSJ9.s-GOpcUEx7q6JPSjyOMPpQ'
         }).addTo(mymap);
 
-        
-        mymap.on('click', this.onMapClick);
-
-        this.addMarkers();
+        this.obtenerRutasMapa();
     },
     methods: {
         addMarkers:function() {
@@ -45,14 +46,30 @@ export default {
                 iconAnchor:   [19, 38]
             });
 
-            L.marker([40.958471, -5.6582],{icon: customMarker}).addTo(mymap)
-                .bindPopup('Descripción marcador mapa');
+            var marker = [];
+
+            for(var i = 0; i < this.rutasMapa.length; i++) {
+                marker[i] = L.marker([this.rutasMapa[i].latitud, this.rutasMapa[i].longitud],{icon: customMarker}).addTo(mymap);
+                //marker[i].addEventListener("click", this.clickMarkerMapa(this.rutasMapa[i].id));
+            }
         },
-        onMapClick:function(e) {
-            L.popup()
-                .setLatLng(e.latlng)
-                .setContent("Has picado en las coordenadas " + e.latlng.toString())
-                .openOn(mymap);
+        obtenerRutasMapa:function() {
+            axios.post(url, {
+                opcion:9,
+                fecha: new Date().toJSON().slice(0, 10)
+            }).then(response =>{
+                if(response.data.length == 0){
+                    //console.log("No hay rutas para este usuario");
+                } else {
+                    for(var i = 0; i < response.data.length; i++){
+                        this.rutasMapa.push(response.data[i]);
+                    }
+                    this.addMarkers();
+                }
+            });
+        },
+        clickMarkerMapa:function() {
+            //console.log("click marker"+id);
         }
     }
 }

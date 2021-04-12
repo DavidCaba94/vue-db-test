@@ -64,19 +64,31 @@ switch($opcion){
         $resultado->execute();                           
         break;
     case 5:
-        $consulta = "SELECT * FROM rutas WHERE id_usuario='$id_usuario' ORDER BY fecha ASC";
+        $consulta = "SELECT * FROM rutas WHERE fecha >= '$fecha' AND id_usuario='$id_usuario' ORDER BY fecha ASC";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
         $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
         break;
     case 6:
-        $consulta = "SELECT * FROM rutas WHERE fecha <= '$fecha' ORDER BY fecha ASC";
+        $consulta = "SELECT * FROM rutas WHERE fecha < '$fecha' AND id_usuario='$id_usuario' ORDER BY fecha DESC";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
         $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
         break;
     case 7:
         $consulta = "SELECT COUNT(id) AS numRutas FROM rutas";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+        $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+        break;
+    case 8:
+        $consulta = "SELECT COUNT(id) AS numRutas FROM rutas WHERE id_usuario='$id_usuario'";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+        $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+        break;
+    case 9:
+        $consulta = "SELECT * FROM rutas WHERE fecha >= '$fecha'";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
         $data=$resultado->fetchAll(PDO::FETCH_ASSOC);

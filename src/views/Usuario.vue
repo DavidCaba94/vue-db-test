@@ -57,6 +57,7 @@ var urlUsuarios = "http://alcortewear.es/post/rest/grupetapp/usuario.php";
 var urlSeguidos = "http://alcortewear.es/post/rest/grupetapp/seguidos.php";
 var urlPublicaciones = "http://alcortewear.es/post/rest/grupetapp/publicacion.php";
 var urlNotificaciones = "http://alcortewear.es/post/rest/grupetapp/notificaciones.php";
+var urlRutas = "http://alcortewear.es/post/rest/grupetapp/ruta.php";
 
 export default {
     name: "Usuario",
@@ -96,6 +97,7 @@ export default {
                     this.renderUser = response.data[0];
                     this.addFotoUser();
                     this.actualizarBtnSeguir();
+                    this.obtenerNumRutasPropias();
                 }
             });
         },
@@ -226,6 +228,17 @@ export default {
                     this.$router.replace('error');
                 }
             });
+        },
+        obtenerNumRutasPropias:function() {
+            axios.post(urlRutas, {
+                opcion:8,
+                id_usuario: this.idUsuario
+            }).then(response =>{
+                this.rutasCreadas = response.data[0].numRutas;
+            });
+        },
+        obtenerNumRutasParticipadas:function() {
+            console.log();
         }
     }
 }
