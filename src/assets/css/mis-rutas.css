@@ -132,3 +132,23 @@
 .contenedor-mis-rutas .leaflet-control-zoom {
     display: none;
 }
+
+@media (max-width: 992px) {
+    .contenedor-mis-rutas .box-rutas {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+    .contenedor-mis-rutas .titulo-seccion {
+        font-size: 14px;
+    }
+
+    .contenedor-mis-rutas .btn-nueva-ruta {
+        width: 60px;
+        font-size: 12px;
+    }
+}

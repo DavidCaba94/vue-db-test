@@ -13,3 +13,56 @@
     flex-wrap: wrap;
     padding: 10px;
 }
+
+.contenedor-mapa .titulo-popup {
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #CC5454;
+}
+
+.contenedor-mapa .box-caracteristicas {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.contenedor-mapa .box-caracteristicas div {
+    width: 45%;
+    margin-left: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+}
+
+.contenedor-mapa .box-caracteristicas img {
+    width: 25px;
+}
+
+.contenedor-mapa .box-caracteristicas p {
+    margin-left: 10px;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.contenedor-mapa .btn-ver-ruta {
+    width: 70px;
+    margin: 0 auto;
+    margin-top: 10px;
+    background-color: #CC5454;
+    color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 10px;
+    text-align: center;
+    -webkit-box-shadow: -1px 7px 8px -4px rgb(0 0 0 / 20%);
+    -moz-box-shadow: -1px 7px 8px -4px rgba(0,0,0,0.20);
+    box-shadow: -1px 7px 8px -4px rgb(0 0 0 / 20%);
+}
+
+.contenedor-mapa .leaflet-popup-content {
+    width: 250px !important;
+}

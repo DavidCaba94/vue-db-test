@@ -43,15 +43,27 @@ export default {
             var customMarker = L.icon({
                 iconUrl: require('../assets/img/favicon.png'),
                 iconSize:     [38, 38],
-                iconAnchor:   [19, 38]
+                iconAnchor:   [19, 38],
+                popupAnchor:  [0, -30]
             });
 
-            var marker = [];
-
             for(var i = 0; i < this.rutasMapa.length; i++) {
-                marker[i] = L.marker([this.rutasMapa[i].latitud, this.rutasMapa[i].longitud],{icon: customMarker}).addTo(mymap);
-                //marker[i].addEventListener("click", this.clickMarkerMapa(this.rutasMapa[i].id));
+                L.marker([this.rutasMapa[i].latitud, this.rutasMapa[i].longitud],{icon: customMarker}).addTo(mymap).bindPopup(this.componerPopupCustom(this.rutasMapa[i]),{'width': '500'});
             }
+        },
+        componerPopupCustom:function(rutaObject) {
+            var customPopup = "<p class='titulo-popup'>"+ rutaObject.nombre +"</p>"
+                            + "<div class='box-caracteristicas'>"
+                                + "<div><img src='"+ require('../assets/img/tipo.png') +"'><p>"+ rutaObject.tipo +"</p></div>"
+                                + "<div><img src='"+ require('../assets/img/distancia.png') +"'><p>"+ rutaObject.distancia +"</p></div>"
+                                + "<div><img src='"+ require('../assets/img/dificultad.png') +"'><p>"+ rutaObject.dificultad +"</p></div>"
+                                + "<div><img src='"+ require('../assets/img/personas.png') +"'><p>"+ rutaObject.max_personas +"</p></div>"
+                                + "<div><img src='"+ require('../assets/img/fecha.png') +"'><p>"+ rutaObject.fecha +"</p></div>"
+                                + "<div><img src='"+ require('../assets/img/hora.png') +"'><p>"+ rutaObject.hora +"</p></div>"
+                            + "</div>"
+                            + "<a href='/ruta/"+ rutaObject.id +"'><div class='btn-ver-ruta'>Ver ruta</div></a>";
+
+            return customPopup;
         },
         obtenerRutasMapa:function() {
             axios.post(url, {
@@ -67,9 +79,6 @@ export default {
                     this.addMarkers();
                 }
             });
-        },
-        clickMarkerMapa:function() {
-            //console.log("click marker"+id);
         }
     }
 }
