@@ -1,7 +1,24 @@
 <template>
     <div class="contenedor-mapa">
         <div class="filtros-mapa">
-            <input type="text" placeholder="Tipo de ruta">
+            <select id="tipo" class="select-filtro" v-model="this.tipoRutaFiltro" @change="filtrarRutas(this.tipoRutaFiltro, this.dificultadRutaFiltro)" required>
+                <option value="Todas" selected>Todos los tipos</option>
+                <option value="MTB">MTB</option>
+                <option value="Carretera">Carretera</option>
+                <option value="Descenso">Descenso</option>
+                <option value="Gravel">Gravel</option>
+            </select>
+            <select id="dificultad" class="select-filtro" v-model="this.dificultadRutaFiltro" @change="filtrarRutas(this.tipoRutaFiltro, this.dificultadRutaFiltro)" required>
+                <option value="Todas" selected>Todas las dificultades</option>
+                <option value="Fácil">Fácil</option>
+                <option value="Media">Media</option>
+                <option value="Difícil">Difícil</option>
+                <option value="Extrema">Extrema</option>
+            </select>
+            <div class="btn-limpiar-filtros" @click="limpiarFiltrosMapa()">
+                <img class="img-btn" src="../assets/img/block.png">
+                <p class="text-btn">Limpiar filtros</p>
+            </div>
         </div>
         <div id="mapid"></div>
     </div>
@@ -21,7 +38,10 @@ export default {
     data () {
         return {            
             usuario: '',
-            rutasMapa: []
+            rutasMapa: [],
+            rutasMapaFiltradas: [],
+            tipoRutaFiltro: 'Todas',
+            dificultadRutaFiltro: 'Todas'
         }
     },
     mounted() {
@@ -47,15 +67,17 @@ export default {
                 popupAnchor:  [0, -30]
             });
 
-            for(var i = 0; i < this.rutasMapa.length; i++) {
-                L.marker([this.rutasMapa[i].latitud, this.rutasMapa[i].longitud],{icon: customMarker}).addTo(mymap).bindPopup(this.componerPopupCustom(this.rutasMapa[i]),{'width': '500'});
+            this.borrarMarkers();
+
+            for(var i = 0; i < this.rutasMapaFiltradas.length; i++) {
+                L.marker([this.rutasMapaFiltradas[i].latitud, this.rutasMapaFiltradas[i].longitud],{icon: customMarker}).addTo(mymap).bindPopup(this.componerPopupCustom(this.rutasMapaFiltradas[i]));
             }
         },
         componerPopupCustom:function(rutaObject) {
             var customPopup = "<p class='titulo-popup'>"+ rutaObject.nombre +"</p>"
                             + "<div class='box-caracteristicas'>"
                                 + "<div><img src='"+ require('../assets/img/tipo.png') +"'><p>"+ rutaObject.tipo +"</p></div>"
-                                + "<div><img src='"+ require('../assets/img/distancia.png') +"'><p>"+ rutaObject.distancia +"</p></div>"
+                                + "<div><img src='"+ require('../assets/img/distancia.png') +"'><p>"+ rutaObject.distancia +"KM</p></div>"
                                 + "<div><img src='"+ require('../assets/img/dificultad.png') +"'><p>"+ rutaObject.dificultad +"</p></div>"
                                 + "<div><img src='"+ require('../assets/img/personas.png') +"'><p>"+ rutaObject.max_personas +"</p></div>"
                                 + "<div><img src='"+ require('../assets/img/fecha.png') +"'><p>"+ rutaObject.fecha +"</p></div>"
@@ -76,7 +98,37 @@ export default {
                     for(var i = 0; i < response.data.length; i++){
                         this.rutasMapa.push(response.data[i]);
                     }
-                    this.addMarkers();
+                    this.filtrarRutas(this.tipoRutaFiltro, this.dificultadRutaFiltro);
+                }
+            });
+        },
+        filtrarRutas:function(tipo, dificultad) {
+            this.rutasMapaFiltradas = [];
+            if(tipo == 'Todas' && dificultad == 'Todas') {
+                this.rutasMapaFiltradas = this.rutasMapa;
+            } else {
+                for(var i = 0; i < this.rutasMapa.length; i++) {
+                    if((tipo != 'Todas' && dificultad == 'Todas') && tipo == this.rutasMapa[i].tipo) {
+                        this.rutasMapaFiltradas.push(this.rutasMapa[i]);
+                    } else if((tipo == 'Todas' && dificultad != 'Todas') && dificultad == this.rutasMapa[i].dificultad) {
+                        this.rutasMapaFiltradas.push(this.rutasMapa[i]);
+                    } else if((tipo != 'Todas' && dificultad != 'Todas') && tipo == this.rutasMapa[i].tipo && dificultad == this.rutasMapa[i].dificultad) {
+                        this.rutasMapaFiltradas.push(this.rutasMapa[i]);
+                    }
+                }
+            }
+            this.addMarkers();
+        },
+        limpiarFiltrosMapa:function() {
+            this.tipoRutaFiltro = "Todas";
+            this.dificultadRutaFiltro = "Todas";
+            this.filtrarRutas(this.tipoRutaFiltro, this.dificultadRutaFiltro);
+        },
+        borrarMarkers:function() {
+            mymap.eachLayer(function(layer) {
+                if (layer instanceof L.Marker)
+                {
+                    mymap.removeLayer(layer);
                 }
             });
         }
