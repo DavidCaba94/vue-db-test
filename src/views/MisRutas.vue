@@ -101,24 +101,6 @@ export default {
 
         this.obtenerRutas();
         this.obtenerRutasPasadas();
-        /*
-        this.mymap = L.map('mapid').setView([40.958471, -5.6582], 12);
-        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-            attribution: 'Grupetapp',
-            maxZoom: 18,
-            zoomControl: false,
-            attributionControl: false,
-            id: 'mapbox/streets-v11',
-            tileSize: 512,
-            zoomOffset: -1,
-            accessToken: 'pk.eyJ1IjoiZGF2aWRjYWJhOTQiLCJhIjoiY2tuMzVmNHdvMDRsajJ5cXJ3YmZldmo4aSJ9.s-GOpcUEx7q6JPSjyOMPpQ'
-        }).addTo(this.mymap);
-
-        
-        this.mymap.on('click', this.onMapClick);
-
-        this.addMarkers();
-        */
     },
     methods: {
         toggleRutasActivas:function() {
@@ -157,18 +139,6 @@ export default {
                 }
             });  
         }
-        /*
-        addMarkers:function() {
-            var customMarker = L.icon({
-                iconUrl: require('../assets/img/favicon.png'),
-                iconSize:     [38, 38],
-                iconAnchor:   [19, 38]
-            });
-
-            L.marker([40.958471, -5.6582],{icon: customMarker}).addTo(this.mymap)
-                .bindPopup('Descripción marcador mapa');
-        }
-        */
     }
 }
 </script>

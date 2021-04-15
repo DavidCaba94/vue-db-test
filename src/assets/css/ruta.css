@@ -1,0 +1,56 @@
+.contenedor-ruta {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.contenedor-ruta #rutaMapId { 
+    height: 300px;
+    border-radius: 10px;
+}
+
+.contenedor-ruta .nombre-ruta {
+    font-size: 20px;
+    color: #CC5454;
+    padding: 10px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.contenedor-ruta .titulo-info {
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    margin: 10px;
+    margin-top: 30px;
+}
+
+.contenedor-ruta .info-ruta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.contenedor-ruta .item-info {
+    min-width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    margin: 10px;
+}
+
+.contenedor-ruta .item-info img {
+    width: 25px;
+}
+
+.contenedor-ruta .item-info p {
+    margin-left: 10px;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+@media (max-width: 576px) {
+
+}
