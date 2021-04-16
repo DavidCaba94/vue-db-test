@@ -2,6 +2,8 @@
     <div class="contenedor-ruta">
         <p class="nombre-ruta" v-if="this.rutaObject">{{ this.rutaObject.nombre }}</p>
         <div id="rutaMapId"></div>
+        <p class="titulo-info">Descripción</p>
+        <p v-if="this.rutaObject">{{ this.rutaObject.descripcion }}</p>
         <p class="titulo-info">Información de la ruta</p>
         <div class="info-ruta" v-if="this.rutaObject">
             <div class="item-info">
@@ -29,9 +31,35 @@
                 <p>{{ this.rutaObject.hora }}</p>
             </div>
         </div>
-        <div class="box-organizador">
+        <p class="titulo-info">Detalle de la dirección</p>
+        <p v-if="this.rutaObject">{{ this.rutaObject.direccion }}</p>
+        <div class="box-organizador" v-if="this.rutaObject">
             <p>Organizador</p>
-            
+            <router-link :to="'/usuario/'+this.rutaObject.id_usuario">
+                <div class="img-organizador"></div>
+                <p class="nombre-organizador" v-if="this.organizador">{{ this.organizador.nombre }} {{ this.organizador.apellidos }}</p>
+            </router-link>
+        </div>
+        <div class="box-participantes">
+            <div class="cabecera-participantes">
+                <p class="texto-num-participantes" v-if="this.rutaObject">Participantes {{ this.participantes.length }}/{{ this.rutaObject.max_personas }}</p>
+                <div class="btn-inscripcion">Inscribirme</div>
+            </div>
+            <div class="listado-participantes">
+                <router-link :to="'/usuario/1'">
+                    <p class="nombre-participante"><span>1</span> David Caballero Calvo</p>
+                </router-link>
+                <router-link :to="'/usuario/1'">
+                    <p class="nombre-participante"><span>2</span> David Caballero Calvo</p>
+                </router-link>
+                <router-link :to="'/usuario/1'">
+                    <p class="nombre-participante"><span>3</span> David Caballero Calvo</p>
+                </router-link>
+            </div>
+        </div>
+        <div class="box-comentarios">
+            <p class="texto-num-comentarios">Comentarios 0</p>
+            <textarea id="input-comentario" cols="30" rows="10"></textarea>
         </div>
     </div>
 </template>
@@ -50,7 +78,9 @@ export default {
         return {            
             usuario: '',
             idRuta: '',
-            rutaObject: null
+            rutaObject: null,
+            organizador: null,
+            participantes: []
         }
     },
     mounted() {
@@ -89,6 +119,23 @@ export default {
                     this.rutaObject = response.data[0];
                     this.addMarkerRuta(response.data[0].latitud, response.data[0].longitud);
                     rutamap.flyTo(new L.LatLng(response.data[0].latitud, response.data[0].longitud), 15);
+                }
+            });
+
+            this.obtenerDatosOrganizador();
+        },
+        obtenerDatosOrganizador:function() {
+            axios.post(url, {
+                opcion:11,
+                id: this.idRuta
+            }).then(response =>{
+                if(response.data.length == 0){
+                    this.$router.replace('error');
+                } else {
+                    this.organizador = response.data[0];
+                    if(this.organizador.foto != null){
+                        window.$(".img-organizador").css("background-image", "url("+ this.organizador.foto +")");
+                    }
                 }
             });
         }
