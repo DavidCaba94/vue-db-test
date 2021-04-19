@@ -43,23 +43,36 @@
         <div class="box-participantes">
             <div class="cabecera-participantes">
                 <p class="texto-num-participantes" v-if="this.rutaObject">Participantes {{ this.participantes.length }}/{{ this.rutaObject.max_personas }}</p>
-                <div class="btn-inscripcion">Inscribirme</div>
+                <div class="btn-inscripcion" @click="inscribirParticipante()">Inscribirme</div>
+                <div class="btn-desinscripcion" @click="desinscribirParticipante()">Desinscribirme</div>
             </div>
             <div class="listado-participantes">
-                <router-link :to="'/usuario/1'">
-                    <p class="nombre-participante"><span>1</span> David Caballero Calvo</p>
-                </router-link>
-                <router-link :to="'/usuario/1'">
-                    <p class="nombre-participante"><span>2</span> David Caballero Calvo</p>
-                </router-link>
-                <router-link :to="'/usuario/1'">
-                    <p class="nombre-participante"><span>3</span> David Caballero Calvo</p>
-                </router-link>
+                <div v-for="(participante, index) in this.participantes" :key="participante.id">
+                    <router-link :to="'/usuario/'+participante.id_usuario">
+                        <p class="nombre-participante"><span>{{ index + 1 }}</span> {{ participante.nom_apellidos }}</p>
+                    </router-link>
+                </div>
             </div>
         </div>
         <div class="box-comentarios">
-            <p class="texto-num-comentarios">Comentarios 0</p>
-            <textarea id="input-comentario" cols="30" rows="10"></textarea>
+            <p class="texto-num-comentarios">Comentarios {{ this.comentarios.length }}</p>
+            <textarea id="texto-publicacion" class="texto-publicacion" name="texto-publicacion" maxlength="255" v-model='textoComentario' @keyup='charCount()'></textarea>
+            <div class="box-under-text">
+                <p class="texto-caracteres">{{ numCaracteres }}/255</p>
+                <div class="btn-publicar" @click='publicarComentario()'>Publicar</div>
+            </div>
+            <div class="lista-comentarios">
+                <p id="sin-comentarios" v-if="this.comentarios.length == 0">No hay comentarios en esta ruta.</p>
+                <div v-for="(comentario) in this.comentarios" :key="comentario.id">
+                    <div class="box-comentario">
+                        <router-link :to="'/usuario/'+comentario.id_usuario">
+                            <p class="nombre-comentario">{{ comentario.nom_apellidos }}</p>
+                        </router-link>
+                        <p class="comentario-ruta">{{ comentario.comentario }}</p>
+                        <p class="fecha-comentario">{{ $filters.formatDate(comentario.fecha) }}</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -68,7 +81,9 @@
 import L from 'leaflet';
 import axios from "axios";
 
-var url = "http://alcortewear.es/post/rest/grupetapp/ruta.php";
+var urlRuta = "http://alcortewear.es/post/rest/grupetapp/ruta.php";
+var urlInscripcion = "http://alcortewear.es/post/rest/grupetapp/inscripciones.php";
+var urlComentarios = "http://alcortewear.es/post/rest/grupetapp/comentarios_ruta.php";
 
 var rutamap;
 
@@ -80,7 +95,10 @@ export default {
             idRuta: '',
             rutaObject: null,
             organizador: null,
-            participantes: []
+            participantes: [],
+            numCaracteres: 0,
+            textoComentario: '',
+            comentarios: []
         }
     },
     mounted() {
@@ -109,7 +127,7 @@ export default {
             L.marker([lat, long],{icon: customMarker}).addTo(rutamap);
         },
         obtenerDatosRuta:function() {
-            axios.post(url, {
+            axios.post(urlRuta, {
                 opcion:10,
                 id: this.idRuta
             }).then(response =>{
@@ -125,7 +143,7 @@ export default {
             this.obtenerDatosOrganizador();
         },
         obtenerDatosOrganizador:function() {
-            axios.post(url, {
+            axios.post(urlRuta, {
                 opcion:11,
                 id: this.idRuta
             }).then(response =>{
@@ -136,6 +154,95 @@ export default {
                     if(this.organizador.foto != null){
                         window.$(".img-organizador").css("background-image", "url("+ this.organizador.foto +")");
                     }
+                }
+            });
+
+            this.comprobarInscripcion();
+            this.obtenerComentarios();
+        },
+        charCount: function() {
+            this.numCaracteres = this.textoComentario.length;
+        },
+        inscribirParticipante:function() {
+            axios.post(urlInscripcion, {
+                opcion:3,
+                id_ruta: this.idRuta,
+                id_usuario: this.usuario.id,
+                nom_apellidos: this.usuario.nombre +" "+ this.usuario.apellidos
+            }).then(response =>{
+                if(response.statusText == "OK"){
+                    this.comprobarInscripcion();
+                } else {
+                    this.$router.replace('error');
+                }
+            });
+        },
+        desinscribirParticipante:function() {
+            axios.post(urlInscripcion, {
+                opcion:4, 
+                id_ruta: this.idRuta,
+                id_usuario: this.usuario.id
+            }).then(response =>{
+                if(response.statusText == "OK"){
+                    this.comprobarInscripcion();
+                } else {
+                    this.$router.replace('error');
+                }
+            });
+        },
+        obtenerParticipantes:function() {
+            this.participantes = [];
+            axios.post(urlInscripcion, {
+                opcion:1,
+                id_ruta: this.idRuta
+            }).then(response =>{
+                if(response.data.length != 0){
+                    this.participantes = response.data;
+                }
+            });
+        },
+        comprobarInscripcion:function() {
+            axios.post(urlInscripcion, {
+                opcion:5,
+                id_ruta: this.idRuta,
+                id_usuario: this.usuario.id
+            }).then(response =>{
+                if(response.data.length == 0){
+                    window.$(".btn-desinscripcion").css("display", "none");
+                    window.$(".btn-inscripcion").css("display", "flex");
+                } else {
+                    window.$(".btn-inscripcion").css("display", "none");
+                    window.$(".btn-desinscripcion").css("display", "flex");
+                }
+            });
+
+            this.obtenerParticipantes();
+        },
+        obtenerComentarios:function() {
+            this.comentarios = [];
+            axios.post(urlComentarios, {
+                opcion:1,
+                id_ruta: this.idRuta
+            }).then(response =>{
+                if(response.data.length != 0){
+                    this.comentarios = response.data;
+                }
+            });
+        },
+        publicarComentario:function() {
+            axios.post(urlComentarios, {
+                opcion:3,
+                id_ruta: this.idRuta,
+                id_usuario: this.usuario.id,
+                nom_apellidos: this.usuario.nombre +" "+ this.usuario.apellidos,
+                comentario: this.textoComentario,
+                fecha: new Date().toJSON().slice(0, 10)
+            }).then(response =>{
+                if(response.statusText == "OK"){
+                    this.textoComentario = '';
+                    this.obtenerComentarios();
+                } else {
+                    this.$router.replace('error');
                 }
             });
         }

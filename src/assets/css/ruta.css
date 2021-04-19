@@ -125,6 +125,27 @@
     background-color: #af3a3a;
 }
 
+.contenedor-ruta .btn-desinscripcion {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    width: 120px;
+    background-color: #8b8b8b;
+    color: #ffffff;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    -webkit-box-shadow: -1px 7px 8px -4px rgb(0 0 0 / 20%);
+    -moz-box-shadow: -1px 7px 8px -4px rgba(0,0,0,0.20);
+    box-shadow: -1px 7px 8px -4px rgb(0 0 0 / 20%);
+}
+
+.contenedor-ruta .btn-desinscripcion:hover {
+    background-color: #707070;
+}
+
 .contenedor-ruta .nombre-participante span {
     font-weight: 700;
     margin-right: 10px;
@@ -134,11 +155,86 @@
     max-width: 900px;
     margin: 0 auto;
     margin-top: 30px;
+    margin-bottom: 60px;
 }
 
 .contenedor-ruta .texto-num-comentarios {
     text-align: left;
     font-weight: 700;
+}
+
+.contenedor-ruta .texto-publicacion {
+    font-family: 'Oxygen', sans-serif;
+    outline: none;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    width: 92%;
+    max-width: 500px;
+    height: 150px;
+    color: #525252;
+    font-size: 16px;
+    padding: 10px;
+}
+
+.contenedor-ruta .box-under-text {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.contenedor-ruta .btn-publicar {
+    width: 100px;
+    background-color: #CC5454;
+    color: #ffffff;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.contenedor-ruta .btn-publicar:hover {
+    background-color: #a73e3e;
+}
+
+.contenedor-ruta .texto-caracteres {
+    color: #b1b1b1;
+}
+
+.contenedor-ruta .box-comentario {
+    max-width: 500px;
+    margin: 0 auto;
+    margin-top: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    -webkit-box-shadow: -1px 7px 8px -4px rgb(0 0 0 / 20%);
+    -moz-box-shadow: -1px 7px 8px -4px rgba(0,0,0,0.20);
+    box-shadow: -1px 7px 8px -4px rgb(0 0 0 / 20%);
+}
+
+.contenedor-ruta .box-comentario p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.contenedor-ruta .nombre-comentario {
+    font-weight: 700;
+    color: #CC5454;
+    text-align: left;
+}
+
+.contenedor-ruta .comentario-ruta {
+    margin-top: 10px !important;
+    text-align: left;
+}
+
+.contenedor-ruta .fecha-comentario {
+    margin-top: 10px !important;
+    font-size: 11px;
+    text-align: right;
+    color: #8b8b8b;
 }
 
 @media (max-width: 576px) {
