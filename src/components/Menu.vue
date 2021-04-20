@@ -8,7 +8,7 @@
             <router-link to="/social">{{item4}}</router-link>
             <router-link to="/mis-rutas">{{item5}}</router-link>
             <router-link to="/estadisticas">{{item6}}</router-link>
-            <router-link to="/clasificaciones">{{item7}}</router-link>
+            <router-link to="/global">{{item7}}</router-link>
             <router-link to="/sorteos">{{item8}}</router-link>
         </div>
         <div class="box-login-reg">
@@ -44,7 +44,7 @@
         <div><router-link to="/social">{{item4}}</router-link></div>
         <div><router-link to="/mis-rutas">{{item5}}</router-link></div>
         <div><router-link to="/estadisticas">{{item6}}</router-link></div>
-        <div><router-link to="/clasificaciones">{{item7}}</router-link></div>
+        <div><router-link to="/global">{{item7}}</router-link></div>
         <div><router-link to="/sorteos">{{item8}}</router-link></div>
         <div class="logout-movil" @click='logout()'>Cerrar sesión</div>
     </div>
@@ -77,7 +77,7 @@ export default {
             item4: "Social",
             item5: "Mis Rutas",
             item6: "Estadísticas",
-            item7: "Clasificaciones",
+            item7: "Global",
             item8: "Sorteos",
             item9: "Productos",
             item10: "Mi perfil",

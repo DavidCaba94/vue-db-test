@@ -1,0 +1,214 @@
+.contenedor-rutas {
+    max-width: 1920px;
+    padding: 10px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.contenedor-rutas .btn-ver-mapa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    width: 150px;
+    margin: 0 auto;
+    background-color: #CC5454;
+    color: #ffffff;
+    border-radius: 10px;
+    padding: 5px;
+    cursor: pointer;
+    font-weight: 700;
+    -webkit-box-shadow: -1px 7px 8px -4px rgb(0 0 0 / 20%);
+    -moz-box-shadow: -1px 7px 8px -4px rgba(0,0,0,0.20);
+    box-shadow: -1px 7px 8px -4px rgb(0 0 0 / 20%);
+}
+
+.contenedor-rutas .btn-ver-mapa:hover {
+    background-color: #af3a3a;
+}
+
+.contenedor-rutas .btn-ver-mapa img {
+    width: 30px;
+}
+
+.contenedor-rutas .flex-cabecera-rutas {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contenedor-rutas .flex-cabecera-rutas p {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.contenedor-rutas .img-desplegar {
+    width: 30px;
+}
+
+.contenedor-rutas .box-rutas-cerca {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contenedor-rutas .card-ruta {
+    width: 250px;
+    height: 320px;
+    margin: 10px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    -webkit-box-shadow: -1px 7px 8px -4px rgb(0 0 0 / 20%);
+    -moz-box-shadow: -1px 7px 8px -4px rgba(0,0,0,0.20);
+    box-shadow: -1px 7px 8px -4px rgb(0 0 0 / 20%);
+    cursor: pointer;
+}
+
+.contenedor-rutas .capa-mapa {
+    width: 100%;
+    height: 130px;
+    background-color: #a5a5a5;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-image: url("../img/mapa-color.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.contenedor-rutas .nombre-ruta {
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    color: #CC5454;
+    margin: 0;
+    padding: 10px;
+}
+
+.contenedor-rutas .box-parametros {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding: 10px;
+    padding-top: 0;
+}
+
+.contenedor-rutas .box-parametros div {
+    width: 45%;
+    margin-left: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+}
+
+.contenedor-rutas .box-parametros img {
+    width: 25px;
+}
+
+.contenedor-rutas .box-parametros p {
+    margin-left: 10px;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.contenedor-rutas .titulo-inscripciones {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 30px;
+}
+
+.contenedor-rutas .todas-las-rutas {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 30px;
+}
+
+.contenedor-rutas .todas-las-rutas span {
+    color: #CC5454;
+}
+
+.contenedor-rutas .el-tiempo-desktop {
+    display: block;
+}
+
+.contenedor-rutas .el-tiempo-movil {
+    display: none;
+}
+
+.contenedor-rutas .card-inscripcion {
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 10px;
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: -1px 7px 8px -4px rgb(0 0 0 / 20%);
+    -moz-box-shadow: -1px 7px 8px -4px rgba(0,0,0,0.20);
+    box-shadow: -1px 7px 8px -4px rgb(0 0 0 / 20%);
+    cursor: pointer;
+}
+
+.contenedor-rutas .titulo-card {
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.contenedor-rutas .titulo-card span {
+    color: #CC5454;
+}
+
+.contenedor-rutas .box-caracteristicas, .box-caracteristicas div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.contenedor-rutas .box-caracteristicas img {
+    width: 30px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+@media (max-width: 576px) {
+    .contenedor-rutas .el-tiempo-desktop {
+        display: none;
+    }
+    
+    .contenedor-rutas .el-tiempo-movil {
+        display: block;
+    }
+
+    .contenedor-rutas .flex-cabecera-rutas {
+        flex-wrap: wrap;
+        flex-direction: column-reverse;
+    }
+
+    .contenedor-rutas .btn-ver-mapa {
+        padding: 3px;
+    }
+
+    .contenedor-rutas .flex-cabecera-rutas p {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .contenedor-rutas .box-rutas-cerca {
+        justify-content: center;
+    }
+}

@@ -32,9 +32,9 @@ const routes = [
     component: () => import(/* webpackChunkName: "estadisticas" */ '../views/Estadisticas.vue')
   },
   {
-    path: '/clasificaciones',
-    name: 'Clasificaciones',
-    component: () => import(/* webpackChunkName: "clasificaciones" */ '../views/Clasificaciones.vue')
+    path: '/global',
+    name: 'Global',
+    component: () => import(/* webpackChunkName: "global" */ '../views/Global.vue')
   },
   {
     path: '/sorteos',

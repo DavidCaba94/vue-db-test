@@ -115,9 +115,7 @@ export default {
                 id_usuario: this.usuario.id,
                 fecha: new Date().toJSON().slice(0, 10)
             }).then(response =>{
-                if(response.data.length == 0){
-                    //console.log("No hay rutas para este usuario");
-                } else {
+                if(response.data.length != 0){
                     for(var i = 0; i < response.data.length; i++){
                         this.rutas.push(response.data[i]);
                     }
@@ -130,9 +128,7 @@ export default {
                 id_usuario: this.usuario.id,
                 fecha: new Date().toJSON().slice(0, 10)
             }).then(response =>{
-                if(response.data.length == 0){
-                    //console.log("No hay rutas pasadas para este usuario");
-                } else {
+                if(response.data.length != 0){
                     for(var i = 0; i < response.data.length; i++){
                         this.rutasPasadas.push(response.data[i]);
                     }

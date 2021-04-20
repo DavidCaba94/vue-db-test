@@ -129,10 +129,6 @@
     font-weight: 300;
 }
 
-.contenedor-mis-rutas .leaflet-control-zoom {
-    display: none;
-}
-
 @media (max-width: 992px) {
     .contenedor-mis-rutas .box-rutas {
         display: flex;
