@@ -83,6 +83,7 @@ import axios from "axios";
 
 var urlRuta = "http://alcortewear.es/post/rest/grupetapp/ruta.php";
 var urlInscripcion = "http://alcortewear.es/post/rest/grupetapp/inscripciones.php";
+var urlNotificaciones = "http://alcortewear.es/post/rest/grupetapp/notificaciones.php";
 var urlComentarios = "http://alcortewear.es/post/rest/grupetapp/comentarios_ruta.php";
 
 var rutamap;
@@ -172,6 +173,7 @@ export default {
             }).then(response =>{
                 if(response.statusText == "OK"){
                     this.comprobarInscripcion();
+                    this.enviarNotificacion();
                 } else {
                     this.$router.replace('error');
                 }
@@ -242,6 +244,19 @@ export default {
                     this.textoComentario = '';
                     this.obtenerComentarios();
                 } else {
+                    this.$router.replace('error');
+                }
+            });
+        },
+        enviarNotificacion:function() {
+            var nombreUsuarioCompleto = this.usuario.nombre +' '+ this.usuario.apellidos;
+            axios.post(urlNotificaciones, {
+                opcion:2, 
+                id_usuario: this.organizador.id,
+                tipo_notificacion: 'inscripcion',
+                texto_notificacion: '<strong>'+ nombreUsuarioCompleto +'</strong> se ha unido a tu ruta <strong>'+ this.rutaObject.nombre +'</strong>'
+            }).then(response =>{
+                if(response.statusText != "OK"){
                     this.$router.replace('error');
                 }
             });
