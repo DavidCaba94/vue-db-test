@@ -1,7 +1,7 @@
 <template>
     <div class="contenedor-home">
         <router-link to="/login">
-            <div class="login-btn">Login</div>
+            <div class="login-btn">Entrar</div>
         </router-link>
         <router-link to="/registro">
             <div class="login-btn">Registro</div>

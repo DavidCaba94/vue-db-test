@@ -37,7 +37,11 @@ export default {
           recordar: false
         }
        },
-       created(){       
+       mounted(){
+          if(localStorage.usuario) this.usuario = JSON.parse(localStorage.usuario);
+          if(this.usuario != '' && this.usuario != null){
+            this.$router.replace('/rutas');
+          } 
        },  
        methods:{
          comprobarLogin:function(){

@@ -9,6 +9,17 @@ import Menu from './components/Menu.vue'
 export default {
   components: {
     Menu
+  },
+  data () {
+    return {
+      usuario: ''
+    }
+  },
+  mounted() {
+      if(localStorage.usuario) this.usuario = JSON.parse(localStorage.usuario);
+      if(this.usuario == '' || this.usuario == null){
+        this.$router.replace('');
+      }
   }
 }
 
