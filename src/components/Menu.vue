@@ -90,7 +90,9 @@ export default {
         mostrar(){
             var mostrarMenu = true;
 
-            if(this.$route.path === '/registro' || this.$route.path === '/login' || this.$route.path === '/bienvenido' || this.$route.path === '/error' || this.$route.path === '/home' || this.$route.path === '/'){
+            if(this.$route.path === '/registro' || this.$route.path === '/login' || this.$route.path === '/bienvenido' || this.$route.path === '/error' 
+            || this.$route.path === '/home' || this.$route.path === '/' || this.$route.path === '/aviso-legal' || this.$route.path === '/politica-privacidad' 
+            || this.$route.path === '/cookies' || this.$route.path === '/condiciones-generales'){
                 mostrarMenu = false;
             }
 

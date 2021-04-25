@@ -74,7 +74,7 @@
 .contenedor-home .titulo-tarjetas {
     font-size: 30px;
     text-align: center;
-    margin-top: 40px;
+    margin-top: 90px;
     font-weight: 700;
 }
 
@@ -136,6 +136,123 @@
     font-size: 16px;
     text-align: center;
     font-weight: 700;
+}
+
+.contenedor-home .cifras {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.contenedor-home .card-cifra {
+    padding: 10px;
+}
+
+.contenedor-home .fondo-cifra {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    height: 250px;
+    background-image: url("../img/fondo-cifras.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #ffffff;
+    font-size: 30px;
+}
+
+.contenedor-home .texto-cifras {
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.contenedor-home .texto-info-sorteo {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.contenedor-home .contacto {
+    margin-top: 20px;
+    background-color: #CC5454;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.contenedor-home .footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    min-height: 100px;
+    font-weight: 700;
+}
+
+.contenedor-home .box-contacto {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.contenedor-home .texto-publicacion {
+    font-family: 'Oxygen', sans-serif;
+    outline: none;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    width: 92%;
+    max-width: 700px;
+    height: 150px;
+    color: #525252;
+    font-size: 16px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.contenedor-home .btn-publicar {
+    width: 100px;
+    margin: 0 auto;
+    margin-top: 10px;
+    background-color: #ffffff;
+    color: #CC5454;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.contenedor-home .btn-publicar:hover {
+    background-color: #e0e0e0;
+}
+
+.contenedor-home .input-filtro {
+    width: 92%;
+    height: 30px;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 1px solid #c7c7c7;
+    color: #525252;
+    outline: none;
+}
+
+.contenedor-home .mail-text {
+    color: #ffffff;
+}
+
+.contenedor-home .mail-text a {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.contenedor-home .mensaje-enviado {
+    display: none;
+    font-weight: 700;
+    color: #ffffff;
 }
 
 @media (max-width: 576px) {

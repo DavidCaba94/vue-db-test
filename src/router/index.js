@@ -91,6 +91,26 @@ const routes = [
     path: '/mapa',
     name: 'Mapa',
     component: () => import(/* webpackChunkName: "mapa" */ '../views/Mapa.vue')
+  },
+  {
+    path: '/aviso-legal',
+    name: 'AvisoLegal',
+    component: () => import(/* webpackChunkName: "aviso-legal" */ '../views/AvisoLegal.vue')
+  },
+  {
+    path: '/politica-privacidad',
+    name: 'PoliticaPrivacidad',
+    component: () => import(/* webpackChunkName: "politica-privacidad" */ '../views/PoliticaPrivacidad.vue')
+  },
+  {
+    path: '/cookies',
+    name: 'Cookies',
+    component: () => import(/* webpackChunkName: "cookies" */ '../views/Cookies.vue')
+  },
+  {
+    path: '/condiciones-generales',
+    name: 'CondicionesGenerales',
+    component: () => import(/* webpackChunkName: "condiciones-generales" */ '../views/CondicionesGenerales.vue')
   }
 ]
 

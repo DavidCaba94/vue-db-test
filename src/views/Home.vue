@@ -40,9 +40,48 @@
                 <div class="texto-tarjeta">Descubrir nuevas rutas en cada quedada o evento</div>
             </div>
         </div>
-        <h2>Número de usuarios: {{ this.numUsuarios }}</h2>
-        <h2>Número de publicaciones: {{ this.numPublicaciones }}</h2>
-        <h2>Número de rutas: {{ this.numRutas }}</h2>
+        <p class="titulo-tarjetas">Las cifras de Grupetapp</p>
+        <div class="cifras">
+            <div class="card-cifra">
+                <div class="fondo-cifra">
+                    {{ this.numUsuarios }}
+                </div>
+                <div class="texto-cifras">Usuarios</div>
+            </div>
+            <div class="card-cifra">
+                <div class="fondo-cifra">
+                    {{ this.numPublicaciones }}
+                </div>
+                <div class="texto-cifras">Publicaciones</div>
+            </div>
+            <div class="card-cifra">
+                <div class="fondo-cifra">
+                    {{ this.numRutas }}
+                </div>
+                <div class="texto-cifras">Rutas</div>
+            </div>
+        </div>
+        <div class="sorteos">
+            <p class="titulo-tarjetas">Sorteos gratuitos</p>
+            <p class="texto-info-sorteo">Se publicarán periódicamente <strong>sorteos gratuitos</strong> para todos los usuarios de Grupetapp. Puedes inscribirte en cada sorteo directamente dentro de la aplicación con un simple click, sin hacer ningún tipo de trámite adicional.</p>
+        </div>
+        <p class="titulo-tarjetas">Contacto</p>
+        <div class="contacto">
+            <div class="box-contacto">
+                <p class="mail-text">Déjanos tus sugerencias en el siguiente formulario</p>
+                <input type="text" class="input-filtro" v-model='emailContacto' placeholder="Email de contacto" id="filtro-nombre">
+                <textarea id="texto-publicacion" class="texto-publicacion" name="texto-publicacion" maxlength="255" v-model='textoContacto'></textarea>
+                <div id="btn-enviar" class="btn-publicar" @click='enviarContacto()'>Enviar</div>
+                <p class="mensaje-enviado">Su mensaje ha sido enviado</p>
+                <p class="mail-text">También puedes contactar con nosotros enviando un mail a <a href="mailto:contacto@grupetapp.com">contacto@grupetapp.com</a></p>
+            </div>
+        </div>
+        <div class="footer">
+            <router-link to="/aviso-legal">Aviso legal y condiciones de uso</router-link>
+            <router-link to="/politica-privacidad">Política de privacidad</router-link>
+            <router-link to="/cookies">Política de cookies</router-link>
+            <router-link to="/condiciones-generales">Condiciones generales de contratación</router-link>
+        </div>
     </div>
 </template>
 
@@ -53,13 +92,16 @@ import axios from "axios";
 var urlUsuarios = "http://alcortewear.es/post/rest/grupetapp/usuario.php";
 var urlPublicaciones = "http://alcortewear.es/post/rest/grupetapp/publicacion.php";
 var urlRutas = "http://alcortewear.es/post/rest/grupetapp/ruta.php";
+var urlContacto = "http://alcortewear.es/post/rest/grupetapp/contacto.php";
 
 export default {
     data () {
         return {
             numUsuarios: 0,
             numPublicaciones: 0,
-            numRutas: 0
+            numRutas: 0,
+            emailContacto: '',
+            textoContacto: ''
         }
     },
     mounted() {
@@ -88,6 +130,22 @@ export default {
             }).then(response =>{
                 this.numRutas = response.data[0].numRutas;
             });
+        },
+        enviarContacto:function() {
+            window.$(".mensaje-enviado").css("display", "none");
+            if(this.emailContacto != '' && this.textoContacto != ''){
+                axios.post(urlContacto, {
+                    opcion:1, 
+                    email: this.emailContacto,
+                    mensaje: this.textoContacto
+                }).then(response =>{
+                    if(response.statusText == "OK"){
+                        window.$(".mensaje-enviado").css("display", "block");
+                        this.emailContacto = '';
+                        this.textoContacto = '';
+                    }
+                });
+            }
         }
     }
 }
