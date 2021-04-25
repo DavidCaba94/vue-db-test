@@ -1,0 +1,149 @@
+.contenedor-home .login-btn {
+    width: 100px;
+    background-color: #CC5454;
+    color: #ffffff;
+    border-radius: 10px;
+    padding: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.contenedor-home .login-btn:hover {
+    background-color: #a73e3e;
+}
+
+.contenedor-home .cabecera-home {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    padding: 20px;
+}
+
+.contenedor-home .cabecera-home div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
+
+.contenedor-home .icono-cabecera {
+    width: 190px;
+}
+
+.contenedor-home .fondo-banner-home {
+    width: 100%;
+    height: 400px;
+    background-image: url("../img/banner.jpg");
+    background-size: cover;
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+}
+
+.contenedor-home .banner-home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    width: 100%;
+    height: 400px;
+    background: rgb(204,84,84);
+    background: linear-gradient(90deg, rgba(204,84,84,1) 0%, rgba(204,84,84,1) 35%, rgba(204,84,84,0) 100%);
+    border-radius: 10px;
+    color: #ffffff;
+}
+
+.contenedor-home .banner-home div {
+    max-width: 500px;
+    text-align: center;
+    padding: 20px;
+}
+
+.contenedor-home .titulo-banner {
+    font-size: 40px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.contenedor-home .subtitulo-banner {
+    font-size: 24px;
+    font-weight: 300;
+}
+
+.contenedor-home .titulo-tarjetas {
+    font-size: 30px;
+    text-align: center;
+    margin-top: 40px;
+    font-weight: 700;
+}
+
+.contenedor-home .tarjetas-descriptivas {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+.contenedor-home .tarjeta {
+    width: 220px;
+    height: 250px;
+    margin-top: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    -webkit-box-shadow: -1px 7px 8px -4px rgb(0 0 0 / 20%);
+    -moz-box-shadow: -1px 7px 8px -4px rgba(0,0,0,0.20);
+    box-shadow: -1px 7px 8px -4px rgb(0 0 0 / 20%);
+}
+
+.contenedor-home .img-tarjeta {
+    width: 100%;
+    height: 120px;
+    background-color: #c2c2c2;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.contenedor-home .img-1 {
+    background-image: url("../img/ruta-mtb.jpg");
+}
+
+.contenedor-home .img-2 {
+    background-image: url("../img/ciclistas-1.jpg");
+}
+
+.contenedor-home .img-3 {
+    background-image: url("../img/experiencias.jpg");
+}
+
+.contenedor-home .img-4 {
+    background-image: url("../img/fondo-cabecera.jpg");
+}
+
+.contenedor-home .texto-tarjeta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    min-height: 110px;
+    padding: 10px;
+    font-size: 16px;
+    text-align: center;
+    font-weight: 700;
+}
+
+@media (max-width: 576px) {
+    .contenedor-home .cabecera-home {
+        display: block;
+    }
+
+    .contenedor-home .icono-cabecera {
+        margin-bottom: 30px;
+    }
+}
