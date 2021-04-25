@@ -1,7 +1,7 @@
 <template>
   <div class="contenedor-mis-rutas">
       <div class="cabecera-seccion">
-          <p class="titulo-seccion" @click="toggleRutasActivas()"><img class="img-expandir" src="../assets/img/expandir.png">Rutas activas</p>
+          <p class="titulo-seccion" @click="toggleRutasActivas()"><img class="img-expandir" src="../assets/img/expandir.png">Rutas activas ({{ this.rutas.length }})</p>
           <router-link to="/crear-ruta"><div class="btn-nueva-ruta">Crear ruta</div></router-link>
       </div>
       <div id="box-rutas-activas" class="box-rutas">
@@ -41,7 +41,7 @@
           </div>
       </div>
       <div class="cabecera-seccion">
-          <p class="titulo-seccion" @click="toggleRutasPasadas()"><img class="img-expandir" src="../assets/img/expandir.png">Rutas pasadas</p>
+          <p class="titulo-seccion" @click="toggleRutasPasadas()"><img class="img-expandir" src="../assets/img/expandir.png">Rutas pasadas ({{ this.rutasPasadas.length }})</p>
       </div>
       <div id="box-rutas-pasadas" class="box-rutas">
           <div v-for="(rutaPasada) in this.rutasPasadas" :key="rutaPasada.id">

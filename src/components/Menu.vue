@@ -164,7 +164,11 @@ export default {
                 id: id_notificacion
             }).then(response =>{
                 if(response.statusText == "OK"){
-                    this.actualizarNotificaciones();
+                    if(this.notificaciones.length == 1){
+                        this.notificaciones = [];
+                    } else {
+                        this.actualizarNotificaciones();
+                    }
                 } else {
                     this.$router.replace('error');
                 }
