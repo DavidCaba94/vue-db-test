@@ -255,6 +255,27 @@
     color: #ffffff;
 }
 
+.contenedor-home .footer div {
+    margin: 10px;
+}
+
+@media (max-width: 992px) {
+    .contenedor-home .footer div {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .contenedor-home .footer div {
+        font-size: 14px;
+        margin-top: 10px;
+    }
+
+    .contenedor-home .footer {
+        display: block;
+    }
+}
+
 @media (max-width: 576px) {
     .contenedor-home .cabecera-home {
         display: block;

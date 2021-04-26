@@ -77,10 +77,10 @@
             </div>
         </div>
         <div class="footer">
-            <router-link to="/aviso-legal">Aviso legal y condiciones de uso</router-link>
-            <router-link to="/politica-privacidad">Política de privacidad</router-link>
-            <router-link to="/cookies">Política de cookies</router-link>
-            <router-link to="/condiciones-generales">Condiciones generales de contratación</router-link>
+            <router-link to="/aviso-legal"><div>Aviso legal y condiciones de uso</div></router-link>
+            <router-link to="/politica-privacidad"><div>Política de privacidad</div></router-link>
+            <router-link to="/cookies"><div>Política de cookies</div></router-link>
+            <router-link to="/condiciones-generales"><div>Condiciones generales de contratación</div></router-link>
         </div>
     </div>
 </template>
