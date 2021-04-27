@@ -69,7 +69,7 @@ export default {
                     data: []
                 }
             ],
-            series2: [20,30,20,30],
+            series2: [],
             chartOptions2: {
                 chart: {
                     width: '100%',
