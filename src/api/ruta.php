@@ -117,6 +117,12 @@ switch($opcion){
         $resultado->execute();
         $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
         break;
+    case 14:
+        $consulta = "SELECT * FROM rutas WHERE id IN (SELECT id_ruta FROM inscripciones WHERE id_usuario = '$id_usuario') AND fecha <= '$fecha' ORDER BY fecha ASC";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+        $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+        break;
 }
 print json_encode($data, JSON_UNESCAPED_UNICODE);
 $conexion = NULL;
