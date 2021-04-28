@@ -89,10 +89,10 @@
 
 import axios from "axios";
 
-var urlUsuarios = "http://alcortewear.es/post/rest/grupetapp/usuario.php";
-var urlPublicaciones = "http://alcortewear.es/post/rest/grupetapp/publicacion.php";
-var urlRutas = "http://alcortewear.es/post/rest/grupetapp/ruta.php";
-var urlContacto = "http://alcortewear.es/post/rest/grupetapp/contacto.php";
+var urlUsuarios = "../api/usuario.php";
+var urlPublicaciones = "../api/publicacion.php";
+var urlRutas = "../api/ruta.php";
+var urlContacto = "../api/contacto.php";
 
 export default {
     data () {
