@@ -76,7 +76,7 @@ export default {
               email: email, 
               password: password,
             }).then(response =>{
-              if(response.statusText == "OK" && response.data.length === 1){
+              if(response.data.length == 1){
                 response.data[0].recordar = this.recordar;
                 localStorage.setItem("usuario", JSON.stringify(response.data[0]));
                 this.$router.replace('/rutas');
