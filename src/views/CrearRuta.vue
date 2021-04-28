@@ -225,7 +225,7 @@ export default {
                     longitud: this.longSeleccionada,
                     provincia: window.$("#provincia").val()
                 }).then(response =>{
-                    if(response.statusText == "OK"){
+                    if(response.status == 200){
                         this.obtenerIdRuta(window.$("#nombreRuta").val());
                     } else {
                         this.$router.replace('error');
@@ -261,7 +261,7 @@ export default {
                 id_usuario: this.usuario.id,
                 nom_apellidos: this.usuario.nombre +" "+ this.usuario.apellidos
             }).then(response =>{
-                if(response.statusText == "OK"){
+                if(response.status == 200){
                     this.$router.replace('mis-rutas');
                 } else {
                     this.$router.replace('error');

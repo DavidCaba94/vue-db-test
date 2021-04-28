@@ -82,7 +82,7 @@ export default {
           texto: texto,
           fecha_pub: new Date().toJSON().slice(0, 10)
         }).then(response =>{
-          if(response.statusText == "OK"){
+          if(response.status == 200){
             window.$("#texto-publicacion").val("");
             texto = "";
             this.numCaracteres = 0;
@@ -138,7 +138,7 @@ export default {
           opcion:4, 
           id: id
         }).then(response =>{
-          if(response.statusText == "OK"){
+          if(response.status == 200){
             for(var i = 0; i < this.listaPublicaciones.length; i++){
               if(this.listaPublicaciones[i].id == id){
                 this.listaPublicaciones[i].likes++;

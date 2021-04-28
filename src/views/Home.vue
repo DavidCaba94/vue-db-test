@@ -139,7 +139,7 @@ export default {
                     email: this.emailContacto,
                     mensaje: this.textoContacto
                 }).then(response =>{
-                    if(response.statusText == "OK"){
+                    if(response.status == 200){
                         window.$(".mensaje-enviado").css("display", "block");
                         this.emailContacto = '';
                         this.textoContacto = '';

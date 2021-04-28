@@ -172,7 +172,7 @@ export default {
                     id_usuario: this.usuario.id,
                     nom_apellidos: this.usuario.nombre +" "+ this.usuario.apellidos
                 }).then(response =>{
-                    if(response.statusText == "OK"){
+                    if(response.status == 200){
                         this.comprobarInscripcion();
                         this.enviarNotificacion();
                     } else {
@@ -190,7 +190,7 @@ export default {
                 id_ruta: this.idRuta,
                 id_usuario: this.usuario.id
             }).then(response =>{
-                if(response.statusText == "OK"){
+                if(response.status == 200){
                     this.comprobarInscripcion();
                 } else {
                     this.$router.replace('error');
@@ -245,7 +245,7 @@ export default {
                 comentario: this.textoComentario,
                 fecha: new Date().toJSON().slice(0, 10)
             }).then(response =>{
-                if(response.statusText == "OK"){
+                if(response.status == 200){
                     this.textoComentario = '';
                     this.obtenerComentarios();
                 } else {

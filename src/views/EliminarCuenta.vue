@@ -28,7 +28,7 @@ export default {
             opcion:4, 
             id: this.usuario.id
           }).then(response =>{
-            if(response.statusText == "OK"){
+            if(response.status == 200){
               this.eliminarFollows();
               this.eliminarFollowers();
               this.usuario = null;
@@ -44,7 +44,7 @@ export default {
             opcion:7, 
             id: this.usuario.id
         }).then(response =>{
-            if(response.statusText == "OK"){
+            if(response.status == 200){
                 console.log("Seguidos eliminados");
             } else {
                 this.$router.replace('error');
@@ -56,7 +56,7 @@ export default {
             opcion:8, 
             id: this.usuario.id
         }).then(response =>{
-            if(response.statusText == "OK"){
+            if(response.status == 200){
                 console.log("Seguidres eliminados");
             } else {
                 this.$router.replace('error');

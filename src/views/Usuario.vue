@@ -133,7 +133,7 @@ export default {
                     id: this.usuario.id,
                     id_seguido: this.idUsuario
                 }).then(response =>{
-                    if(response.statusText == "OK"){
+                    if(response.status == 200){
                         this.replicarUnfollow();
                     } else {
                         this.$router.replace('error');
@@ -145,7 +145,7 @@ export default {
                     id: this.usuario.id,
                     id_seguido: this.idUsuario
                 }).then(response =>{
-                    if(response.statusText == "OK"){
+                    if(response.status == 200){
                         this.replicarFollow();
                     } else {
                         this.$router.replace('error');
@@ -159,7 +159,7 @@ export default {
                 id: this.usuario.id,
                 id_seguido: this.idUsuario
             }).then(response =>{
-                if(response.statusText == "OK"){
+                if(response.status == 200){
                     this.actualizarBtnSeguir();
                     this.enviarNotificacion();
                 } else {
@@ -173,7 +173,7 @@ export default {
                 id: this.usuario.id,
                 id_seguido: this.idUsuario
             }).then(response =>{
-                if(response.statusText == "OK"){
+                if(response.status == 200){
                     this.actualizarBtnSeguir();
                 } else {
                     this.$router.replace('error');
@@ -197,7 +197,7 @@ export default {
                 opcion:4, 
                 id: id
             }).then(response =>{
-                if(response.statusText == "OK"){
+                if(response.status == 200){
                     for(var i = 0; i < this.publicaciones.length; i++){
                         if(this.publicaciones[i].id == id){
                             this.publicaciones[i].likes++;
@@ -224,7 +224,7 @@ export default {
                 opcion:3, 
                 id: id_publicacion,
             }).then(response =>{
-                if(response.statusText == "OK"){
+                if(response.status == 200){
                     this.obtenerPublicaciones();
                 } else {
                     this.$router.replace('error');

@@ -159,7 +159,7 @@ export default {
             id: this.usuario.id,
             foto: newFoto
           }).then(response =>{
-            if(response.statusText == "OK"){
+            if(response.status == 200){
               this.usuario.foto = newFoto;
               window.$(".msg-error-foto").css("display", "none");
               window.$(".img-perfil").css("background-image", "url("+ this.usuario.foto +")");
@@ -195,7 +195,7 @@ export default {
             email: this.usuario.email,
             provincia: this.usuario.provincia
           }).then(response =>{
-            if(response.statusText == "OK"){
+            if(response.status == 200){
               window.$(".msg-error-datos").css("display", "none");
               this.actualizarStorage();
               window.$("#btn-guardar-datos").css("display", "block");
@@ -226,7 +226,7 @@ export default {
             email: this.usuario.email, 
             password: window.$("#old-password").val(),
           }).then(response =>{
-            if(response.statusText == "OK" && response.data.length === 1){
+            if(response.status == 200 && response.data.length === 1){
               this.updateFinalPassword(window.$("#password-confirm").val());
             } else {
               window.$(".msg-error-password").text("La contraseña actual no coincide");
@@ -249,7 +249,7 @@ export default {
           id: this.usuario.id,
           password: passFinal
         }).then(response =>{
-          if(response.statusText == "OK"){
+          if(response.status == 200){
             window.$(".msg-error-password").css("display", "none");
             window.$("#btn-guardar-password").css("display", "block");
             window.$("#loading-password").css("display", "none");

@@ -190,7 +190,7 @@ export default {
                 fecha_registro: new Date().toJSON().slice(0, 10),
                 provincia: provincia
               }).then(response =>{
-                if(response.statusText == "OK"){
+                if(response.status == 200){
                   this.$router.replace('bienvenido');
                 } else {
                   this.$router.replace('error');

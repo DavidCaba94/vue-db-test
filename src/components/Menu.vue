@@ -165,7 +165,7 @@ export default {
                 opcion:3, 
                 id: id_notificacion
             }).then(response =>{
-                if(response.statusText == "OK"){
+                if(response.status == 200){
                     if(this.notificaciones.length == 1){
                         this.notificaciones = [];
                     } else {
