@@ -107,6 +107,9 @@ export default {
             if(this.renderUser.foto != null){
                 window.$("#img-user-render").css("background-image", "url("+ this.renderUser.foto +")");
                 window.$(".contenedor-user .img-fake").css("background-image", "url("+ this.renderUser.foto +")");
+            } else {
+                window.$("#img-user-render").css("background-image", "'url(../assets/img/user-default.png)'");
+                window.$(".contenedor-user .img-fake").css("background-image", "'url(../assets/img/user-default.png)'");
             }
         },
         actualizarBtnSeguir:function() {
