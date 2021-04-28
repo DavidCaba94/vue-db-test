@@ -1,8 +1,8 @@
 <template>
   <div class="contenedor-perfil">
-    <a id="vista-usuario-link" href="">
+    <router-link :to="'/usuario/'+this.usuario.id" v-if="this.usuario">
       <div class="btn-vista-usuario">Cambiar a vista de usuario</div>
-    </a>
+    </router-link>
     <!-- Cambio de imagen -->
     <div class="box-form">
         <div class="img-perfil"></div>
@@ -131,7 +131,6 @@ export default {
     },
     mounted() {
         if(localStorage.usuario) this.usuario = JSON.parse(localStorage.usuario);
-        window.$("#vista-usuario-link").attr("href", "/usuario/"+this.usuario.id);
         if(this.usuario.foto != null){
           window.$(".img-perfil").css("background-image", "url("+ this.usuario.foto +")");
         }

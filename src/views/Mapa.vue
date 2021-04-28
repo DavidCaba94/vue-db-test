@@ -83,7 +83,7 @@ export default {
                                 + "<div><img src='"+ require('../assets/img/fecha.png') +"'><p>"+ rutaObject.fecha +"</p></div>"
                                 + "<div><img src='"+ require('../assets/img/hora.png') +"'><p>"+ rutaObject.hora +"</p></div>"
                             + "</div>"
-                            + "<a href='/ruta/"+ rutaObject.id +"'><div class='btn-ver-ruta'>Ver ruta</div></a>";
+                            + "<div class='btn-ver-ruta' onclick='this.cargarRutaEspecifica(" + rutaObject.id + ")'>Ver ruta</div>";
 
             return customPopup;
         },
@@ -131,6 +131,9 @@ export default {
                     mymap.removeLayer(layer);
                 }
             });
+        },
+        cargarRutaEspecifica:function(idRuta) {
+            console.log(idRuta);
         }
     }
 }
