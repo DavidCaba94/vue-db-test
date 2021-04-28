@@ -92,7 +92,7 @@ export default {
                 opcion:10,
                 id: id_usuario
             }).then(response =>{
-                if(response.data.length == 0){
+                if(response.status != 200){
                     this.$router.replace('/error');
                 } else {
                     this.renderUser = response.data[0];
@@ -136,7 +136,7 @@ export default {
                     if(response.status == 200){
                         this.replicarUnfollow();
                     } else {
-                        this.$router.replace('error');
+                        this.$router.replace('/error');
                     }
                 });
             } else if(!this.siguiendo) {
@@ -148,7 +148,7 @@ export default {
                     if(response.status == 200){
                         this.replicarFollow();
                     } else {
-                        this.$router.replace('error');
+                        this.$router.replace('/error');
                     }
                 });
             }
@@ -163,7 +163,7 @@ export default {
                     this.actualizarBtnSeguir();
                     this.enviarNotificacion();
                 } else {
-                    this.$router.replace('error');
+                    this.$router.replace('/error');
                 }
             });
         },
@@ -176,7 +176,7 @@ export default {
                 if(response.status == 200){
                     this.actualizarBtnSeguir();
                 } else {
-                    this.$router.replace('error');
+                    this.$router.replace('/error');
                 }
             });
         },
@@ -185,9 +185,7 @@ export default {
                 opcion:5,
                 id_usuario: this.idUsuario
             }).then(response =>{
-                if(response.data.length == 0){
-                    this.$router.replace('error');
-                } else {
+                if(response.data.length != 0){
                     this.publicaciones = response.data;
                 }
             });
@@ -214,8 +212,8 @@ export default {
                 tipo_notificacion: 'seguimiento',
                 texto_notificacion: '<strong>'+ nombreUsuarioCompleto +'</strong> te ha seguido'
             }).then(response =>{
-                if(response.statusText != "OK"){
-                    this.$router.replace('error');
+                if(response.status != 200){
+                    this.$router.replace('/error');
                 }
             });
         },
@@ -227,7 +225,7 @@ export default {
                 if(response.status == 200){
                     this.obtenerPublicaciones();
                 } else {
-                    this.$router.replace('error');
+                    this.$router.replace('/error');
                 }
             });
         },

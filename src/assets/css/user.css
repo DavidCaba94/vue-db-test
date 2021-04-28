@@ -36,7 +36,7 @@
     height: 160px;
     border: 2px solid #ffffff;
     border-radius: 160px;
-    background-image: url(/img/user-default.de2ba6b9.png);
+    background-image: url("../img/user-default.png");
     background-size: cover;
     background-position: center;
 }
