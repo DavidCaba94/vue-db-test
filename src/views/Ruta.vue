@@ -81,10 +81,10 @@
 import L from 'leaflet';
 import axios from "axios";
 
-var urlRuta = "http://alcortewear.es/post/rest/grupetapp/ruta.php";
-var urlInscripcion = "http://alcortewear.es/post/rest/grupetapp/inscripciones.php";
-var urlNotificaciones = "http://alcortewear.es/post/rest/grupetapp/notificaciones.php";
-var urlComentarios = "http://alcortewear.es/post/rest/grupetapp/comentarios_ruta.php";
+var urlRuta = "https://crousser.com/app/rest/grupetapp/ruta.php";
+var urlInscripcion = "https://crousser.com/app/rest/grupetapp/inscripciones.php";
+var urlNotificaciones = "https://crousser.com/app/rest/grupetapp/notificaciones.php";
+var urlComentarios = "https://crousser.com/app/rest/grupetapp/comentarios_ruta.php";
 
 var rutamap;
 

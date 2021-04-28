@@ -127,7 +127,7 @@
 <script>
 import axios from "axios";
 
-var urlRutas = "http://alcortewear.es/post/rest/grupetapp/ruta.php";
+var urlRutas = "https://crousser.com/app/rest/grupetapp/ruta.php";
 
 export default {
     data () {

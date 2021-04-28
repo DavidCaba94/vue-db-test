@@ -83,8 +83,8 @@
 
 import axios from "axios";
 
-var urlSeguidores = "http://alcortewear.es/post/rest/grupetapp/seguidores.php";
-var urlUsuarios = "http://alcortewear.es/post/rest/grupetapp/usuario.php";
+var urlSeguidores = "https://crousser.com/app/rest/grupetapp/seguidores.php";
+var urlUsuarios = "https://crousser.com/app/rest/grupetapp/usuario.php";
 
 export default {
     name: "Seguidores",

@@ -67,7 +67,7 @@
 <script>
 import axios from "axios";
 
-var url = "http://alcortewear.es/post/rest/grupetapp/notificaciones.php";
+var url = "https://crousser.com/app/rest/grupetapp/notificaciones.php";
 
 export default {
     name: "Menu",

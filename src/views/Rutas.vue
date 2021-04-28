@@ -102,8 +102,8 @@
 <script>
 import axios from "axios";
 
-var urlRutas = "http://alcortewear.es/post/rest/grupetapp/ruta.php";
-var urlInscripciones = "http://alcortewear.es/post/rest/grupetapp/inscripciones.php";
+var urlRutas = "https://crousser.com/app/rest/grupetapp/ruta.php";
+var urlInscripciones = "https://crousser.com/app/rest/grupetapp/inscripciones.php";
 
 export default {
     data () {

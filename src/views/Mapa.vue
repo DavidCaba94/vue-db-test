@@ -29,7 +29,7 @@
 import L from 'leaflet';
 import axios from "axios";
 
-var url = "http://alcortewear.es/post/rest/grupetapp/ruta.php";
+var url = "https://crousser.com/app/rest/grupetapp/ruta.php";
 
 var mymap;
 

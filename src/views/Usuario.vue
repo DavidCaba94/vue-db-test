@@ -53,12 +53,12 @@
 
 import axios from "axios";
 
-var urlUsuarios = "http://alcortewear.es/post/rest/grupetapp/usuario.php";
-var urlSeguidos = "http://alcortewear.es/post/rest/grupetapp/seguidos.php";
-var urlPublicaciones = "http://alcortewear.es/post/rest/grupetapp/publicacion.php";
-var urlNotificaciones = "http://alcortewear.es/post/rest/grupetapp/notificaciones.php";
-var urlRutas = "http://alcortewear.es/post/rest/grupetapp/ruta.php";
-var urlInscripciones = "http://alcortewear.es/post/rest/grupetapp/inscripciones.php";
+var urlUsuarios = "https://crousser.com/app/rest/grupetapp/usuario.php";
+var urlSeguidos = "https://crousser.com/app/rest/grupetapp/seguidos.php";
+var urlPublicaciones = "https://crousser.com/app/rest/grupetapp/publicacion.php";
+var urlNotificaciones = "https://crousser.com/app/rest/grupetapp/notificaciones.php";
+var urlRutas = "https://crousser.com/app/rest/grupetapp/ruta.php";
+var urlInscripciones = "https://crousser.com/app/rest/grupetapp/inscripciones.php";
 
 export default {
     name: "Usuario",
