@@ -157,6 +157,7 @@ import L from 'leaflet';
 import axios from "axios";
 
 var url = "http://alcortewear.es/post/rest/grupetapp/ruta.php";
+var urlInscripcion = "http://alcortewear.es/post/rest/grupetapp/inscripciones.php";
 
 var newmap;
 
@@ -225,7 +226,7 @@ export default {
                     provincia: window.$("#provincia").val()
                 }).then(response =>{
                     if(response.statusText == "OK"){
-                        this.$router.replace('mis-rutas');
+                        this.obtenerIdRuta(window.$("#nombreRuta").val());
                     } else {
                         this.$router.replace('error');
                     }
@@ -252,6 +253,32 @@ export default {
                 window.$(".mensaje-error").text("Todos los campos son obligatorios");
             }
             return todoRelleno;
+        },
+        autoinscripcionRuta:function(idRuta) {
+            axios.post(urlInscripcion, {
+                opcion:3,
+                id_ruta: idRuta,
+                id_usuario: this.usuario.id,
+                nom_apellidos: this.usuario.nombre +" "+ this.usuario.apellidos
+            }).then(response =>{
+                if(response.statusText == "OK"){
+                    this.$router.replace('mis-rutas');
+                } else {
+                    this.$router.replace('error');
+                }
+            });
+        },
+        obtenerIdRuta:function(nombreRuta) {
+            axios.post(url, {
+                opcion:15,
+                nombre: nombreRuta
+            }).then(response =>{
+                if(response.data.length != 0){
+                    this.autoinscripcionRuta(response.data[0].id);
+                } else {
+                    this.$router.replace('error');
+                }
+            });
         }
     }
 }

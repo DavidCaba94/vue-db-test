@@ -93,7 +93,7 @@ export default {
                 id: id_usuario
             }).then(response =>{
                 if(response.data.length == 0){
-                    this.$router.replace('error');
+                    this.$router.replace('/error');
                 } else {
                     this.renderUser = response.data[0];
                     this.addFotoUser();

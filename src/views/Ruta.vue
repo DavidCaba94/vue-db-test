@@ -133,7 +133,7 @@ export default {
                 id: this.idRuta
             }).then(response =>{
                 if(response.data.length == 0){
-                    this.$router.replace('error');
+                    this.$router.replace('/error');
                 } else {
                     this.rutaObject = response.data[0];
                     this.addMarkerRuta(response.data[0].latitud, response.data[0].longitud);
@@ -165,19 +165,24 @@ export default {
             this.numCaracteres = this.textoComentario.length;
         },
         inscribirParticipante:function() {
-            axios.post(urlInscripcion, {
-                opcion:3,
-                id_ruta: this.idRuta,
-                id_usuario: this.usuario.id,
-                nom_apellidos: this.usuario.nombre +" "+ this.usuario.apellidos
-            }).then(response =>{
-                if(response.statusText == "OK"){
-                    this.comprobarInscripcion();
-                    this.enviarNotificacion();
-                } else {
-                    this.$router.replace('error');
-                }
-            });
+            if(this.participantes.length < this.rutaObject.max_personas) {
+                axios.post(urlInscripcion, {
+                    opcion:3,
+                    id_ruta: this.idRuta,
+                    id_usuario: this.usuario.id,
+                    nom_apellidos: this.usuario.nombre +" "+ this.usuario.apellidos
+                }).then(response =>{
+                    if(response.statusText == "OK"){
+                        this.comprobarInscripcion();
+                        this.enviarNotificacion();
+                    } else {
+                        this.$router.replace('error');
+                    }
+                });
+            } else {
+                alert("No quedan plazas disponibles para inscribirse a esta ruta");
+            }
+            
         },
         desinscribirParticipante:function() {
             axios.post(urlInscripcion, {

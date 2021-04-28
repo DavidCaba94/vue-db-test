@@ -106,7 +106,7 @@ switch($opcion){
         $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
         break;
     case 12:
-        $consulta = "SELECT * FROM rutas WHERE fecha >= '$fecha' AND provincia='$provincia'";
+        $consulta = "SELECT * FROM rutas WHERE fecha >= '$fecha' AND provincia='$provincia' ORDER BY fecha ASC";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
         $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
@@ -119,6 +119,12 @@ switch($opcion){
         break;
     case 14:
         $consulta = "SELECT * FROM rutas WHERE id IN (SELECT id_ruta FROM inscripciones WHERE id_usuario = '$id_usuario') AND fecha <= '$fecha' ORDER BY fecha ASC";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+        $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+        break;
+    case 15:
+        $consulta = "SELECT id FROM rutas WHERE nombre = '$nombre' ORDER BY id DESC LIMIT 1";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
         $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
