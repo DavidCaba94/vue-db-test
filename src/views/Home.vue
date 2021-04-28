@@ -89,10 +89,10 @@
 
 import axios from "axios";
 
-var urlUsuarios = "../api/usuario.php";
-var urlPublicaciones = "../api/publicacion.php";
-var urlRutas = "../api/ruta.php";
-var urlContacto = "../api/contacto.php";
+var urlUsuarios = "https://crousser.com/app/rest/grupetapp/usuario.php";
+var urlPublicaciones = "https://crousser.com/app/rest/grupetapp/publicacion.php";
+var urlRutas = "https://crousser.com/app/rest/grupetapp/ruta.php";
+var urlContacto = "https://crousser.com/app/rest/grupetapp/contacto.php";
 
 export default {
     data () {
