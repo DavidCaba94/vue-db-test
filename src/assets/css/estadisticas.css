@@ -1,0 +1,16 @@
+.grafica-1 {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.grafica-2 {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.km-totales {
+    max-width: 200px;
+    margin: 0 auto;
+    font-weight: 700;
+    background-color: #cc54544d;
+}

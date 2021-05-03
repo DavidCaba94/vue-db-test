@@ -203,7 +203,15 @@ export default {
                 email: email
             }).then(response =>{
               if(response.data.length == 0){
-                this.registrar(nombre, apellidos, email, password, provincia);
+                if(this.comprobarRegexEmail(email)){
+                  this.registrar(nombre, apellidos, email, password, provincia);
+                } else {
+                  this.marcarVacio(window.$("#email"));
+                  window.$(".btn-registrar").css("display", "block");
+                  window.$("#loading-reg").css("display", "none");
+                  window.$(".mensaje-error").text("El email no tiene un formato válido (ejemplo@ejemplo.com)");
+                  window.$(".mensaje-error").css("display", "block");
+                }
               } else {
                 this.marcarVacio(window.$("#email"));
                 window.$(".btn-registrar").css("display", "block");
@@ -212,6 +220,14 @@ export default {
                 window.$(".mensaje-error").css("display", "block");
               }
             });
+          },
+          comprobarRegexEmail:function(email) {
+            var emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            var valido = false;
+            if(emailRegex.test(email)){
+              valido = true;
+            }
+            return valido;
           }
       }
 }

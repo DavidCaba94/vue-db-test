@@ -29,7 +29,7 @@
           <div class="box-likes">
             <p class="fecha-text">{{ $filters.formatDate(objetoLista.fecha_pub) }}</p>
             <div class="like-btn" @click='addLike(objetoLista.id)'>
-              <img class="boton-like" src="../assets/img/like.png" alt="Botón Like">
+              <img class="boton-like" src="../assets/img/clap.png" alt="Botón Like">
               <p>{{ objetoLista.likes }}</p>
             </div>
           </div>
@@ -74,25 +74,31 @@ export default {
         this.numCaracteres = this.textoPublicacion.length;
       },
       enviarPublicacion:function() {
+        window.$("#texto-publicacion").css("border", "1px solid #e0e0e0");
         var texto = window.$("#texto-publicacion").val();
-        window.$('.btn-publicar').attr("disabled");
-        axios.post(urlPublicaciones, {
-          opcion:2, 
-          id_usuario: this.usuario.id, 
-          texto: texto,
-          fecha_pub: new Date().toJSON().slice(0, 10)
-        }).then(response =>{
-          if(response.status == 200){
-            window.$("#texto-publicacion").val("");
-            texto = "";
-            this.numCaracteres = 0;
-            this.textoPublicacion = "";
-            window.$('.btn-publicar').attr("enabled");
-            this.mostrarPublicaciones();
-          } else {
-            this.$router.replace('error');
-          }
-        });
+        var textoSinEspacios = texto.replace(/ /g, "");
+        if(textoSinEspacios.length > 0){
+          window.$('.btn-publicar').attr("disabled");
+          axios.post(urlPublicaciones, {
+            opcion:2, 
+            id_usuario: this.usuario.id, 
+            texto: texto,
+            fecha_pub: new Date().toJSON().slice(0, 10)
+          }).then(response =>{
+            if(response.status == 200){
+              window.$("#texto-publicacion").val("");
+              texto = "";
+              this.numCaracteres = 0;
+              this.textoPublicacion = "";
+              window.$('.btn-publicar').attr("enabled");
+              this.mostrarPublicaciones();
+            } else {
+              this.$router.replace('error');
+            }
+          });
+        } else {
+          window.$("#texto-publicacion").css("border", "1px solid #CC5454");
+        }
       },
       mostrarPublicaciones:function(){
         axios.post(urlPublicaciones, {
