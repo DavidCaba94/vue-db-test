@@ -43,7 +43,7 @@ body {
 
 a {
   text-decoration: none;
-  color: #272727;
+  color: #272727 !important;
 }
 
 #nav a {
@@ -53,7 +53,7 @@ a {
 }
 
 #nav a.router-link-exact-active {
-  color: #CC5454;
+  color: #CC5454 !important;
   text-decoration: none;
 }
 </style>

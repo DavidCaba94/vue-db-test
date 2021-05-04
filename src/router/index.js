@@ -111,6 +111,16 @@ const routes = [
     path: '/condiciones-generales',
     name: 'CondicionesGenerales',
     component: () => import(/* webpackChunkName: "condiciones-generales" */ '../views/CondicionesGenerales.vue')
+  },
+  {
+    path: '/editar-ruta/:id',
+    name: 'EditarRuta',
+    component: () => import(/* webpackChunkName: "editar-ruta" */ '../views/EditarRuta.vue')
+  },
+  {
+    path: '/eliminar-ruta/:id',
+    name: 'EliminarRuta',
+    component: () => import(/* webpackChunkName: "eliminar-ruta" */ '../views/EliminarRuta.vue')
   }
 ]
 

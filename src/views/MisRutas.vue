@@ -8,7 +8,18 @@
           <div v-for="(ruta) in this.rutas" :key="ruta.id">
               <router-link :to="'/ruta/'+ruta.id">
                 <div class="card-ruta">
-                    <div class="capa-mapa"></div>
+                    <div class="capa-mapa">
+                        <router-link :to="'/editar-ruta/'+ruta.id">
+                            <div class="btn-card-ruta">
+                                <img src="../assets/img/editar.png">
+                            </div>
+                        </router-link>
+                        <router-link :to="'/eliminar-ruta/'+ruta.id">
+                            <div class="btn-card-ruta">
+                                <img src="../assets/img/delete-gris.png">
+                            </div>
+                        </router-link>
+                    </div>
                     <p class="nombre-ruta">{{ ruta.nombre }}</p>
                     <div class="box-parametros">
                         <div>
@@ -47,7 +58,18 @@
           <div v-for="(rutaPasada) in this.rutasPasadas" :key="rutaPasada.id">
             <router-link :to="'/ruta/'+rutaPasada.id">
                 <div class="card-ruta">
-                    <div class="capa-mapa-generico"></div>
+                    <div class="capa-mapa-generico">
+                        <router-link :to="'/editar-ruta/'+rutaPasada.id">
+                            <div class="btn-card-ruta">
+                                <img src="../assets/img/editar.png">
+                            </div>
+                        </router-link>
+                        <router-link :to="'/eliminar-ruta/'+rutaPasada.id">
+                            <div class="btn-card-ruta">
+                                <img src="../assets/img/delete-gris.png">
+                            </div>
+                        </router-link>
+                    </div>
                     <p class="nombre-ruta">{{ rutaPasada.nombre }}</p>
                     <div class="box-parametros">
                         <div>

@@ -1,3 +1,7 @@
+.contenedor-mis-rutas a {
+    color: #272727;
+}
+
 .contenedor-mis-rutas {
     max-width: 1920px;
     padding: 10px;
@@ -78,6 +82,8 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .contenedor-mis-rutas .capa-mapa-generico {
@@ -90,6 +96,8 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .contenedor-mis-rutas .nombre-ruta {
@@ -127,6 +135,26 @@
     margin-left: 10px;
     font-size: 14px;
     font-weight: 300;
+}
+
+.contenedor-mis-rutas .btn-card-ruta {
+    width: 30px;
+    height: 30px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    text-align: center;
+    padding-top: 2px;
+    margin-top: 10px;
+    margin-right: 10px;
+    z-index: 999999;
+    -webkit-box-shadow: -1px 7px 8px -4px rgb(0 0 0 / 20%);
+    -moz-box-shadow: -1px 7px 8px -4px rgba(0,0,0,0.20);
+    box-shadow: -1px 7px 8px -4px rgb(0 0 0 / 20%);
+}
+
+.contenedor-mis-rutas .btn-card-ruta img {
+    width: 25px;
+    height: 25px;
 }
 
 @media (max-width: 992px) {

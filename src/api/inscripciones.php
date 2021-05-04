@@ -70,6 +70,11 @@ switch($opcion){
             $resultado->execute();
             $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
             break;
+      case 8:
+            $consulta = "DELETE FROM inscripciones WHERE id_ruta='$id_ruta'";
+            $resultado = $conexion->prepare($consulta);
+            $resultado->execute();                           
+            break;
 }
 print json_encode($data, JSON_UNESCAPED_UNICODE);
 $conexion = NULL;
