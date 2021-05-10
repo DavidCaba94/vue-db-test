@@ -158,6 +158,7 @@ import axios from "axios";
 
 var url = "https://crousser.com/app/rest/grupetapp/ruta.php";
 var urlInscripcion = "https://crousser.com/app/rest/grupetapp/inscripciones.php";
+var urlPublicaciones = "https://crousser.com/app/rest/grupetapp/publicacion.php";
 
 var newmap;
 
@@ -255,7 +256,7 @@ export default {
             }
             return todoRelleno;
         },
-        autoinscripcionRuta:function(idRuta) {
+        autoinscripcionRuta:function(idRuta, nomRuta) {
             axios.post(urlInscripcion, {
                 opcion:3,
                 id_ruta: idRuta,
@@ -263,7 +264,7 @@ export default {
                 nom_apellidos: this.usuario.nombre +" "+ this.usuario.apellidos
             }).then(response =>{
                 if(response.status == 200){
-                    this.$router.replace('mis-rutas');
+                    this.autopublicarRuta(nomRuta);
                 } else {
                     this.$router.replace('error');
                 }
@@ -275,7 +276,7 @@ export default {
                 nombre: nombreRuta
             }).then(response =>{
                 if(response.data.length != 0){
-                    this.autoinscripcionRuta(response.data[0].id);
+                    this.autoinscripcionRuta(response.data[0].id, nombreRuta);
                 } else {
                     this.$router.replace('error');
                 }
@@ -295,6 +296,20 @@ export default {
 
             today = yyyy+'-'+mm+'-'+dd;
             document.getElementById("fecha").setAttribute("min", today);
+        },
+        autopublicarRuta:function(nomRuta) {
+            axios.post(urlPublicaciones, {
+                opcion:2, 
+                id_usuario: this.usuario.id, 
+                texto: "¡" + nomRuta + " es la nueva ruta que acabo de publicar! Ve a echarle un ojo y únete",
+                fecha_pub: new Date().toJSON().slice(0, 10)
+            }).then(response =>{
+                if(response.status == 200){
+                    this.$router.replace('mis-rutas');
+                } else {
+                    this.$router.replace('error');
+                }
+            });
         }
     }
 }
