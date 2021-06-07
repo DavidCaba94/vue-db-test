@@ -269,7 +269,6 @@ export default {
             });
         },
         cargarGPX:function() {
-            console.log("CARGA GPX");
             axios.post(urlRuta, {
                 opcion:17,
                 id: this.idRuta
