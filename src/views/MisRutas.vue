@@ -59,14 +59,9 @@
             <router-link :to="'/ruta/'+rutaPasada.id">
                 <div class="card-ruta">
                     <div class="capa-mapa-generico">
-                        <router-link :to="'/editar-ruta/'+rutaPasada.id">
+                        <router-link :to="'/duplicar-ruta/'+rutaPasada.id">
                             <div class="btn-card-ruta">
-                                <img src="../assets/img/editar.png">
-                            </div>
-                        </router-link>
-                        <router-link :to="'/eliminar-ruta/'+rutaPasada.id">
-                            <div class="btn-card-ruta">
-                                <img src="../assets/img/delete-gris.png">
+                                <img src="../assets/img/copy.png">
                             </div>
                         </router-link>
                     </div>

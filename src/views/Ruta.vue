@@ -79,6 +79,7 @@
 
 <script>
 import L from 'leaflet';
+import LeafletGpx from 'leaflet-gpx';
 import axios from "axios";
 
 var urlRuta = "https://crousser.com/app/rest/grupetapp/ruta.php";
@@ -137,7 +138,7 @@ export default {
                 } else {
                     this.rutaObject = response.data[0];
                     this.addMarkerRuta(response.data[0].latitud, response.data[0].longitud);
-                    rutamap.flyTo(new L.LatLng(response.data[0].latitud, response.data[0].longitud), 15);
+                    //rutamap.flyTo(new L.LatLng(response.data[0].latitud, response.data[0].longitud), 15);
                 }
             });
 
@@ -160,6 +161,7 @@ export default {
 
             this.comprobarInscripcion();
             this.obtenerComentarios();
+            this.cargarGPX();
         },
         charCount: function() {
             this.numCaracteres = this.textoComentario.length;
@@ -263,6 +265,34 @@ export default {
             }).then(response =>{
                 if(response.statusText != "OK"){
                     this.$router.replace('error');
+                }
+            });
+        },
+        cargarGPX:function() {
+            console.log("CARGA GPX");
+            axios.post(urlRuta, {
+                opcion:17,
+                id: this.idRuta
+            }).then(response =>{
+                if(response.data.length != 0){
+                    new LeafletGpx.GPX(response.data[0].cadena_gpx, {
+                        async: true,
+                        marker_options: {
+                            startIconUrl: require('../assets/img/void.png'),
+                            endIconUrl: require('../assets/img/void.png'),
+                            shadowUrl: require('../assets/img/void.png')
+                        },
+                        polyline_options: {
+                            color: '#CC5454',
+                            opacity: 1,
+                            weight: 3,
+                            lineCap: 'round'
+                        }
+                    }).on('loaded', function(e) {
+                        rutamap.fitBounds(e.target.getBounds());
+                    }).addTo(rutamap);
+                } else {
+                    rutamap.flyTo(new L.LatLng(this.rutaObject.latitud, this.rutaObject.longitud), 15);
                 }
             });
         }

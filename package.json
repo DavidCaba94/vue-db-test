@@ -13,6 +13,7 @@
     "core-js": "^3.6.5",
     "jquery": "^3.5.1",
     "leaflet": "^1.7.1",
+    "leaflet-gpx": "^1.5.2",
     "moment": "^2.29.1",
     "tailwindcss": "^2.0.3",
     "vue": "^3.0.0",

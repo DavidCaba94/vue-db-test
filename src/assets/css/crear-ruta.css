@@ -75,6 +75,40 @@
     color: #ff4646;
 }
 
+.contenedor-nueva-ruta .box-gpx {
+    max-width: 460px;
+    margin: 0 auto;
+    border: 1px solid #CC5454;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.contenedor-nueva-ruta .box-gpx p {
+    font-size: 12px;
+}
+
+.contenedor-nueva-ruta .box-gpx .form__group {
+    width: 100%;
+}
+
+.contenedor-nueva-ruta .box-gpx .form__field {
+    max-width: 300px;
+    border-bottom: 0;
+    font-size: 12px;
+    margin: 0 auto;
+}
+
+.contenedor-nueva-ruta #gpx-ruta::-webkit-file-upload-button {
+    background-color: #CC5454;
+    border-radius: 5px;
+    color: #ffffff;
+    border: none;
+    font-size: 14px;
+    font-weight: 300;
+    padding: 5px;
+    cursor: pointer;
+}
+
 /*CUSTOM INPUTS*/
 .form__group {
     position: relative;

@@ -38,6 +38,8 @@ $hora = (isset($_POST['hora'])) ? $_POST['hora'] : '';
 $latitud = (isset($_POST['latitud'])) ? $_POST['latitud'] : '';
 $longitud = (isset($_POST['longitud'])) ? $_POST['longitud'] : '';
 $provincia = (isset($_POST['provincia'])) ? $_POST['provincia'] : '';
+$id_ruta = (isset($_POST['id_ruta'])) ? $_POST['id_ruta'] : '';
+$cadena_gpx = (isset($_POST['cadena_gpx'])) ? $_POST['cadena_gpx'] : '';
 
 
 switch($opcion){
@@ -125,6 +127,17 @@ switch($opcion){
         break;
     case 15:
         $consulta = "SELECT id FROM rutas WHERE nombre = '$nombre' ORDER BY id DESC LIMIT 1";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+        $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+        break;
+    case 16:
+        $consulta = "INSERT INTO gpx_ruta (id_ruta, cadena_gpx) VALUES('$id_ruta', '$cadena_gpx') ";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();                
+        break;
+    case 17:
+        $consulta = "SELECT * FROM gpx_ruta WHERE id_ruta = '$id'";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
         $data=$resultado->fetchAll(PDO::FETCH_ASSOC);

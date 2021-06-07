@@ -121,6 +121,11 @@ const routes = [
     path: '/eliminar-ruta/:id',
     name: 'EliminarRuta',
     component: () => import(/* webpackChunkName: "eliminar-ruta" */ '../views/EliminarRuta.vue')
+  },
+  {
+    path: '/duplicar-ruta/:id',
+    name: 'DuplicarRuta',
+    component: () => import(/* webpackChunkName: "duplicar-ruta" */ '../views/DuplicarRuta.vue')
   }
 ]
 
