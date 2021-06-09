@@ -108,11 +108,6 @@ const routes = [
     component: () => import(/* webpackChunkName: "cookies" */ '../views/Cookies.vue')
   },
   {
-    path: '/condiciones-generales',
-    name: 'CondicionesGenerales',
-    component: () => import(/* webpackChunkName: "condiciones-generales" */ '../views/CondicionesGenerales.vue')
-  },
-  {
     path: '/editar-ruta/:id',
     name: 'EditarRuta',
     component: () => import(/* webpackChunkName: "editar-ruta" */ '../views/EditarRuta.vue')

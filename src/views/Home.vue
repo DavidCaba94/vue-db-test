@@ -80,7 +80,6 @@
             <router-link to="/aviso-legal"><div>Aviso legal y condiciones de uso</div></router-link>
             <router-link to="/politica-privacidad"><div>Política de privacidad</div></router-link>
             <router-link to="/cookies"><div>Política de cookies</div></router-link>
-            <router-link to="/condiciones-generales"><div>Condiciones generales de contratación</div></router-link>
         </div>
     </div>
 </template>
@@ -93,6 +92,7 @@ var urlUsuarios = "https://crousser.com/app/rest/grupetapp/usuario.php";
 var urlPublicaciones = "https://crousser.com/app/rest/grupetapp/publicacion.php";
 var urlRutas = "https://crousser.com/app/rest/grupetapp/ruta.php";
 var urlContacto = "https://crousser.com/app/rest/grupetapp/contacto.php";
+var urlEmail = "https://crousser.com/app/rest/grupetapp/send_mail_registro.php";
 
 export default {
     data () {
@@ -146,6 +146,13 @@ export default {
                     }
                 });
             }
+        },
+        enviarEmail:function() {
+            axios.post(urlEmail).then(response =>{
+                if(response.status == 200){
+                    console.log("Email enviado");
+                }
+            });
         }
     }
 }
