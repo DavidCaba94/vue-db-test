@@ -6,19 +6,12 @@
         <strong>Lat:</strong> {{this.latSeleccionada}} <strong>Long:</strong> {{this.longSeleccionada}}
     </p>
     <div class="formulario-ruta">
-        <div class="box-gpx">
-            <p>Aquí puedes cargar opcionalmente el archivo GPX con tu ruta descargada directamente de Strava, Garmin, etc.</p>
-            <div class="form__group field">
-                <input type="file" class="form__field" placeholder="Archivo GPX" name="gpx-ruta" id="gpx-ruta" accept=".gpx" @change="loadGPX()" />
-                <label for="gpx-ruta" class="form__label"></label>
-            </div>
-        </div>
         <div class="form__group field">
-            <input type="input" class="form__field" placeholder="Nombre de la ruta" name="nombreRuta" id='nombreRuta' required />
+            <input type="input" class="form__field" placeholder="Nombre de la ruta" name="nombreRuta" id='nombreRuta' v-model="this.ruta.nombre" required />
             <label for="nombreRuta" class="form__label">Nombre de la ruta</label>
         </div>
         <div class="form__group field">
-            <input type="input" class="form__field" placeholder="Descripción" name="descripcion" id='descripcion' required />
+            <input type="input" class="form__field" placeholder="Descripción" name="descripcion" id='descripcion' v-model="this.ruta.descripcion" required />
             <label for="descripcion" class="form__label">Descripción</label>
         </div>
         <!-- Radio buttons dificultad -->
@@ -26,7 +19,7 @@
             <p class="titulo-radios">Dificultad</p>
             <div class="box-radio">
                 <p>
-                    <input type="radio" id="facil" name="dificultad" value="Fácil" checked>
+                    <input type="radio" id="facil" name="dificultad" value="Fácil">
                     <label for="facil">Fácil</label>
                 </p>
                 <p>
@@ -48,7 +41,7 @@
             <p class="titulo-radios">Tipo</p>
             <div class="box-radio">
                 <p>
-                    <input type="radio" id="mtb" name="tipo" value="MTB" checked>
+                    <input type="radio" id="mtb" name="tipo" value="MTB">
                     <label for="mtb">MTB</label>
                 </p>
                 <p>
@@ -67,32 +60,32 @@
         </div>
         <div class="flex-numerico">
             <div class="form__group field field-numerico">
-                <input type="number" class="form__field" placeholder="Distancia (Kilómetros)" name="distancia" id='distancia' required />
+                <input type="number" class="form__field" placeholder="Distancia (Kilómetros)" name="distancia" id='distancia' v-model="this.ruta.distancia" required />
                 <label for="distancia" class="form__label">Distancia (Kilómetros)</label>
             </div>
             <div class="form__group field field-numerico">
-                <input type="number" class="form__field" placeholder="Máx. Personas" name="maxPersonas" id='maxPersonas' required />
+                <input type="number" class="form__field" placeholder="Máx. Personas" name="maxPersonas" id='maxPersonas' v-model="this.ruta.max_personas" required />
                 <label for="maxPersonas" class="form__label">Máx. Personas</label>
             </div>
         </div>
         <div class="form__group field">
-            <input type="input" class="form__field" placeholder="Dirección (ej: Puente Romano)" name="direccion" id='direccion' required />
+            <input type="input" class="form__field" placeholder="Dirección (ej: Puente Romano)" name="direccion" id='direccion' v-model="this.ruta.direccion" required />
             <label for="direccion" class="form__label">Dirección (ej: Puente Romano)</label>
         </div>
         <div class="flex-numerico">
             <!-- Fecha -->
             <div class="form__group field field-numerico">
-                <input type="date" class="form__field" placeholder="Fecha" name="fecha" id='fecha' required />
+                <input type="date" class="form__field" placeholder="Fecha" name="fecha" id='fecha' v-model="this.ruta.fecha" required />
                 <label for="fecha" class="form__label">Fecha</label>
             </div>
             <!-- Hora -->
             <div class="form__group field field-numerico">
-                <input type="time" class="form__field" placeholder="Hora" name="hora" id='hora' required />
+                <input type="time" class="form__field" placeholder="Hora" name="hora" id='hora' v-model="this.ruta.hora" required />
                 <label for="hora" class="form__label">Hora (24h)</label>
             </div>
         </div>
         <div class="form__group field select">
-            <select id="provincia" class="select-text" required>
+            <select id="provincia" class="select-text" v-model="this.ruta.provincia" required>
             <option value="" disabled selected></option>
             <option value="Álava">Álava</option>
             <option value="Albacete">Albacete</option>
@@ -152,7 +145,7 @@
             <label class="select-label">Provincia</label>
         </div>
         <p class="mensaje-error"></p>
-        <div class="btn-guardar" @click="guardarRuta()">Guardar</div>
+        <div class="btn-guardar" @click="crearRuta()">Crear</div>
         <div id="loading-nueva-ruta" class="lds-ring"><div></div><div></div><div></div><div></div></div>
     </div>
   </div>
@@ -173,16 +166,18 @@ var newmap;
 var inicioRuta = {};
 
 export default {
-    name: "Crear Ruta",
+    name: "Editar Ruta",
     data () {
         return {
             usuario: '',
             latSeleccionada: '',
             longSeleccionada: '',
-            textGpx: ''
+            idRuta: 0,
+            ruta: ''
         }
     },
     mounted() {
+        this.idRuta = this.$route.params.id;
         if(localStorage.usuario) this.usuario = JSON.parse(localStorage.usuario);
         localStorage.setItem("gpxRuta", "null");
         newmap = L.map('crearMapId').setView([40.41680911937625, -3.703799935080432], 5);
@@ -196,34 +191,9 @@ export default {
         }).addTo(newmap);
 
         newmap.on('click', this.onMapClick);
-        this.caparCalendario();
+        this.obtenerDatosRuta();
     },
     methods: {
-        loadGPX:function() {
-            var gpx = window.$("#gpx-ruta").prop("files")[0];
-            var reader = new FileReader();
-            reader.addEventListener('load', function(){
-                this.textGpx = reader.result;
-                localStorage.setItem("gpxRuta", this.textGpx);
-                new LeafletGpx.GPX(this.textGpx, {
-                    async: true,
-                    marker_options: {
-                        startIconUrl: require('../assets/img/void.png'),
-                        endIconUrl: require('../assets/img/void.png'),
-                        shadowUrl: require('../assets/img/void.png')
-                    },
-                    polyline_options: {
-                        color: '#CC5454',
-                        opacity: 1,
-                        weight: 3,
-                        lineCap: 'round'
-                    }
-                }).on('loaded', function(e) {
-                    newmap.fitBounds(e.target.getBounds());
-                }).addTo(newmap);
-            });
-            reader.readAsText(gpx);
-        },
         addMarker:function(lat, long) {
             var customMarker = L.icon({
                 iconUrl: require('../assets/img/favicon.png'),
@@ -242,7 +212,52 @@ export default {
             this.longSeleccionada = e.latlng.lng;
             this.addMarker(e.latlng.lat, e.latlng.lng);
         },
-        guardarRuta:function() {
+        obtenerDatosRuta:function() {
+            axios.post(url, {
+                opcion:10, 
+                id: this.idRuta
+            }).then(response =>{
+                if(response.status == 200){
+                    this.ruta = response.data[0];
+                    this.ruta.fecha = null;
+                    this.ruta.hora = null;
+                    this.verificarUsuarioRuta();
+                } else {
+                    this.$router.replace('/error');
+                }
+            });
+        },
+        verificarUsuarioRuta:function() {
+            if(this.usuario.id != this.ruta.id_usuario){
+                this.$router.replace('/error');
+            } else {
+                this.latSeleccionada = this.ruta.latitud;
+                this.longSeleccionada = this.ruta.longitud;
+                this.addMarker(this.latSeleccionada, this.longSeleccionada);
+                this.cargarGPX();
+                this.caparCalendario();
+                if(this.ruta.dificultad == "Fácil"){
+                    window.$("#facil").attr("checked", "checked");
+                } else if(this.ruta.dificultad == "Media"){
+                    window.$("#media").attr("checked", "checked");
+                } else if(this.ruta.dificultad == "Difícil"){
+                    window.$("#dificil").attr("checked", "checked");
+                } else if(this.ruta.dificultad == "Extrema"){
+                    window.$("#extrema").attr("checked", "checked");
+                }
+
+                if(this.ruta.tipo == "MTB"){
+                    window.$("#mtb").attr("checked", "checked");
+                } else if(this.ruta.tipo == "Carretera"){
+                    window.$("#carretera").attr("checked", "checked");
+                } else if(this.ruta.tipo == "Descenso"){
+                    window.$("#descenso").attr("checked", "checked");
+                } else if(this.ruta.tipo == "Gravel"){
+                    window.$("#gravel").attr("checked", "checked");
+                }
+            }
+        },
+        crearRuta:function() {
             if(this.comprobarCamposObligatorios()){
                 window.$(".btn-guardar").css("display", "none");
                 window.$("#loading-nueva-ruta").css("display", "block");
@@ -291,17 +306,46 @@ export default {
             }
             return todoRelleno;
         },
-        autoinscripcionRuta:function(idRuta, nomRuta) {
-            axios.post(urlInscripcion, {
-                opcion:3,
-                id_ruta: idRuta,
-                id_usuario: this.usuario.id,
-                nom_apellidos: this.usuario.nombre +" "+ this.usuario.apellidos
+        caparCalendario:function() {
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth()+1;
+            var yyyy = today.getFullYear();
+            if(dd<10){
+                dd='0'+dd
+            } 
+            if(mm<10){
+                mm='0'+mm
+            } 
+
+            today = yyyy+'-'+mm+'-'+dd;
+            document.getElementById("fecha").setAttribute("min", today);
+        },
+        cargarGPX:function() {
+            axios.post(url, {
+                opcion:17,
+                id: this.idRuta
             }).then(response =>{
-                if(response.status == 200){
-                    this.autopublicarRuta(nomRuta);
+                if(response.data.length != 0){
+                    new LeafletGpx.GPX(response.data[0].cadena_gpx, {
+                        async: true,
+                        marker_options: {
+                            startIconUrl: require('../assets/img/void.png'),
+                            endIconUrl: require('../assets/img/void.png'),
+                            shadowUrl: require('../assets/img/void.png')
+                        },
+                        polyline_options: {
+                            color: '#CC5454',
+                            opacity: 1,
+                            weight: 3,
+                            lineCap: 'round'
+                        }
+                    }).on('loaded', function(e) {
+                        newmap.fitBounds(e.target.getBounds());
+                        localStorage.setItem("gpxRuta", response.data[0].cadena_gpx);
+                    }).addTo(newmap);
                 } else {
-                    this.$router.replace('error');
+                    newmap.flyTo(new L.LatLng(this.rutaObject.latitud, this.rutaObject.longitud), 15);
                 }
             });
         },
@@ -320,6 +364,34 @@ export default {
                 }
             });
         },
+        autoinscripcionRuta:function(idRuta, nomRuta) {
+            axios.post(urlInscripcion, {
+                opcion:3,
+                id_ruta: idRuta,
+                id_usuario: this.usuario.id,
+                nom_apellidos: this.usuario.nombre +" "+ this.usuario.apellidos
+            }).then(response =>{
+                if(response.status == 200){
+                    this.autopublicarRuta(nomRuta);
+                } else {
+                    this.$router.replace('error');
+                }
+            });
+        },
+        autopublicarRuta:function(nomRuta) {
+            axios.post(urlPublicaciones, {
+                opcion:2, 
+                id_usuario: this.usuario.id, 
+                texto: "¡" + nomRuta + " es la nueva ruta que acabo de publicar! Ve a echarle un ojo y únete",
+                fecha_pub: new Date().toJSON().slice(0, 10)
+            }).then(response =>{
+                if(response.status == 200){
+                    this.$router.replace('/mis-rutas');
+                } else {
+                    this.$router.replace('/error');
+                }
+            });
+        },
         guardarGpxRuta:function(idRutaGPX) {
             axios.post(url, {
                 opcion:16,
@@ -330,35 +402,6 @@ export default {
                     this.$router.replace('error');
                 } else {
                     localStorage.setItem("gpxRuta", "null");
-                }
-            });
-        },
-        caparCalendario:function() {
-            var today = new Date();
-            var dd = today.getDate();
-            var mm = today.getMonth()+1;
-            var yyyy = today.getFullYear();
-            if(dd<10){
-                dd='0'+dd
-            } 
-            if(mm<10){
-                mm='0'+mm
-            } 
-
-            today = yyyy+'-'+mm+'-'+dd;
-            document.getElementById("fecha").setAttribute("min", today);
-        },
-        autopublicarRuta:function(nomRuta) {
-            axios.post(urlPublicaciones, {
-                opcion:2, 
-                id_usuario: this.usuario.id, 
-                texto: "¡" + nomRuta + " es la nueva ruta que acabo de publicar! Ve a echarle un ojo y únete",
-                fecha_pub: new Date().toJSON().slice(0, 10)
-            }).then(response =>{
-                if(response.status == 200){
-                    this.$router.replace('mis-rutas');
-                } else {
-                    this.$router.replace('error');
                 }
             });
         }

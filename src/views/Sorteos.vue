@@ -1,18 +1,35 @@
 <template>
   <div class="contenedor-sorteos">
-      <p class="info-sorteo">No hay ningún sorteo activo por el momento</p>
+      <p class="info-sorteo">¡Primer sorteo al llegar a 100 usuarios!</p>
+      <p class="info-sorteo">Ya somos <strong>{{this.numUsuarios}}</strong>/100</p>
   </div>
 </template>
 
 <script>
+
+import axios from "axios";
+
+var urlUsuarios = "https://crousser.com/app/rest/grupetapp/usuario.php";
+
 export default {
     data () {
     return {
-        usuario: ''
+            usuario: '',
+            numUsuarios: 0
         }
     },
     mounted() {
         if(localStorage.usuario) this.usuario = JSON.parse(localStorage.usuario);
+        this.obtenerNumUsuarios();
+    },
+    methods: {
+        obtenerNumUsuarios:function() {
+            axios.post(urlUsuarios, {
+                opcion:11
+            }).then(response =>{
+                this.numUsuarios = response.data[0].numUsers;
+            });
+        }
     }
 }
 </script>
