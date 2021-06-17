@@ -60,11 +60,35 @@ export default {
             id_ruta: this.idRuta
         }).then(response =>{
             if(response.status == 200){
-              this.$router.replace('/mis-rutas');
+              this.comprobarGPX();
             } else {
               this.$router.replace('/error');
             }
         });
+      },
+      eliminarGPX:function() {
+          axios.post(urlRutas, {
+            opcion:18, 
+            id: this.idRuta
+          }).then(response =>{
+            if(response.status == 200){
+              this.$router.replace('/mis-rutas');
+            } else {
+              this.$router.replace('/error');
+            }
+          });
+      },
+      comprobarGPX:function() {
+          axios.post(urlRutas, {
+              opcion:17,
+              id: this.idRuta
+          }).then(response =>{
+              if(response.data.length != 0){
+                  this.eliminarGPX();
+              } else {
+                  this.$router.replace('/mis-rutas');
+              }
+          });
       }
     }
 }
