@@ -7,8 +7,8 @@
     <div class="box-form">
         <div class="img-perfil"></div>
         <div class="form__group field">
-            <input type="file" class="form__field" placeholder="Foto" name="foto" id='foto' accept=".png,.jpg,.jpeg,.gif,.webp,.bmp" required />
-            <label for="foto" class="form__label">Foto (1MB máx.)</label>
+            <input type="file" class="form__field" placeholder="Foto" name="foto" id='foto' accept=".png,.jpg,.jpeg,.gif" required />
+            <label for="foto" class="form__label">Foto (5MB máx.)</label>
         </div>
         <p class="mensaje-error msg-error-foto"></p>
         <div id="btn-guardar-foto" class="btn-guardar" @click="comprobarTamanoFoto()">Guardar</div>
@@ -122,6 +122,7 @@
 import axios from "axios";
 
 var url = "https://crousser.com/app/rest/grupetapp/usuario.php";
+var urlServerImg = "https://davidcaballerocalvo.es/grupetapp/rest/upload_image.php";
 
 export default {
     data () {
@@ -137,35 +138,23 @@ export default {
     },
     methods: {
       comprobarTamanoFoto:function() {
-        if(document.querySelector('#foto').files[0].size > 1024000){
-          window.$(".msg-error-foto").text("La foto no puede pesar más de 1MB");
+        if(document.querySelector('#foto').files[0].size > 5024000){
+          window.$(".msg-error-foto").text("La foto no puede pesar más de 5MB");
           window.$(".msg-error-foto").css("display", "block");
         } else {
-          this.actualizarFoto();
+          this.guardarImagenServidor();
         }
       },
-      async actualizarFoto(){
-
+      async guardarImagenServidor() {
         window.$("#btn-guardar-foto").css("display", "none");
         window.$("#loading-foto").css("display", "block");
-        
-        var newFoto;
-        const file = document.querySelector('#foto').files[0];
-        if(file != null) {
-          newFoto = await toBase64(file);
-          axios.post(url, {
-            opcion:8, 
-            id: this.usuario.id,
-            foto: newFoto
-          }).then(response =>{
-            if(response.status == 200){
-              this.usuario.foto = newFoto;
-              window.$(".msg-error-foto").css("display", "none");
-              window.$(".img-perfil").css("background-image", "url("+ this.usuario.foto +")");
-              window.$("#img-user").css("background-image", "url("+ this.usuario.foto +")");
-              this.actualizarStorage();
-              window.$("#btn-guardar-foto").css("display", "block");
-              window.$("#loading-foto").css("display", "none");
+        var formData = new FormData();
+        var files = window.$('#foto')[0].files[0];
+        formData.append('file',files);
+        if(files != null) {
+          axios.post(urlServerImg, formData).then(response =>{
+            if(response.data != 0 && response.data != 1){
+              this.actualizarFoto(response.data);
             } else {
               window.$(".msg-error-foto").text("Error al subir la foto");
               window.$(".msg-error-foto").css("display", "block");
@@ -179,6 +168,28 @@ export default {
           window.$("#btn-guardar-foto").css("display", "block");
           window.$("#loading-foto").css("display", "none");
         }
+      },
+      actualizarFoto: function(urlFoto){
+        axios.post(url, {
+          opcion:8, 
+          id: this.usuario.id,
+          foto: urlFoto
+        }).then(response =>{
+          if(response.status == 200){
+            this.usuario.foto = urlFoto;
+            window.$(".msg-error-foto").css("display", "none");
+            window.$(".img-perfil").css("background-image", "url("+ this.usuario.foto +")");
+            window.$("#img-user").css("background-image", "url("+ this.usuario.foto +")");
+            this.actualizarStorage();
+            window.$("#btn-guardar-foto").css("display", "block");
+            window.$("#loading-foto").css("display", "none");
+          } else {
+            window.$(".msg-error-foto").text("Error al subir la foto");
+            window.$(".msg-error-foto").css("display", "block");
+            window.$("#btn-guardar-foto").css("display", "block");
+            window.$("#loading-foto").css("display", "none");
+          }
+        });
       },
       actualizarPerfil: function() {
 
@@ -270,12 +281,14 @@ export default {
     }
 }
 
+/*
 const toBase64 = file => new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => resolve(reader.result);
     reader.onerror = error => reject(error);
 });
+*/
 
 </script>
 
