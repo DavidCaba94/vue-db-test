@@ -1,7 +1,7 @@
 <template>
   <div class="contenedor-sorteos">
-      <p class="info-sorteo">¡Primer sorteo al llegar a 100 usuarios!</p>
-      <p class="info-sorteo">Ya somos <strong>{{this.numUsuarios}}</strong>/100</p>
+      <p class="info-sorteo">¡Primer sorteo al llegar a 1000 usuarios!</p>
+      <p class="info-sorteo">Ya somos <strong>{{this.numUsuarios}}</strong>/1000</p>
   </div>
 </template>
 
