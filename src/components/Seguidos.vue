@@ -162,6 +162,8 @@ export default {
         for(var i = 0; i < this.listaSeguidosFiltrados.length; i++){
           if(this.listaSeguidosFiltrados[i].foto != null){
             window.$("#foto-seguido-"+i).css("background-image", "url("+ this.listaSeguidosFiltrados[i].foto +")");
+          } else {
+            window.$("#foto-seguido-"+i).css("background-image", "url(/img/user-default.de2ba6b9.png)");
           }
         }
       }

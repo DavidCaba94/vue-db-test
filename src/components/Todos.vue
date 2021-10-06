@@ -144,6 +144,8 @@ export default {
         for(var i = 0; i < this.listaUsuariosFiltrados.length; i++){
           if(this.listaUsuariosFiltrados[i].foto != null){
             window.$("#foto-user-"+i).css("background-image", "url("+ this.listaUsuariosFiltrados[i].foto +")");
+          } else {
+            window.$("#foto-user-"+i).css("background-image", "url(/img/user-default.de2ba6b9.png)");
           }
         }
       }
