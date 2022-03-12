@@ -89,11 +89,11 @@
 
 import axios from "axios";
 
-var urlUsuarios = "https://davidcaballerocalvo.es/grupetapp/rest/usuario.php";
-var urlPublicaciones = "https://davidcaballerocalvo.es/grupetapp/rest/publicacion.php";
-var urlRutas = "https://davidcaballerocalvo.es/grupetapp/rest/ruta.php";
-var urlContacto = "https://davidcaballerocalvo.es/grupetapp/rest/contacto.php";
-var urlEmail = "https://davidcaballerocalvo.es/grupetapp/rest/send_mail_registro.php";
+var urlUsuarios = "https://tarotgratisonline.com/rest/grupetapp/usuario.php";
+var urlPublicaciones = "https://tarotgratisonline.com/rest/grupetapp/publicacion.php";
+var urlRutas = "https://tarotgratisonline.com/rest/grupetapp/ruta.php";
+var urlContacto = "https://tarotgratisonline.com/rest/grupetapp/contacto.php";
+var urlEmail = "https://tarotgratisonline.com/rest/grupetapp/send_mail_registro.php";
 
 export default {
     data () {

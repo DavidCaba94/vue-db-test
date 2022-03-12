@@ -43,8 +43,8 @@
 
 import axios from "axios";
 
-var urlPublicaciones = "https://davidcaballerocalvo.es/grupetapp/rest/publicacion.php";
-var urlUsuarios = "https://davidcaballerocalvo.es/grupetapp/rest/usuario.php";
+var urlPublicaciones = "https://tarotgratisonline.com/rest/grupetapp/publicacion.php";
+var urlUsuarios = "https://tarotgratisonline.com/rest/grupetapp/usuario.php";
 
 export default {
     name: "Publicaciones",

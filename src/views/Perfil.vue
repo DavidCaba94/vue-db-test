@@ -121,8 +121,8 @@
 
 import axios from "axios";
 
-var url = "https://davidcaballerocalvo.es/grupetapp/rest/usuario.php";
-var urlServerImg = "https://davidcaballerocalvo.es/grupetapp/rest/upload_image.php";
+var url = "https://tarotgratisonline.com/rest/grupetapp/usuario.php";
+var urlServerImg = "https://tarotgratisonline.com/rest/grupetapp/upload_image.php";
 
 export default {
     data () {

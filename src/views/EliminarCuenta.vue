@@ -12,8 +12,8 @@
 
 import axios from "axios";
 
-var url = "https://davidcaballerocalvo.es/grupetapp/rest/usuario.php";
-var urlSeguidos = "https://davidcaballerocalvo.es/grupetapp/rest/seguidos.php";
+var url = "https://tarotgratisonline.com/rest/grupetapp/usuario.php";
+var urlSeguidos = "https://tarotgratisonline.com/rest/grupetapp/seguidos.php";
 
 export default {
     data() {

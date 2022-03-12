@@ -16,7 +16,7 @@
 import VueApexCharts from "vue3-apexcharts";
 import axios from "axios";
 
-var url = "https://davidcaballerocalvo.es/grupetapp/rest/ruta.php";
+var url = "https://tarotgratisonline.com/rest/grupetapp/ruta.php";
 
 export default {
     components: {

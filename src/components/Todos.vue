@@ -81,7 +81,7 @@
 <script>
 import axios from "axios";
 
-var url = "https://davidcaballerocalvo.es/grupetapp/rest/usuario.php";
+var url = "https://tarotgratisonline.com/rest/grupetapp/usuario.php";
 
 export default {
     name: "Todos",

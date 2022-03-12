@@ -83,8 +83,8 @@
 
 import axios from "axios";
 
-var urlSeguidores = "https://davidcaballerocalvo.es/grupetapp/rest/seguidores.php";
-var urlUsuarios = "https://davidcaballerocalvo.es/grupetapp/rest/usuario.php";
+var urlSeguidores = "https://tarotgratisonline.com/rest/grupetapp/seguidores.php";
+var urlUsuarios = "https://tarotgratisonline.com/rest/grupetapp/usuario.php";
 
 export default {
     name: "Seguidores",

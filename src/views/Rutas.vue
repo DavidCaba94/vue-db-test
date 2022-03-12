@@ -102,8 +102,8 @@
 <script>
 import axios from "axios";
 
-var urlRutas = "https://davidcaballerocalvo.es/grupetapp/rest/ruta.php";
-var urlInscripciones = "https://davidcaballerocalvo.es/grupetapp/rest/inscripciones.php";
+var urlRutas = "https://tarotgratisonline.com/rest/grupetapp/ruta.php";
+var urlInscripciones = "https://tarotgratisonline.com/rest/grupetapp/inscripciones.php";
 
 export default {
     data () {

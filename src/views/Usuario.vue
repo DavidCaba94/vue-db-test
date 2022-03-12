@@ -65,12 +65,12 @@
 import VueApexCharts from "vue3-apexcharts";
 import axios from "axios";
 
-var urlUsuarios = "https://davidcaballerocalvo.es/grupetapp/rest/usuario.php";
-var urlSeguidos = "https://davidcaballerocalvo.es/grupetapp/rest/seguidos.php";
-var urlPublicaciones = "https://davidcaballerocalvo.es/grupetapp/rest/publicacion.php";
-var urlNotificaciones = "https://davidcaballerocalvo.es/grupetapp/rest/notificaciones.php";
-var urlRutas = "https://davidcaballerocalvo.es/grupetapp/rest/ruta.php";
-var urlInscripciones = "https://davidcaballerocalvo.es/grupetapp/rest/inscripciones.php";
+var urlUsuarios = "https://tarotgratisonline.com/rest/grupetapp/usuario.php";
+var urlSeguidos = "https://tarotgratisonline.com/rest/grupetapp/seguidos.php";
+var urlPublicaciones = "https://tarotgratisonline.com/rest/grupetapp/publicacion.php";
+var urlNotificaciones = "https://tarotgratisonline.com/rest/grupetapp/notificaciones.php";
+var urlRutas = "https://tarotgratisonline.com/rest/grupetapp/ruta.php";
+var urlInscripciones = "https://tarotgratisonline.com/rest/grupetapp/inscripciones.php";
 
 export default {
     name: "Usuario",

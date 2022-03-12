@@ -67,7 +67,7 @@
 <script>
 import axios from "axios";
 
-var url = "https://davidcaballerocalvo.es/grupetapp/rest/notificaciones.php";
+var url = "https://tarotgratisonline.com/rest/grupetapp/notificaciones.php";
 
 export default {
     name: "Menu",

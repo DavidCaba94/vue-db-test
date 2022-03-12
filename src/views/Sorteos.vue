@@ -9,7 +9,7 @@
 
 import axios from "axios";
 
-var urlUsuarios = "https://davidcaballerocalvo.es/grupetapp/rest/usuario.php";
+var urlUsuarios = "https://tarotgratisonline.com/rest/grupetapp/usuario.php";
 
 export default {
     data () {
