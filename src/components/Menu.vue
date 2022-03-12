@@ -67,7 +67,7 @@
 <script>
 import axios from "axios";
 
-var url = "https://crousser.com/app/rest/grupetapp/notificaciones.php";
+var url = "https://davidcaballerocalvo.es/grupetapp/rest/notificaciones.php";
 
 export default {
     name: "Menu",

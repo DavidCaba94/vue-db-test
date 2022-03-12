@@ -164,9 +164,9 @@ import L from 'leaflet';
 import LeafletGpx from 'leaflet-gpx';
 import axios from "axios";
 
-var url = "https://crousser.com/app/rest/grupetapp/ruta.php";
-var urlInscripcion = "https://crousser.com/app/rest/grupetapp/inscripciones.php";
-var urlPublicaciones = "https://crousser.com/app/rest/grupetapp/publicacion.php";
+var url = "https://davidcaballerocalvo.es/grupetapp/rest/ruta.php";
+var urlInscripcion = "https://davidcaballerocalvo.es/grupetapp/rest/inscripciones.php";
+var urlPublicaciones = "https://davidcaballerocalvo.es/grupetapp/rest/publicacion.php";
 
 var newmap;
 

@@ -43,8 +43,8 @@
 
 import axios from "axios";
 
-var urlPublicaciones = "https://crousser.com/app/rest/grupetapp/publicacion.php";
-var urlUsuarios = "https://crousser.com/app/rest/grupetapp/usuario.php";
+var urlPublicaciones = "https://davidcaballerocalvo.es/grupetapp/rest/publicacion.php";
+var urlUsuarios = "https://davidcaballerocalvo.es/grupetapp/rest/usuario.php";
 
 export default {
     name: "Publicaciones",

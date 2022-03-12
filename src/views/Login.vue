@@ -27,7 +27,7 @@
 
 <script>
 import axios from "axios";
-var url = "https://crousser.com/app/rest/grupetapp/usuario.php";
+var url = "https://davidcaballerocalvo.es/grupetapp/rest/usuario.php";
 
 export default {
        data () {

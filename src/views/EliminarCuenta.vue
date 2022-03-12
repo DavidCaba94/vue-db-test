@@ -12,8 +12,8 @@
 
 import axios from "axios";
 
-var url = "https://crousser.com/app/rest/grupetapp/usuario.php";
-var urlSeguidos = "https://crousser.com/app/rest/grupetapp/seguidos.php";
+var url = "https://davidcaballerocalvo.es/grupetapp/rest/usuario.php";
+var urlSeguidos = "https://davidcaballerocalvo.es/grupetapp/rest/seguidos.php";
 
 export default {
     data() {

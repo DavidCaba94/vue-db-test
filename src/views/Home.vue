@@ -76,6 +76,7 @@
                 <p class="mail-text">También puedes contactar con nosotros enviando un mail a <a href="mailto:contacto@grupetapp.com">contacto@grupetapp.com</a></p>
             </div>
         </div>
+        <!--<div class="btn-publicar" @click='enviarEmail()'>Enviar email</div>-->
         <div class="footer">
             <router-link to="/aviso-legal"><div>Aviso legal y condiciones de uso</div></router-link>
             <router-link to="/politica-privacidad"><div>Política de privacidad</div></router-link>
@@ -88,11 +89,11 @@
 
 import axios from "axios";
 
-var urlUsuarios = "https://crousser.com/app/rest/grupetapp/usuario.php";
-var urlPublicaciones = "https://crousser.com/app/rest/grupetapp/publicacion.php";
-var urlRutas = "https://crousser.com/app/rest/grupetapp/ruta.php";
-var urlContacto = "https://crousser.com/app/rest/grupetapp/contacto.php";
-var urlEmail = "https://crousser.com/app/rest/grupetapp/send_mail_registro.php";
+var urlUsuarios = "https://davidcaballerocalvo.es/grupetapp/rest/usuario.php";
+var urlPublicaciones = "https://davidcaballerocalvo.es/grupetapp/rest/publicacion.php";
+var urlRutas = "https://davidcaballerocalvo.es/grupetapp/rest/ruta.php";
+var urlContacto = "https://davidcaballerocalvo.es/grupetapp/rest/contacto.php";
+var urlEmail = "https://davidcaballerocalvo.es/grupetapp/rest/send_mail_registro.php";
 
 export default {
     data () {

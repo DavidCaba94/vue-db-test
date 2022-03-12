@@ -121,7 +121,7 @@
 
 import axios from "axios";
 
-var url = "https://crousser.com/app/rest/grupetapp/usuario.php";
+var url = "https://davidcaballerocalvo.es/grupetapp/rest/usuario.php";
 var urlServerImg = "https://davidcaballerocalvo.es/grupetapp/rest/upload_image.php";
 
 export default {

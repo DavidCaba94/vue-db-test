@@ -156,7 +156,7 @@
 import L from 'leaflet';
 import axios from "axios";
 
-var url = "https://crousser.com/app/rest/grupetapp/ruta.php";
+var url = "https://davidcaballerocalvo.es/grupetapp/rest/ruta.php";
 
 var newmap;
 

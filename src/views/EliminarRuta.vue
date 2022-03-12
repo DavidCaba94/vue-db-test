@@ -10,8 +10,8 @@
 
 import axios from "axios";
 
-var urlRutas = "https://crousser.com/app/rest/grupetapp/ruta.php";
-var urlInscripciones = "https://crousser.com/app/rest/grupetapp/inscripciones.php";
+var urlRutas = "https://davidcaballerocalvo.es/grupetapp/rest/ruta.php";
+var urlInscripciones = "https://davidcaballerocalvo.es/grupetapp/rest/inscripciones.php";
 
 export default {
     data() {

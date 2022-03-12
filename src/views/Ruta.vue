@@ -82,10 +82,10 @@ import L from 'leaflet';
 import LeafletGpx from 'leaflet-gpx';
 import axios from "axios";
 
-var urlRuta = "https://crousser.com/app/rest/grupetapp/ruta.php";
-var urlInscripcion = "https://crousser.com/app/rest/grupetapp/inscripciones.php";
-var urlNotificaciones = "https://crousser.com/app/rest/grupetapp/notificaciones.php";
-var urlComentarios = "https://crousser.com/app/rest/grupetapp/comentarios_ruta.php";
+var urlRuta = "https://davidcaballerocalvo.es/grupetapp/rest/ruta.php";
+var urlInscripcion = "https://davidcaballerocalvo.es/grupetapp/rest/inscripciones.php";
+var urlNotificaciones = "https://davidcaballerocalvo.es/grupetapp/rest/notificaciones.php";
+var urlComentarios = "https://davidcaballerocalvo.es/grupetapp/rest/comentarios_ruta.php";
 
 var rutamap;
 

@@ -83,8 +83,8 @@
 
 import axios from "axios";
 
-var urlSeguidos = "https://crousser.com/app/rest/grupetapp/seguidos.php";
-var urlUsuarios = "https://crousser.com/app/rest/grupetapp/usuario.php";
+var urlSeguidos = "https://davidcaballerocalvo.es/grupetapp/rest/seguidos.php";
+var urlUsuarios = "https://davidcaballerocalvo.es/grupetapp/rest/usuario.php";
 
 export default {
     name: "Seguidos",
